@@ -1,0 +1,33 @@
+{
+  "name": "reference-marketing-website",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "1.8.8",
+    "@emotion/react": "11.8.2",
+    "@emotion/styled": "11.8.1",
+    "framer-motion": "6.2.9",
+    "graphql": "16.3.0",
+    "graphql-request": "4.2.0",
+    "he": "1.2.0",
+    "lodash.camelcase": "4.3.0",
+    "lodash.startcase": "4.4.0",
+    "next": "^12.2.0",
+    "next-mdx-remote": "^3.0.",
+    "next-seo": "5.4.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-transition-group": "4.4.2"
+  },
+  "devDependencies": {
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.4",
+    "prettier": "2.6.2"
+  }
+}
