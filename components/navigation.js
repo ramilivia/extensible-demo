@@ -27,11 +27,11 @@ const transitionStyles = {
   exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
 }
 
-export default function Navigation({ pages }) {
+export default function Navigation({ pages, logo }) {
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!container?.current?.contains(event.target)) {
@@ -173,8 +173,14 @@ export default function Navigation({ pages }) {
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-                <VisuallyHidden>Hygraph</VisuallyHidden>
-                <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
+              {logo ? 
+                <img src={logo.url} alt="Logo" style={{maxHeight: '100px'}}/> 
+                : 
+                <>
+                  <VisuallyHidden>Hygraph</VisuallyHidden>
+                  <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
+                </>
+              }
               </a>
             </Link>
           </Flex>
