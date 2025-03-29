@@ -9,7 +9,7 @@ export default function Hero({ buttons, image, navigation, page }) {
   return (
     <Box position="relative" bg="gray.50">
       <Navigation {...navigation} />
-      <Box as="main" position={{ lg: 'relative' }}>
+      <Box as="main" position={{ lg: 'relative' }} overflow="hidden">
         <Box
           mx="auto"
           maxW="7xl"
@@ -18,6 +18,7 @@ export default function Hero({ buttons, image, navigation, page }) {
           pt={16}
           pb={20}
           textAlign={{ base: 'center', lg: 'left' }}
+          position="relative"
         >
           <Box px={[4, 8]} pr={{ xl: 16 }} width={{ lg: '50%' }}>
             <Heading
@@ -64,24 +65,29 @@ export default function Hero({ buttons, image, navigation, page }) {
               </Stack>
             )}
           </Box>
-        </Box>
-        <Box
-          pos={{ base: 'relative', lg: 'absolute' }}
-          w={{ base: 'full', lg: '50%' }}
-          h={[64, 72, 96, 'full']}
-          top={{ lg: 0 }}
-          bottom={{ lg: 0 }}
-          right={{ lg: 0 }}
-        >
-          <Image
-            className="hero-image"
-            src={image.url}
-            alt={image.title}
-            title={image.title}
-            layout="fill"
-            priority={true}
-            objectFit="cover"
-          />
+        
+          <Box
+            pos={{ base: 'relative', lg: 'absolute' }}
+            w={{ base: 'full', lg: '50%' }}
+            h={[64, 72, 96, 'full']}
+            top={{ lg: 0 }}
+            bottom={{ lg: 0 }}
+            right={{ lg: 0 }}
+            overflow="hidden"
+            mt={{ base: 14, md: 14, lg: 0 }}
+          >
+            <Image
+              className="hero-image"
+              src={image.url}
+              alt={image.title}
+              title={image.title}
+              layout="fill"
+              priority={true}
+              objectFit="cover"
+              objectPosition="center"
+              sizes="50vw"
+            />
+          </Box>
         </Box>
       </Box>
     </Box>
