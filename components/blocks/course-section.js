@@ -33,7 +33,7 @@ export default function CourseSection({ heading, description, salesforceCourses 
             border="3px solid"
             borderColor="gray.900"
             borderRadius="lg"
-            maxW={{ lg: 'xl'}}
+            maxW={{lg: '480px', xl: '580px'}}
             p={4}
           >
             <Heading
