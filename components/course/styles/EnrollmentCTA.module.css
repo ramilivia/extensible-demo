@@ -1,0 +1,30 @@
+.enrollmentCTA {
+    padding: 40px 20px;
+    background-color: #0070f3; /* Primary color */
+    color: white;
+    text-align: center;
+  }
+  
+  .ctaContent {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .ctaDetails {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .ctaInfo {
+    flex: 1;
+  }
+  
+  .ctaAction {
+    flex: 1;
+  }
