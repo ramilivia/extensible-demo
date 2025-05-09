@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './CourseOutline.module.css';
+import styles from './styles/CourseOutline.module.css';
 
 export default function CourseOutline({ outline }) {
   const [expandedModules, setExpandedModules] = useState([]);

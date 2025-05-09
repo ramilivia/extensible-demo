@@ -1,4 +1,4 @@
-import styles from './EnrollmentCTA.module.css';
+import styles from './styles/EnrollmentCTA.module.css';
 import Button from '../shared/Button';
 
 export default function EnrollmentCTA({ title, price, startDate, deadline, certification }) {

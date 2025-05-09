@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './CourseInstructors.module.css';
+import styles from './styles/CourseInstructors.module.css';
 
 export default function CourseInstructors({ instructors }) {
   return (
