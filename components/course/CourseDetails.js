@@ -55,7 +55,7 @@ export default function CourseDetails({
               
               {activeTab === 'outcomes' && (
                 <div>
-                  <h3>What You'll Learn</h3>
+                  <h3>What You&apos;ll Learn</h3>
                   <ul>
                     {outcomes?.map((outcome, index) => (
                       <li key={index}>{outcome}</li>

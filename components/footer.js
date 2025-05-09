@@ -192,7 +192,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             color={siteConfig?.navFontColor?.hex || "gray.400"}
             order={{ md: 1 }}
           >
-            &copy; {new Date().getFullYear()} GraphCMS GmbH All rights reserved.
+            {new Date().getFullYear()} Hygraph GmbH All rights reserved.
           </Text>
         </Box>
       </Box>
