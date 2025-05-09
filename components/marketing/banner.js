@@ -7,9 +7,9 @@ const themeColor = {
 }
 
 export default function Banner({ content, href, theme = 'WARNING' }) {
-  if (!content || !href) return null
-
   const { siteConfig } = useSiteConfig();
+
+  if (!content || !href) return null
 
   return (
     <Box
