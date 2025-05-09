@@ -11,17 +11,18 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-
+import { useSiteConfig } from '@/lib/useSiteConfig'
 import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/icons'
 import { locales } from '@/lib/_locales'
 
 function GridColumnHeading({ children }) {
+  const { siteConfig, isLoading, error } = useSiteConfig();
   return (
     <Heading
       as="h3"
       fontSize="sm"
       fontWeight="semibold"
-      color="gray.400"
+      color={siteConfig?.navFontColor?.hex || "gray.400"}
       letterSpacing="wider"
       textTransform="uppercase"
     >
@@ -31,16 +32,18 @@ function GridColumnHeading({ children }) {
 }
 
 function GridColumn({ links, title }) {
+  const { siteConfig, isLoading, error } = useSiteConfig();
+
   return (
     <div>
-      <GridColumnHeading>{title}</GridColumnHeading>
+      <GridColumnHeading color={siteConfig?.navFontColor?.hex}>{title}</GridColumnHeading>
 
       <Stack as="ul" mt={4} spacing={4}>
         {links.map((link) => (
           <li key={link.id}>
             <Link href={`/${link.slug}`} passHref>
               <ChakraLink
-                color="gray.300"
+                color={siteConfig?.navFontColor?.hex || "gray.300"}
                 _hover={{
                   color: 'white'
                 }}
@@ -57,23 +60,26 @@ function GridColumn({ links, title }) {
 }
 
 function SocialMediaLink({ href, title, icon }) {
+  const { siteConfig, isLoading, error } = useSiteConfig();
+
   return (
     <ChakraLink
       href={href}
       isExternal
-      color="gray.400"
+      color={siteConfig?.navFontColor?.hex || "gray.400"}
       _hover={{
         color: 'gray.300'
       }}
     >
       <VisuallyHidden>{title}</VisuallyHidden>
-      <Box as={icon} w={6} h={6} />
+      <Box as={icon} w={6} h={6} color="white" />
     </ChakraLink>
   )
 }
 
 export default function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
+  const { siteConfig, isLoading, error } = useSiteConfig();
 
   const activeLocale = locales.find((locale) => locale.value === router.locale)
 
@@ -82,7 +88,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
   }
 
   return (
-    <Box as="footer" bg="gray.800" aria-labelledby="footerHeading">
+    <Box as="footer" color={siteConfig?.navFontColor?.hex || "white"} bg={siteConfig?.navBackground?.hex || "gray.800"} aria-labelledby="footerHeading">
       <VisuallyHidden as="h2" id="footerHeading">
         Footer
       </VisuallyHidden>
@@ -152,7 +158,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
           mt={7}
           pt={8}
           borderTopWidth="1px"
-          borderColor="gray.700"
+          borderColor={siteConfig?.navFontColor?.hex || "gray.700"}
           display={{ md: 'flex' }}
           alignItems={{ md: 'center' }}
           justifyContent={{ md: 'space-between' }}
@@ -183,7 +189,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
           <Text
             mt={[8, null, 0]}
             fontSize="md"
-            color="gray.400"
+            color={siteConfig?.navFontColor?.hex || "gray.400"}
             order={{ md: 1 }}
           >
             &copy; {new Date().getFullYear()} GraphCMS GmbH All rights reserved.

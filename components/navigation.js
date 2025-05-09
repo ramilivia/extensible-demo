@@ -15,6 +15,7 @@ import { Transition } from 'react-transition-group'
 
 import { LogoSVG, MarkSVG } from '@/svgs'
 import { MenuIcon, XIcon } from '@/icons'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 
 const defaultStyle = {
   transition: `all 150ms cubic-bezier(0.4, 0, 1, 1)`
@@ -27,10 +28,11 @@ const transitionStyles = {
   exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
 }
 
-export default function Navigation({ pages, logo }) {
+export default function Navigation({ pages }) {
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const { siteConfig, isLoading, error } = useSiteConfig();
   
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -68,8 +70,10 @@ export default function Navigation({ pages, logo }) {
     return () => router.events.off('routeChangeStart', handleRouteChange)
   }, [router.events])
 
+  console.log('logo', siteConfig)
+
   return (
-    <Box ref={container} pos="relative" bg="white" boxShadow="base">
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex || 'white'} color={siteConfig?.navFontColor?.hex} boxShadow="base">
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box
@@ -173,8 +177,8 @@ export default function Navigation({ pages, logo }) {
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-              {logo ? 
-                <img src={logo.url} alt="Logo" style={{maxHeight: '100px'}}/> 
+              {siteConfig?.logo ? 
+                <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px'}}/> 
                 : 
                 <>
                   <VisuallyHidden>Hygraph</VisuallyHidden>
@@ -217,7 +221,7 @@ export default function Navigation({ pages, logo }) {
                     <ChakraLink
                       fontSize="md"
                       fontWeight="medium"
-                      color={isActive ? 'indigo.600' : 'gray.500'}
+                      color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}
                       _hover={{
                         color: 'gray.900'
                       }}

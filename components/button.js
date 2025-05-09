@@ -6,14 +6,31 @@ const linkDefaultStyles = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  px: [8, null, 10],
-  py: [3, null, 4],
+  px: [4, null, 10],
+  py: [0, null, 4],
   fontSize: ['base', null, 'lg'],
   fontWeight: 'medium',
   borderRadius: 'md'
 }
 
-export default function Button({ href, label, theme }) {
+const buttonSizes = {
+  SMALL: {
+    px: [2, null, 4],
+    py: [1, null, 2],
+    fontSize: ['sm', null, 'base']
+  },
+  MEDIUM: {
+    px: [4, null, 8],
+    py: [2, null, 3],
+    fontSize: ['base', null, 'lg']
+  },
+  LARGE: {
+    px: [6, null, 10],
+    py: [3, null, 4],
+    fontSize: ['lg', null, 'xl']
+  }
+}
+export default function Button({ href, label, theme, size = 'MEDIUM' }) {
   if (!href || !label) return null
 
   if (href.includes('http')) {
@@ -23,6 +40,7 @@ export default function Button({ href, label, theme }) {
           isExternal
           href={href}
           {...linkDefaultStyles}
+          {...buttonSizes[size]}
           variant={theme}
         >
           {label}
@@ -34,7 +52,7 @@ export default function Button({ href, label, theme }) {
   return (
     <Box borderRadius="md" boxShadow="md">
       <Link href={href} passHref>
-        <ChakraLink {...linkDefaultStyles} variant={theme}>
+        <ChakraLink {...linkDefaultStyles} {...buttonSizes[size]} variant={theme}>
           {label}
         </ChakraLink>
       </Link>

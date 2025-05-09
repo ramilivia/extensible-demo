@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-
+import { useSiteConfig } from '@/lib/useSiteConfig'
 import Button from '@/components/button'
 
 const themeColor = {
@@ -9,9 +9,11 @@ const themeColor = {
 export default function Banner({ content, href, theme = 'WARNING' }) {
   if (!content || !href) return null
 
+  const { siteConfig } = useSiteConfig();
+
   return (
     <Box
-      bg={themeColor[theme] || 'indigo.600'}
+      bg={siteConfig?.bannerBackground?.hex || themeColor[theme] || 'indigo.600'}
       color={themeColor[theme] || 'indigo.600'}
     >
       <Box maxW={1280} mx="auto" py={3} px={[3, 6, null, 8]}>
@@ -31,7 +33,7 @@ export default function Banner({ content, href, theme = 'WARNING' }) {
                 href={href}
                 label="Learn more"
                 size="SMALL"
-                theme="WHITE"
+                theme="INDIGO"
               />
             </Box>
           </Box>
