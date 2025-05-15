@@ -39,7 +39,7 @@ function GridColumn({ links, title }) {
       <GridColumnHeading color={siteConfig?.navFontColor?.hex}>{title}</GridColumnHeading>
 
       <Stack as="ul" mt={4} spacing={4}>
-        {links.map((link) => (
+        {links && links.map((link) => (
           <li key={link.id}>
             <Link href={`/${link.slug}`} passHref>
               <ChakraLink

@@ -11,8 +11,9 @@ export default function Page({ page }) {
 }
 
 export async function getStaticProps({ locale, params, preview = false }) {
+  
   const client = hygraphClient(preview)
-
+  console.log('TANGA LOCA', params);
   const { page } = await client.request(pageQuery, {
     locale,
     slug: params.slug
