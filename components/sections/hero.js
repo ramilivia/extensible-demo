@@ -14,7 +14,8 @@ export default function Hero({ buttons, image, title, description }) {
     <Box 
       position="relative" 
       w="100vw" 
-      h={{ base: '70vh', md: '85vh' }}
+      h={{ base: 'auto', md: '85vh' }}
+      minH={{ base: '100vh', md: '85vh' }}
       left="50%"
       right="50%"
       marginLeft="-50vw"
@@ -24,14 +25,15 @@ export default function Hero({ buttons, image, title, description }) {
     >
       <Grid
         templateColumns={{ base: '1fr', md: '1fr 1fr' }}
+        templateRows={{ base: 'auto auto', md: '1fr' }}
         h="100%"
         position="relative"
       >
-        {/* Image Section - Half Width */}
+        {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          h="100%"
-          display={{ base: 'none', md: 'block' }}
+          h={{ base: '50vh', md: '100%' }}
+          display="block"
         >
           <Box
             position="absolute"
@@ -69,7 +71,7 @@ export default function Hero({ buttons, image, title, description }) {
         <GridItem
           position="relative"
           zIndex={2}
-          bg={{ base: 'white', md: 'transparent' }}
+          bg="white"
           display="flex"
           alignItems="center"
         >
@@ -78,8 +80,8 @@ export default function Hero({ buttons, image, title, description }) {
             h="full"
             display="flex"
             alignItems="center"
-            py={{ base: 20, md: 32 }}
-            px={{ base: 6, md: 12 }}
+            py={{ base: 16, md: 32 }}
+            px={{ base: 4, md: 12 }}
           >
             <Stack 
               spacing={{ base: 8, md: 10 }} 
@@ -87,58 +89,28 @@ export default function Hero({ buttons, image, title, description }) {
               textAlign="left"
               color="gray.800"
             >
-              {/* Mobile Image */}
-              {isMobile && (
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  zIndex={-1}
-                  opacity={1}
-                >
-                  <Image
-                    src={image.url}
-                    alt={image.alt}
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="center"
-                    priority
-                    quality={100}
-                  />
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bg="linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.8) 100%)"
-                  />
-                </Box>
-              )}
-              
               <Heading
                 as="h1"
-                fontSize={{ base: '3.5rem', md: '4.8rem', lg: '5.5rem' }}
+                fontSize={{ base: '2.5rem', md: '3.8rem', lg: '5.5rem' }}
                 fontWeight="bold"
-                lineHeight="1.05"
+                lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"
                 fontFamily="serif"
                 color={siteConfig?.titlesFontColor?.hex || 'gray.800'}
-                mb={2}
+                mb={{ base: 4, md: 2 }}
               >
                 {title}
               </Heading>
               
               <Text
-                fontSize={{ base: 'md', md: 'lg' }}
+                fontSize={{ base: 'sm', md: 'lg' }}
                 maxW="2xl"
                 fontWeight="normal"
                 color={siteConfig?.textColor?.hex || 'gray.600'}
-                lineHeight="1.8"
+                lineHeight={{ base: '1.6', md: '1.8' }}
                 letterSpacing="0.02em"
                 opacity={0.95}
+                mb={{ base: 6, md: 0 }}
               >
                 {description}
               </Text>
