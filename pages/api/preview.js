@@ -1,5 +1,5 @@
 import { hygraphClient } from '@/lib/_client'
-import { pageQuery, blogPostQuery } from '@/lib/_queries'
+import { pageQuery, genericPageQuery } from '@/lib/_queries'
 
 export default async function handler(req, res) {
   if (
@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
   const [rootSlug, nestedSlug] = req.query.slug.split('/')
 
-  const data = await client.request(nestedSlug ? blogPostQuery : pageQuery, {
-    slug: nestedSlug ? blogPostQuery : rootSlug,
+  const data = await client.request(nestedSlug ? genericPageQuery : pageQuery, {
+    slug: nestedSlug ? genericPageQuery : rootSlug,
     ...(rootSlug && { locale: 'en' })
   })
 
