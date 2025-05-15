@@ -11,7 +11,14 @@ const linkDefaultStyles = {
   py: [0, null, 4],
   fontSize: ['base', null, 'lg'],
   fontWeight: 'medium',
-  borderRadius: 'md'
+  borderRadius: 'md',
+  textDecoration: 'none',
+  _hover: {
+    textDecoration: 'none'
+  },
+  _focus: {
+    textDecoration: 'none'
+  }
 }
 
 const buttonSizes = {
@@ -32,17 +39,35 @@ const buttonSizes = {
   }
 }
 
-export default function Button({ href, label, size = 'MEDIUM' }) {
+const themeStyles = {
+  PRIMARY: (siteConfig) => ({
+    bg: siteConfig?.primaryButtonBackground?.hex,
+    color: siteConfig?.primaryButtonFontColor?.hex
+  }),
+  PRIMARY_INVERTED: (siteConfig) => ({
+    bg: 'transparent',
+    color: siteConfig?.primaryButtonBackground?.hex,
+    border: '2px solid',
+    borderColor: siteConfig?.primaryButtonBackground?.hex
+  }),
+  SECONDARY: (siteConfig) => ({
+    bg: siteConfig?.secondaryButtonBackground?.hex,
+    color: siteConfig?.secondaryButtonFontColor?.hex
+  }),
+  SECONDARY_INVERTED: (siteConfig) => ({
+    bg: 'transparent',
+    color: siteConfig?.secondaryButtonBackground?.hex,
+    border: '2px solid',
+    borderColor: siteConfig?.secondaryButtonBackground?.hex
+  })
+}
+
+export default function Button({ href, label, size = 'MEDIUM', theme = 'PRIMARY' }) {
   const siteConfig = useSiteConfiguration()
   const buttonStyles = {
     ...linkDefaultStyles,
     ...buttonSizes[size],
-    bg: siteConfig?.primaryButtonBackground?.hex,
-    color: siteConfig?.primaryButtonFontColor?.hex,
-    _hover: {
-      bg: siteConfig?.primaryButtonBackground?.hex,
-      textDecoration: 'none'
-    }
+    ...themeStyles[theme](siteConfig)
   }
 
   if (href) {
