@@ -16,7 +16,9 @@ export async function getStaticProps({ locale, preview = false }) {
     slug: 'home'
   })
 
-  const { siteConfiguration } = await client.request(siteConfigurationQuery)
+  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
+    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+  })
 
   console.log('siteConfiguration', siteConfiguration)
   const parsedPageData = await parsePageData(page)
