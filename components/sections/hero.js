@@ -66,14 +66,14 @@ export default function Hero({ buttons, image, title, description }) {
       >
         <Stack 
           spacing={{ base: 8, md: 10 }} 
-          maxW={{ base: '100%', md: '45%' }}
+          maxW={{ base: '100%', md: '60%' }}
           textAlign="left"
           color="white"
           pl={{ base: 0, md: 12 }}
         >
           <Heading
             as="h1"
-            fontSize={{ base: '2rem', md: '3.5rem', lg: '5.5rem' }}
+            fontSize={{ base: '3.5rem', md: '4.8rem', lg: '5.5rem' }}
             fontWeight="bold"
             lineHeight="1.05"
             letterSpacing="-0.04em"
