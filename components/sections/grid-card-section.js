@@ -1,8 +1,10 @@
 import { Box, SimpleGrid, Heading, Image, Link, Text } from '@chakra-ui/react'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle }) {
+  const siteConfig = useSiteConfiguration()
 
-    if (!cards || !cards.length) return null
+  if (!cards || !cards.length) return null
   
   return (
     <Box bg="white">
@@ -42,7 +44,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
               <Box mt={6}>
                 <Link
                   href={card.link}
-                  color="teal.700"
+                  color={siteConfig?.titlesFontColor?.hex}
                   fontWeight="bold"
                   fontSize="2xl"
                   mb={2}

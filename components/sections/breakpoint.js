@@ -1,8 +1,10 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
 export default function Breakpoint({ buttons, subtitle, title }) {
+  const siteConfig = useSiteConfiguration()
   if (!(buttons || buttons.length)) return null
 
   return (
@@ -13,12 +15,11 @@ export default function Breakpoint({ buttons, subtitle, title }) {
           fontSize={['3xl', '4xl']}
           fontWeight="extrabold"
           letterSpacing="tight"
-          color="gray.900"
         >
-          <Text as="span" display="block">
+          <Text as="span" display="block" color={siteConfig?.textColor?.hex}>
             {title}
           </Text>
-          <Text as="span" display="block" color="indigo.600">
+          <Text as="span" display="block" color={siteConfig?.titlesFontColor?.hex}>
             {subtitle}
           </Text>
         </Heading>
