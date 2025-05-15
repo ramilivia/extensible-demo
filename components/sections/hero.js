@@ -99,7 +99,7 @@ export default function Hero({ buttons, image, title, description }) {
 
           {buttons && buttons.length > 0 && (
             <Stack
-              direction={{ base: 'column', sm: 'row' }}
+              direction={{ base: 'column', lg: 'row' }}
               spacing={8}
               pt={4}
             >
@@ -107,9 +107,8 @@ export default function Hero({ buttons, image, title, description }) {
                 <Button 
                   key={index} 
                   {...button} 
-                  variant="ghost" 
                   colorScheme="whiteAlpha"
-                  size="lg"
+                  size="LARGE"
                   fontWeight="normal"
                   letterSpacing="0.1em"
                   fontSize="sm"

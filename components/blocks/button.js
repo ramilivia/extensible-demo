@@ -45,7 +45,7 @@ const themeStyles = {
     color: siteConfig?.primaryButtonFontColor?.hex
   }),
   PRIMARY_INVERTED: (siteConfig) => ({
-    bg: 'transparent',
+    bg: siteConfig?.primaryButtonFontColor?.hex,
     color: siteConfig?.primaryButtonBackground?.hex,
     border: '2px solid',
     borderColor: siteConfig?.primaryButtonBackground?.hex
@@ -55,7 +55,7 @@ const themeStyles = {
     color: siteConfig?.secondaryButtonFontColor?.hex
   }),
   SECONDARY_INVERTED: (siteConfig) => ({
-    bg: 'transparent',
+    bg: siteConfig?.secondaryButtonFontColor?.hex,
     color: siteConfig?.secondaryButtonBackground?.hex,
     border: '2px solid',
     borderColor: siteConfig?.secondaryButtonBackground?.hex
