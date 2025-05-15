@@ -30,32 +30,32 @@ const buttonSizes = {
     fontSize: ['lg', null, 'xl']
   }
 }
-export default function Button({ href, label, theme, size = 'MEDIUM' }) {
-  if (!href || !label) return null
 
-  if (href.includes('http')) {
+export default function Button({ href, label, theme, size = 'MEDIUM' }) {
+  const buttonStyles = {
+    ...linkDefaultStyles,
+    ...buttonSizes[size],
+    bg: theme === 'INDIGO' ? 'indigo.600' : 'gray.100',
+    color: theme === 'INDIGO' ? 'white' : 'gray.900',
+    _hover: {
+      bg: theme === 'INDIGO' ? 'indigo.700' : 'gray.200',
+      textDecoration: 'none'
+    }
+  }
+
+  if (href) {
     return (
-      <Box borderRadius="md" boxShadow="md">
-        <ChakraLink
-          isExternal
-          href={href}
-          {...linkDefaultStyles}
-          {...buttonSizes[size]}
-          variant={theme}
-        >
+      <Link href={href} passHref>
+        <ChakraLink {...buttonStyles}>
           {label}
         </ChakraLink>
-      </Box>
+      </Link>
     )
   }
 
   return (
-    <Box borderRadius="md" boxShadow="md">
-      <Link href={href} passHref>
-        <ChakraLink {...linkDefaultStyles} {...buttonSizes[size]} variant={theme}>
-          {label}
-        </ChakraLink>
-      </Link>
+    <Box as="button" {...buttonStyles}>
+      {label}
     </Box>
   )
 }

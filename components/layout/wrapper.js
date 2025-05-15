@@ -1,4 +1,4 @@
-import * as Blocks from '@/blocks'
+import * as Blocks from '@/components/blocks'
 
 export default function Wrapper({ banner, blocks, hero, navigation, ...page }) {
   return (

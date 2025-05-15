@@ -13,8 +13,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
 
-import { LogoSVG, MarkSVG } from '@/svgs'
-import { MenuIcon, XIcon } from '@/icons'
+import { LogoSVG, MarkSVG } from 'assets/svgs'
+import { MenuIcon, XIcon } from 'assets/icons'
 import { useSiteConfig } from '@/lib/useSiteConfig'
 
 const defaultStyle = {

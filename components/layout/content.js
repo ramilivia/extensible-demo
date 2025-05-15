@@ -1,5 +1,5 @@
 import { getSiteLayout } from '@/layout'
-import Navigation from '@/components/navigation'
+import Navigation from '@/components/blocks/navigation'
 
 export default function ContentLayout({ children, page }) {
   return (

@@ -4,7 +4,7 @@ import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
 import { pageQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
-import Wrapper from '@/components/wrapper'
+import Wrapper from '@/components/layout/wrapper'
 
 export default function Page({ page }) {
   return <Wrapper {...page} />
