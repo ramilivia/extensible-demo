@@ -12,10 +12,10 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import { LogoSVG, MarkSVG } from '@/svgs'
 import { MenuIcon, XIcon } from '@/icons'
-import { useSiteConfig } from '@/lib/useSiteConfig'
 
 const defaultStyle = {
   transition: `all 150ms cubic-bezier(0.4, 0, 1, 1)`
@@ -29,10 +29,10 @@ const transitionStyles = {
 }
 
 export default function Navigation({ pages }) {
+  const siteConfig = useSiteConfiguration()
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-  const { siteConfig, isLoading, error } = useSiteConfig();
   
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -72,7 +72,7 @@ export default function Navigation({ pages }) {
 
 
   return (
-    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex || 'white'} color={siteConfig?.navFontColor?.hex} boxShadow="base">
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base">
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box
@@ -176,14 +176,7 @@ export default function Navigation({ pages }) {
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-              {siteConfig?.logo ? 
-                <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: '200px'}}/> 
-                : 
-                <>
-                  <VisuallyHidden>Hygraph</VisuallyHidden>
-                  <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
-                </>
-              }
+              {siteConfig?.logo && <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: '200px'}}/>}
               </a>
             </Link>
           </Flex>

@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { pageQuery } from '@/lib/_queries'
+import { genericPageQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
 
@@ -13,8 +13,8 @@ export default function Page({ page }) {
 export async function getStaticProps({ locale, params, preview = false }) {
   
   const client = hygraphClient(preview)
-  console.log('TANGA LOCA', params);
-  const { page } = await client.request(pageQuery, {
+  
+  const { genericPage: page } = await client.request(genericPageQuery, {
     locale,
     slug: params.slug
   })

@@ -4,7 +4,10 @@ import Navigation from '@/components/sections/navigation'
 import SEO from '@/components/blocks/seo'
 import Hero from '@/components/sections/hero'
 import Banner from '@/components/sections/banner'
-export default function PageLayout({ children, page }) {
+
+
+
+export default function PageLayout({ children, page, siteConfiguration }) {
   const pageBanner = page?.marketing?.find(
     (block) => block.__typename === 'Banner'
   )
@@ -13,7 +16,7 @@ export default function PageLayout({ children, page }) {
     <>
       {page?.seo && <SEO {...page.seo} />}
       {pageBanner && <Banner {...pageBanner} />}
-      <Navigation {...page?.navigation} />
+      <Navigation {...page?.navigation} siteConfiguration={siteConfiguration} />
       {page?.hero && <Hero {...page.hero} />}
       <div>
         {children}

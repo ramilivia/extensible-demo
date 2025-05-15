@@ -11,12 +11,11 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useSiteConfig } from '@/lib/useSiteConfig'
 import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/assets/icons'
 import { locales } from '@/lib/_locales'
 
 function GridColumnHeading({ children }) {
-  const { siteConfig, isLoading, error } = useSiteConfig();
+  const siteConfig = {}
   return (
     <Heading
       as="h3"
@@ -32,7 +31,7 @@ function GridColumnHeading({ children }) {
 }
 
 function GridColumn({ links, title }) {
-  const { siteConfig, isLoading, error } = useSiteConfig();
+  const siteConfig = {}
 
   return (
     <div>
@@ -60,7 +59,7 @@ function GridColumn({ links, title }) {
 }
 
 function SocialMediaLink({ href, title, icon }) {
-  const { siteConfig, isLoading, error } = useSiteConfig();
+  const siteConfig = {}
 
   return (
     <ChakraLink
@@ -79,7 +78,7 @@ function SocialMediaLink({ href, title, icon }) {
 
 export default function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
-  const { siteConfig, isLoading, error } = useSiteConfig();
+  const siteConfig = {}
 
   const activeLocale = locales.find((locale) => locale.value === router.locale)
 

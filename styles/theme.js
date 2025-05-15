@@ -9,27 +9,9 @@ const breakpoints = createBreakpoints({
   '2xl': '96em'
 })
 
-// Function to generate color shades
-const generateColorShades = (baseColor) => {
-  // For now, we'll use the same color for all shades since we only have one color from CMS
-  // In a real implementation, you might want to generate different shades
-  return {
-    50: baseColor,
-    100: baseColor,
-    200: baseColor,
-    300: baseColor,
-    400: baseColor,
-    500: baseColor,
-    600: baseColor,
-    700: baseColor,
-    800: baseColor,
-    900: baseColor,
-  }
-}
-
-// Create a function that returns the theme with dynamic colors
-export const createTheme = (siteConfig) => {
-  const brandColor = siteConfig?.mainBrandColor?.hex || '#c8102e'
+// Create a function that returns the theme with static colors
+export const createTheme = () => {
+  const brandColor = '#c8102e'
   
   return extendTheme({
     breakpoints,
@@ -51,7 +33,6 @@ export const createTheme = (siteConfig) => {
         800: '#1F2937',
         900: '#111827'
       },
-      indigo: generateColorShades(brandColor),
       green: {
         500: '#10B981'
       }
@@ -97,4 +78,4 @@ export const createTheme = (siteConfig) => {
 }
 
 // Export a default theme for initial render
-export const theme = createTheme({ mainBrandColor: { hex: '#c8102e' } })
+export const theme = createTheme()

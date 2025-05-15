@@ -4,8 +4,8 @@ import { pageQuery, siteConfigurationQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
 
-export default function IndexPage({ page, siteConfiguration }) {
-  return <Wrapper {...page} {...siteConfiguration} />
+export default function IndexPage({ page }) {
+  return <Wrapper {...page} />
 }
 
 export async function getStaticProps({ locale, preview = false }) {

@@ -1,20 +1,20 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import { useSiteConfig } from '@/lib/useSiteConfig'
 import Button from '@/components/blocks/button'
+
 
 const themeColor = {
   WARNING: 'orange.600'
 }
 
-export default function Banner({ content, href, theme = 'WARNING' }) {
-  const { siteConfig } = useSiteConfig();
-
+export default function Banner({ content, href }) {
+  
+const siteConfig = {}
   if (!content || !href) return null
 
   return (
     <Box
-      bg={siteConfig?.bannerBackground?.hex || themeColor[theme] || 'indigo.600'}
-      color={siteConfig?.bannerFontColor?.hex || themeColor[theme] || 'indigo.600'}
+      bg={siteConfig?.bannerBackground?.hex}
+      color={siteConfig?.bannerFontColor?.hex}
     >
       <Box maxW={1280} mx="auto" py={3} px={[3, 6, null, 8]}>
         <Flex
@@ -33,7 +33,6 @@ export default function Banner({ content, href, theme = 'WARNING' }) {
                 href={href}
                 label="Learn more"
                 size="SMALL"
-                theme="INDIGO"
               />
             </Box>
           </Box>

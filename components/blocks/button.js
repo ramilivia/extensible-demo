@@ -1,5 +1,6 @@
 import { Box, Link as ChakraLink } from '@chakra-ui/react'
 import Link from 'next/link'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 const linkDefaultStyles = {
   width: 'full',
@@ -31,14 +32,15 @@ const buttonSizes = {
   }
 }
 
-export default function Button({ href, label, theme, size = 'MEDIUM' }) {
+export default function Button({ href, label, size = 'MEDIUM' }) {
+  const siteConfig = useSiteConfiguration()
   const buttonStyles = {
     ...linkDefaultStyles,
     ...buttonSizes[size],
-    bg: theme === 'INDIGO' ? 'indigo.600' : 'gray.100',
-    color: theme === 'INDIGO' ? 'white' : 'gray.900',
+    bg: siteConfig?.primaryButtonBackground?.hex,
+    color: siteConfig?.primaryButtonFontColor?.hex,
     _hover: {
-      bg: theme === 'INDIGO' ? 'indigo.700' : 'gray.200',
+      bg: siteConfig?.primaryButtonBackground?.hex,
       textDecoration: 'none'
     }
   }
