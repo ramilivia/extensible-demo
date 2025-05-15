@@ -12,14 +12,17 @@ export default function Breakpoint({ buttons, subtitle, title }) {
       <Box maxW="7xl" mx="auto" py={[12, null, 16, 20]} px={[4, 6, null, 8]}>
         <Heading
           as="h2"
-          fontSize={['3xl', '4xl']}
-          fontWeight="extrabold"
-          letterSpacing="tight"
+          fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+          fontWeight="bold"
+          lineHeight="1.05"
+          letterSpacing="-0.04em"
+          fontFamily="serif"
+          color={siteConfig?.textColor?.hex}
         >
-          <Text as="span" display="block" color={siteConfig?.textColor?.hex}>
+          <Text as="span" display="block" color={siteConfig?.titlesFontColor?.hex}>
             {title}
           </Text>
-          <Text as="span" display="block" color={siteConfig?.titlesFontColor?.hex}>
+          <Text as="span" display="block" color={siteConfig?.textColor?.hex}>
             {subtitle}
           </Text>
         </Heading>

@@ -17,21 +17,21 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
       <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
         <Heading
           as="h2"
-          fontSize={['3xl', '4xl']}
-          lineHeight="shorter"
-          fontWeight="extrabold"
-          display={['inline', 'block']}
-          letterSpacing="tight"
+          fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+          fontWeight="bold"
+          lineHeight="1.05"
+          letterSpacing="-0.04em"
+          fontFamily="serif"
           color="gray.900"
         >
           {title}
         </Heading>
         <Text
-          fontSize={['3xl', '4xl']}
-          lineHeight="shorter"
-          fontWeight="extrabold"
-          display={['inline', 'block']}
-          letterSpacing="tight"
+          fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+          fontWeight="bold"
+          lineHeight="1.05"
+          letterSpacing="-0.04em"
+          fontFamily="serif"
           color={siteConfig?.titlesFontColor?.hex}
         >
           {subtitle}

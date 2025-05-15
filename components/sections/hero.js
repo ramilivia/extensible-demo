@@ -73,7 +73,7 @@ export default function Hero({ buttons, image, title, description }) {
         >
           <Heading
             as="h1"
-            fontSize={{ base: '2.5rem', md: '4rem', lg: '5rem' }}
+            fontSize={{ base: '2rem', md: '3.5rem', lg: '5.5rem' }}
             fontWeight="bold"
             lineHeight="1.05"
             letterSpacing="-0.04em"

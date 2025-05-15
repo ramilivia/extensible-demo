@@ -29,10 +29,12 @@ console.log(alternatingPanelsTitle, 'TITLE')
           >
             <Heading
               as="h1"
-              size="2xl"
+              fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
               fontWeight="bold"
+              lineHeight="1.05"
+              letterSpacing="-0.04em"
+              fontFamily="serif"
               color={siteConfig?.titlesFontColor?.hex}
-              lineHeight="1.2"
             >
               {alternatingPanelsTitle}
             </Heading>
