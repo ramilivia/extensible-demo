@@ -1,12 +1,14 @@
 import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue } from '@chakra-ui/react'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 import Navigation from '@/components/sections/navigation'
 
 export default function Hero({ buttons, image, title, description }) {
   const isMobile = useBreakpointValue({ base: true, md: false })
+  const siteConfig = useSiteConfiguration()
 
   return (
     <Box position="relative" bg="gray.50" py={{ base: 12, md: 20 }}>
@@ -27,7 +29,7 @@ export default function Hero({ buttons, image, title, description }) {
               as="h1"
               size="2xl"
               fontWeight="bold"
-              color="gray.900"
+              color={siteConfig?.titlesFontColor?.hex}
               lineHeight="1.2"
             >
               {title}
