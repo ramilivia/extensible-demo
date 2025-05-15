@@ -178,7 +178,7 @@ export default function Navigation({ pages }) {
             <Link href="/">
               <a>
               {siteConfig?.logo ? 
-                <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px'}}/> 
+                <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: '200px'}}/> 
                 : 
                 <>
                   <VisuallyHidden>Hygraph</VisuallyHidden>
