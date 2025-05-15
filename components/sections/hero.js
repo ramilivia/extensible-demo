@@ -11,19 +11,22 @@ export default function Hero({ buttons, image, title, description }) {
   const siteConfig = useSiteConfiguration()
 
   return (
-    <Box position="relative" bg="gray.50" py={{ base: 12, md: 20 }}>
-      <Container maxW="container.xl">
+    <Box position="relative" bg="gray.50" minH={{ base: 'auto', md: '60vh' }} py={{ base: 8, md: 12 }}>
+      <Container maxW="container.xl" h="full">
         <Flex
           direction={{ base: 'column', md: 'row' }}
           align="center"
           justify="space-between"
           gap={{ base: 8, md: 12 }}
+          minH={{ base: 'auto'}}
         >
           {/* Content Section */}
           <Stack 
             spacing={6} 
-            maxW={{ base: '100%', md: '50%' }}
+            maxW={{ base: '100%', md: '40%' }}
             textAlign={{ base: 'center', md: 'left' }}
+            justify="center"
+            h="full"
           >
             <Heading
               as="h1"
@@ -37,7 +40,7 @@ export default function Hero({ buttons, image, title, description }) {
             
             <Text
               fontSize={{ base: 'lg', md: 'xl' }}
-              color="gray.600"
+              color={siteConfig?.textColor?.hex}
               maxW="2xl"
             >
               {description}
@@ -61,8 +64,9 @@ export default function Hero({ buttons, image, title, description }) {
           {/* Image Section */}
           <Box
             position="relative"
-            w={{ base: '100%', md: '45%' }}
-            h={{ base: '300px', md: '500px' }}
+            w={{ base: '100%', md: '55%' }}
+            h={{ base: '300px', md: '100%' }}
+            minH={{ base: '300px', md: '50vh' }}
           >
             <Image
               src={image.url}
@@ -72,6 +76,8 @@ export default function Hero({ buttons, image, title, description }) {
               style={{
                 objectFit: 'cover',
                 borderRadius: '12px',
+                height: '100%',
+                width: '100%'
               }}
               priority
             />

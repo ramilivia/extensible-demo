@@ -23,7 +23,7 @@ const siteConfig = {}
           flexWrap="wrap"
         >
           <Flex flex="1 1 0" alignItems="center">
-            <Text fontWeight="medium">
+            <Text fontWeight="medium" color={siteConfig?.bannerFontColor?.hex}>
               {content}
             </Text>
           </Flex>

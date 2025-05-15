@@ -21,7 +21,7 @@ function GridColumnHeading({ children }) {
       as="h3"
       fontSize="sm"
       fontWeight="semibold"
-      color={siteConfig?.navFontColor?.hex || "gray.400"}
+      color={siteConfig?.navFontColor?.hex}
       letterSpacing="wider"
       textTransform="uppercase"
     >
@@ -42,9 +42,9 @@ function GridColumn({ links, title }) {
           <li key={link.id}>
             <Link href={`/${link.slug}`} passHref>
               <ChakraLink
-                color={siteConfig?.navFontColor?.hex || "gray.300"}
+                color={siteConfig?.navFontColor?.hex}
                 _hover={{
-                  color: 'white'
+                  color: siteConfig?.textColor?.hex
                 }}
               >
                 {link.navigationLabel ||
@@ -65,9 +65,9 @@ function SocialMediaLink({ href, title, icon }) {
     <ChakraLink
       href={href}
       isExternal
-      color={siteConfig?.navFontColor?.hex || "gray.400"}
+      color={siteConfig?.navFontColor?.hex}
       _hover={{
-        color: 'gray.300'
+        color: siteConfig?.textColor?.hex
       }}
     >
       <VisuallyHidden>{title}</VisuallyHidden>

@@ -10,7 +10,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
     <Box bg="white">
       <Box maxW="7xl" mx="auto" py={[12, 16]}>
         {gridTitle && (
-          <Heading as="h2" fontSize="3xl" fontWeight="extrabold" color="gray.900" mb={10}>
+          <Heading as="h2" fontSize="3xl" fontWeight="extrabold" color={siteConfig?.textColor?.hex} mb={10}>
             {gridTitle}
           </Heading>
         )}
@@ -52,7 +52,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                 >
                   {card.cardTitle}
                 </Link>
-                <Text color="gray.700" fontSize="md" mt={4}>
+                <Text color={siteConfig?.textColor?.hex} fontSize="md" mt={4}>
                   {card.description}
                 </Text>
               </Box>

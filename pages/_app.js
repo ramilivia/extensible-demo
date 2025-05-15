@@ -7,7 +7,7 @@ import { SiteConfigurationProvider } from '@/lib/context/SiteConfigurationContex
 import '../styles/css/global.css'
 
 export default function App({ Component, pageProps }) {
-  const theme = createTheme()
+  const theme = createTheme(pageProps.siteConfiguration)
   
   const getLayout =
     Component.getLayout || ((page) => <SiteLayout>{page}</SiteLayout>)

@@ -9,8 +9,8 @@ const breakpoints = createBreakpoints({
   '2xl': '96em'
 })
 
-// Create a function that returns the theme with static colors
-export const createTheme = () => {
+// Create a function that returns the theme with dynamic colors from site config
+export const createTheme = (siteConfiguration) => {
   const brandColor = '#c8102e'
   
   return extendTheme({
@@ -45,29 +45,29 @@ export const createTheme = () => {
       },
       Link: {
         variants: {
-          INDIGO: {
-            bg: 'indigo.600',
-            color: 'white',
+          INDIGO: (siteConfig) => ({
+            bg: siteConfig?.primaryButtonBackground?.hex || 'indigo.600',
+            color: siteConfig?.primaryButtonFontColor?.hex || 'white',
             _hover: {
               textDecoration: 'none',
-              backgroundColor: 'indigo.700'
+              backgroundColor: siteConfig?.primaryButtonBackground?.hex || 'indigo.700'
             }
-          },
-          WHITE: {
+          }),
+          WHITE: (siteConfig) => ({
             bg: 'white',
-            color: 'indigo.600',
+            color: siteConfig?.textColor?.hex || 'indigo.600',
             _hover: {
               textDecoration: 'none',
               backgroundColor: 'gray.50'
             }
-          }
+          })
         }
       }
     },
     styles: {
       global: {
         'html, body': {
-          color: 'gray.500'
+          color: siteConfiguration?.textColor?.hex
         },
         'ul, ol': {
           listStyle: 'none'

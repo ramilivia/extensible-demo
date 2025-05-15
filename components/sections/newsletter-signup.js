@@ -4,11 +4,14 @@ import {
   Text,
   FormLabel,
   VisuallyHidden,
-  Button,
   Input
 } from '@chakra-ui/react'
+import Button from '@/components/blocks/button'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
-export default function NewsletterSignup({ ctaLabel, subtitle, title }) {
+export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) {
+  const siteConfig = useSiteConfiguration()
+  
   return (
     <Box bg="white">
       <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
@@ -29,7 +32,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title }) {
           fontWeight="extrabold"
           display={['inline', 'block']}
           letterSpacing="tight"
-          color="indigo.600"
+          color={siteConfig?.titlesFontColor?.hex}
         >
           {subtitle}
         </Text>
@@ -45,7 +48,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title }) {
             required
             placeholder="Enter your email"
             width="full"
-            height="full"
+            height="50px"
             maxW={{ sm: 'xs' }}
             px={5}
             py={3}
@@ -58,23 +61,14 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title }) {
             mt={[3, 0]}
             ml={{ sm: 3 }}
             flexShrink={{ sm: 0 }}
-            borderRadius="md"
-            boxShadow="md"
+            width={{ base: 'full', sm: 'auto' }}
           >
             <Button
               type="submit"
-              width="full"
-              height="full"
-              px={5}
-              py={3}
-              bg="indigo.600"
-              color="white"
-              _hover={{
-                bg: 'indigo.700'
-              }}
-            >
-              {ctaLabel || 'Submit'}
-            </Button>
+              size={button?.size || "MEDIUM"}
+              theme={button?.theme || "PRIMARY"}
+              label={button?.label || ctaLabel || 'Submit'}
+            />
           </Box>
         </Box>
       </Box>
