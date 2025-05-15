@@ -14,7 +14,7 @@ export default function Banner({ content, href, theme = 'WARNING' }) {
   return (
     <Box
       bg={siteConfig?.bannerBackground?.hex || themeColor[theme] || 'indigo.600'}
-      color={themeColor[theme] || 'indigo.600'}
+      color={siteConfig?.bannerFontColor?.hex || themeColor[theme] || 'indigo.600'}
     >
       <Box maxW={1280} mx="auto" py={3} px={[3, 6, null, 8]}>
         <Flex
@@ -23,7 +23,7 @@ export default function Banner({ content, href, theme = 'WARNING' }) {
           flexWrap="wrap"
         >
           <Flex flex="1 1 0" alignItems="center">
-            <Text fontWeight="medium" color="white">
+            <Text fontWeight="medium">
               {content}
             </Text>
           </Flex>
