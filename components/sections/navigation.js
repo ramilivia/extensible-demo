@@ -13,8 +13,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
 
-import { LogoSVG, MarkSVG } from 'assets/svgs'
-import { MenuIcon, XIcon } from 'assets/icons'
+import { LogoSVG, MarkSVG } from '@/svgs'
+import { MenuIcon, XIcon } from '@/icons'
 import { useSiteConfig } from '@/lib/useSiteConfig'
 
 const defaultStyle = {
@@ -70,7 +70,6 @@ export default function Navigation({ pages }) {
     return () => router.events.off('routeChangeStart', handleRouteChange)
   }, [router.events])
 
-  console.log('logo', siteConfig)
 
   return (
     <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex || 'white'} color={siteConfig?.navFontColor?.hex} boxShadow="base">

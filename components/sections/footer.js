@@ -12,7 +12,7 @@ import {
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSiteConfig } from '@/lib/useSiteConfig'
-import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from 'assets/icons'
+import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/assets/icons'
 import { locales } from '@/lib/_locales'
 
 function GridColumnHeading({ children }) {

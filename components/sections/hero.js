@@ -2,8 +2,8 @@ import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue } from '
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
 
-import Button from '@/components/button'
-import Navigation from '@/components/blocks/navigation'
+import Button from '@/components/blocks/button'
+import Navigation from '@/components/sections/navigation'
 
 export default function Hero({ buttons, image, title, description }) {
   const isMobile = useBreakpointValue({ base: true, md: false })

@@ -11,16 +11,17 @@ export default function IndexPage({ page, siteConfiguration }) {
 export async function getStaticProps({ locale, preview = false }) {
   const client = hygraphClient(preview)
 
+  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
+    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+  })
+  
   const { page } = await client.request(pageQuery, {
     locale,
     slug: 'home'
   })
 
-  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
-    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
-  })
+  
 
-  console.log('siteConfiguration', siteConfiguration)
   const parsedPageData = await parsePageData(page)
 
   return {

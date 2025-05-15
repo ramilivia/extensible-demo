@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo'
 import { useRouter } from 'next/router'
 
-import { defaultUrl } from '../next-seo.config'
+import { defaultUrl } from '../../next-seo.config'
 
 export default function SEO({
   id,

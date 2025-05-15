@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Heading, Image, Link, Text } from '@chakra-ui/react'
 
 export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle }) {
-    console.log(cards)
+
     if (!cards || !cards.length) return null
   
   return (

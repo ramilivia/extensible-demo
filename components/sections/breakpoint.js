@@ -1,6 +1,6 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 
-import Button from '@/components/button'
+import Button from '@/components/blocks/button'
 
 export default function Breakpoint({ buttons, subtitle, title }) {
   if (!(buttons || buttons.length)) return null

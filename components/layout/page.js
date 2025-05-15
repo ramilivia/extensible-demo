@@ -1,22 +1,17 @@
 import { Box, Container, Heading } from '@chakra-ui/react'
-import { MDXRemote } from 'next-mdx-remote'
-
 import { getSiteLayout } from '@/layout'
-import Navigation from '@/components/blocks/navigation'
-import SEO from '@/components/seo'
-import Hero from '@/components/blocks/hero'
-import Banner from '@/components/blocks/banner'
+import Navigation from '@/components/sections/navigation'
+import SEO from '@/components/blocks/seo'
+import Hero from '@/components/sections/hero'
+import Banner from '@/components/sections/banner'
 export default function PageLayout({ children, page }) {
   const pageBanner = page?.marketing?.find(
     (block) => block.__typename === 'Banner'
   )
 
-  console.log('HERO', page?.hero)
-
   return (
     <>
       {page?.seo && <SEO {...page.seo} />}
-
       {pageBanner && <Banner {...pageBanner} />}
       <Navigation {...page?.navigation} />
       {page?.hero && <Hero {...page.hero} />}

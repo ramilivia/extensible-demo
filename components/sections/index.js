@@ -1,5 +1,4 @@
 export { default as Breakpoint } from './breakpoint'
-export { default as CourseSection } from './course-section'
 export { default as GridCardSection } from './grid-card-section'
 export { default as Newsletter } from './newsletter-signup'
 export { default as Hero } from './hero'

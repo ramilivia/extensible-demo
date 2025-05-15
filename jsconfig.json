@@ -2,15 +2,16 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/blocks": ["components/blocks"],
-      "@/columns": ["components/blocks/columns"],
+      "@/blocks": ["components/sections"],
+      "@/columns": ["components/sections/columns"],
       "@/components/*": ["components/*"],
-      "@/icons": ["components/icons"],
+      "@/icons": ["assets/icons"],
       "@/layout": ["components/layout"],
       "@/lib/*": ["lib/*"],
       "@/marketing": ["components/marketing"],
-      "@/svgs": ["components/svgs"],
-      "@/utils/*": ["utils/*"]
+      "@/svgs": ["assets/svgs"],
+      "@/utils/*": ["utils/*"],
+      "@/assets/*": ["assets/*"]
     }
   }
 }

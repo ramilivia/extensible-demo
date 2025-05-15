@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Flex, Box } from '@chakra-ui/layout'
 
-import Footer from '@/components/blocks/footer'
+import Footer from '@/components/sections/footer'
 
 function PreviewBanner({ enabled = false }) {
   if (!enabled) return null
