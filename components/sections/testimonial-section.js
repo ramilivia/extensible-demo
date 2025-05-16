@@ -17,47 +17,16 @@ export default function TestimonialSection({
     : content
 
   return (
-    <Box bg="#f9f6f5" borderRadius="2xl" py={{ base: 8, md: 16 }} px={{ base: 4, md: 0 }}>
+    <Box bg="#f9f6f5" borderRadius="2xl" py={{ base: 12, md: 20 }} px={{ base: 6, md: 8 }}>
       <Container maxW="7xl">
         <Flex
-          direction={{ base: 'column', md: 'row' }}
+          direction={{ base: 'column', md: 'column', lg: 'row' }}
           align="center"
           justify="center"
-          gap={{ base: 10, md: 16 }}
+          gap={{ base: 12, md: 16, lg: 16 }}
         >
-          {/* Expert Info */}
-          <Stack align="center" spacing={4} minW={{ md: '280px' }}>
-            <Box
-              borderRadius="full"
-              overflow="hidden"
-              w={{ base: '140px', md: '180px' }}
-              h={{ base: '140px', md: '180px' }}
-              boxShadow="md"
-              bg="white"
-            >
-              {personImage?.url ? (
-                <Image
-                  src={personImage.url}
-                  alt={personImage.alt || personName}
-                  width={personImage.width || 180}
-                  height={personImage.height || 180}
-                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                  priority
-                />
-              ) : (
-                <Avatar name={personName} size="2xl" />
-              )}
-            </Box>
-            <Heading as="h3" fontSize="xl" fontWeight="semibold" color="brand.900" textAlign="center">
-              {personName}
-            </Heading>
-            <Text color="red.400" fontSize="md" textAlign="center">
-              {personProfession}
-            </Text>
-          </Stack>
-
           {/* Testimonial Content */}
-          <Box flex={1} position="relative" w="full">
+          <Box flex={1} position="relative" w="full" order={{ base: 1, md: 1, lg: 2 }}>
             <Heading
               as="h2"
               fontSize={headingFontSize}
@@ -113,6 +82,37 @@ export default function TestimonialSection({
               </Box>
             </Box>
           </Box>
+
+          {/* Expert Info */}
+          <Stack align="center" spacing={4} minW={{ md: '280px' }} order={{ base: 2, md: 2, lg: 1 }}>
+            <Box
+              borderRadius="full"
+              overflow="hidden"
+              w={{ base: '140px', md: '180px' }}
+              h={{ base: '140px', md: '180px' }}
+              boxShadow="md"
+              bg="white"
+            >
+              {personImage?.url ? (
+                <Image
+                  src={personImage.url}
+                  alt={personImage.alt || personName}
+                  width={personImage.width || 180}
+                  height={personImage.height || 180}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  priority
+                />
+              ) : (
+                <Avatar name={personName} size="2xl" />
+              )}
+            </Box>
+            <Heading as="h3" fontSize="xl" fontWeight="semibold" color="brand.900" textAlign="center">
+              {personName}
+            </Heading>
+            <Text color="red.400" fontSize="md" textAlign="center">
+              {personProfession}
+            </Text>
+          </Stack>
         </Flex>
       </Container>
     </Box>
