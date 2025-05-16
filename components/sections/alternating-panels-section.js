@@ -23,13 +23,13 @@ console.log(alternatingPanelsTitle, 'TITLE')
           <Stack 
             spacing={6} 
             maxW={{ base: '100%', md: '40%' }}
-            textAlign={{ base: 'center', md: 'left' }}
+            textAlign="left"
             justify="center"
             h="full"
           >
             <Heading
               as="h1"
-              fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+              fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"

@@ -12,7 +12,8 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
         {gridTitle && (
           <Heading 
             as="h2" 
-            fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+            marginLeft={{ base: 4, md: 0 }}
             fontWeight="bold"
             lineHeight="1.05"
             letterSpacing="-0.04em"
@@ -38,10 +39,10 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
               maxW="400px"
               display="flex"
               flexDirection="column"
-              alignItems="flex-start"
+              alignItems="center"
               overflow="hidden"
             >
-              <Link href={card.link}>
+              <Link href={card.link} w="100%" display="flex" justifyContent="center">
                 <Image
                   src={card?.image?.url}
                   alt={card.cardTitle}
@@ -50,7 +51,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                   objectFit="cover"
                 />
               </Link>
-              <Box mt={6}>
+              <Box mt={4} w="100%" textAlign="left">
                 <Link
                   href={card.link}
                   color={siteConfig?.titlesFontColor?.hex}
