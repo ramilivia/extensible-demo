@@ -7,11 +7,20 @@ import {
   Grid,
   Heading,
   FormLabel,
-  Select
+  Select,
+  Container
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/assets/icons'
+import { 
+  InstagramIcon, 
+  PinterestIcon, 
+  FacebookIcon, 
+  TwitterIcon,
+  LinkedInIcon,
+  SlackIcon,
+  GithubIcon 
+} from '@/assets/icons'
 import { locales } from '@/lib/_locales'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
@@ -21,10 +30,11 @@ function GridColumnHeading({ children }) {
     <Heading
       as="h3"
       fontSize="sm"
-      fontWeight="semibold"
-      color={siteConfig?.navFontColor?.hex}
-      letterSpacing="wider"
-      textTransform="uppercase"
+      fontWeight="bold"
+      color={siteConfig?.titlesFontColor?.hex || "gray.900"}
+      letterSpacing="-0.04em"
+      fontFamily="serif"
+      mb={6}
     >
       {children}
     </Heading>
@@ -36,16 +46,20 @@ function GridColumn({ links, title }) {
 
   return (
     <div>
-      <GridColumnHeading color={siteConfig?.navFontColor?.hex}>{title}</GridColumnHeading>
+      <GridColumnHeading>{title}</GridColumnHeading>
 
-      <Stack as="ul" mt={4} spacing={4}>
+      <Stack as="ul" spacing={4}>
         {links && links.map((link) => (
           <li key={link.id}>
             <Link href={`/${link.slug}`} passHref>
               <ChakraLink
-                color={siteConfig?.navFontColor?.hex}
+                color={siteConfig?.textColor?.hex || "gray.600"}
+                fontSize="md"
+                fontWeight="normal"
+                letterSpacing="0.02em"
                 _hover={{
-                  color: siteConfig?.textColor?.hex
+                  color: siteConfig?.titlesFontColor?.hex || "gray.900",
+                  textDecoration: "none"
                 }}
               >
                 {link.navigationLabel ||
@@ -66,13 +80,14 @@ function SocialMediaLink({ href, title, icon }) {
     <ChakraLink
       href={href}
       isExternal
-      color={siteConfig?.navFontColor?.hex}
+      color={siteConfig?.textColor?.hex || "gray.600"}
       _hover={{
-        color: siteConfig?.textColor?.hex
+        color: siteConfig?.titlesFontColor?.hex || "gray.900"
       }}
+      mx={2}
     >
       <VisuallyHidden>{title}</VisuallyHidden>
-      <Box as={icon} w={6} h={6} color={siteConfig?.navFontColor?.hex} />
+      <Box as={icon} w={5} h={5} opacity={0.8} />
     </ChakraLink>
   )
 }
@@ -88,22 +103,28 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
   }
 
   return (
-    <Box as="footer" color={siteConfig?.navFontColor?.hex || "white"} bg={siteConfig?.navBackground?.hex || "gray.800"} aria-labelledby="footerHeading">
+    <Box 
+      as="footer" 
+      bg={siteConfig?.navBackground?.hex || "white"}
+      borderTop="1px solid"
+      borderColor="gray.100"
+      aria-labelledby="footerHeading"
+    >
       <VisuallyHidden as="h2" id="footerHeading">
         Footer
       </VisuallyHidden>
 
-      <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
+      <Container maxW="7xl" py={{ base: 16, lg: 20 }} px={[4, 6, null, 8]}>
         <Box
-          pb={8}
+          pb={12}
           display={{ xl: 'grid' }}
-          gridTemplateColumns={{ xl: 'repeat(5, 1fr)' }}
-          gridGap={{ xl: 8 }}
+          gridTemplateColumns={{ xl: 'repeat(4, 1fr)' }}
+          gridGap={{ xl: 16 }}
         >
           <Grid
-            gridTemplateColumns="repeat(2, 1fr)"
-            gridGap={8}
-            gridColumn={{ xl: 'span 4 / span 4' }}
+            gridTemplateColumns="repeat(3, 1fr)"
+            gridGap={16}
+            gridColumn={{ xl: 'span 3 / span 3' }}
           >
             <GridColumn
               links={primaryLinks.length && primaryLinks}
@@ -119,7 +140,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
           <Box mt={{ base: 12, xl: 0 }}>
             <GridColumnHeading>Language</GridColumnHeading>
 
-            <Box as="form" mt={4} maxW={{ sm: 'xs' }}>
+            <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
               <Box as="fieldset" w="full">
                 <VisuallyHidden as={FormLabel} htmlFor="language">
                   Language
@@ -129,18 +150,20 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                   <Select
                     id="language"
                     name="language"
-                    color="white"
-                    bg="gray.700"
-                    borderColor="transparent"
-                    fontSize={{ sm: 'sm' }}
+                    color={siteConfig?.textColor?.hex || "gray.900"}
+                    bg="white"
+                    borderColor="gray.200"
+                    fontSize="md"
                     value={activeLocale.value}
                     onChange={setLocale}
+                    _hover={{ borderColor: "gray.300" }}
+                    borderRadius="md"
                   >
                     {locales.map((locale) => (
                       <Box
                         as="option"
-                        bg="#374151!important"
-                        color="white"
+                        bg="white"
+                        color={siteConfig?.textColor?.hex || "gray.900"}
                         key={locale.value}
                         value={locale.value}
                       >
@@ -155,16 +178,16 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
         </Box>
 
         <Box
-          mt={7}
+          mt={12}
           pt={8}
           borderTopWidth="1px"
-          borderColor={siteConfig?.navFontColor?.hex || "gray.700"}
+          borderColor="gray.100"
           display={{ md: 'flex' }}
           alignItems={{ md: 'center' }}
           justifyContent={{ md: 'space-between' }}
         >
-          <Stack direction="row" display="flex" spacing={6} order={{ md: 2 }}>
-            <SocialMediaLink
+          <Stack direction="row" display="flex" spacing={4} order={{ md: 2 }}>
+          <SocialMediaLink
               title="LinkedIn"
               icon={LinkedInIcon}
               href="https://linkedin.com/company/hygraph"
@@ -188,14 +211,15 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
 
           <Text
             mt={[8, null, 0]}
-            fontSize="md"
-            color={siteConfig?.navFontColor?.hex || "gray.400"}
+            fontSize="sm"
+            color={siteConfig?.textColor?.hex || "gray.500"}
             order={{ md: 1 }}
+            letterSpacing="0.02em"
           >
-            {new Date().getFullYear()} Hygraph GmbH All rights reserved.
+            © {new Date().getFullYear()} All rights reserved.
           </Text>
         </Box>
-      </Box>
+      </Container>
     </Box>
   )
 }
