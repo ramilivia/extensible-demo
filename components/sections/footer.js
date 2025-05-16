@@ -29,7 +29,7 @@ function GridColumnHeading({ children }) {
   return (
     <Heading
       as="h3"
-      fontSize="sm"
+      fontSize={{ base: "md", md: "xl", lg: "xl" }}
       fontWeight="bold"
       color={siteConfig?.titlesFontColor?.hex || "gray.900"}
       letterSpacing="-0.04em"
@@ -114,7 +114,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
         Footer
       </VisuallyHidden>
 
-      <Container maxW="7xl" py={{ base: 16, lg: 20 }} px={[4, 6, null, 8]}>
+      <Container maxW="7xl" py={{ base: 16, lg: 20 }} px={{ base: 4, md: 4, lg: 6, xl: 8 }} pl={{ base: 6, md: 10, lg: 0 }}>
         <Box
           pb={12}
           display={{ xl: 'grid' }}
@@ -122,9 +122,9 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
           gridGap={{ xl: 16 }}
         >
           <Grid
-            gridTemplateColumns="repeat(3, 1fr)"
-            gridGap={16}
-            gridColumn={{ xl: 'span 3 / span 3' }}
+            gridTemplateColumns={{ base: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
+            gridGap={{ base: 8, md: 12, lg: 16 }}
+            gridColumn={{ lg: 'span 3 / span 3' }}
           >
             <GridColumn
               links={primaryLinks.length && primaryLinks}
