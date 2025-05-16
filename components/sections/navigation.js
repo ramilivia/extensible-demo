@@ -33,7 +33,8 @@ export default function Navigation({ pages }) {
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-  console.log(pages)
+  
+  
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!container?.current?.contains(event.target)) {
@@ -140,6 +141,10 @@ export default function Navigation({ pages }) {
                             _hover={{
                               bg: 'gray.50'
                             }}
+                            _focus={{
+                              outline: 'none',
+                              boxShadow: 'none'
+                            }}
                           >
                             <Text
                               as="span"
@@ -216,6 +221,10 @@ export default function Navigation({ pages }) {
                       color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}
                       _hover={{
                         color: 'gray.900'
+                      }}
+                      _focus={{
+                        outline: 'none',
+                        boxShadow: 'none'
                       }}
                     >
                       {page.navigationLabel ||

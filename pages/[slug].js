@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { genericPageQuery, siteConfigurationQuery } from '@/lib/_queries'
+import { genericPageQuery, siteConfigurationQuery, pageQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
 
@@ -18,7 +18,7 @@ export async function getStaticProps({ locale, params, preview = false }) {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
   })
 
-  const { genericPage: page } = await client.request(genericPageQuery, {
+  const { page } = await client.request(pageQuery, {
     locale,
     slug: params.slug
   })

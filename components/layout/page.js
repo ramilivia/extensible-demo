@@ -11,12 +11,12 @@ export default function PageLayout({ children, page, siteConfiguration }) {
   const pageBanner = page?.marketing?.find(
     (block) => block.__typename === 'Banner'
   )
-
+  console.log('PAGE LAYOUT', page)
   return (
     <>
       {page?.seo && <SEO {...page.seo} />}
       {pageBanner && <Banner {...pageBanner} />}
-      <Navigation {...page?.navigation} siteConfiguration={siteConfiguration} />
+      <Navigation pages={page?.navigation[0]?.pages} siteConfiguration={siteConfiguration} />
       {page?.hero && <Hero {...page.hero} />}
       <div>
         {children}
