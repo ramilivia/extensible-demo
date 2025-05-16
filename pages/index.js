@@ -21,7 +21,7 @@ export async function getStaticProps({ locale, preview = false }) {
   })
 
   const parsedPageData = await parsePageData(page)
-
+  console.log(parsedPageData)
   return {
     props: {
       page: parsedPageData,

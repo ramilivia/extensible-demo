@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { genericPageQuery } from '@/lib/_queries'
+import { genericPageQuery, siteConfigurationQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
 
@@ -14,6 +14,10 @@ export async function getStaticProps({ locale, params, preview = false }) {
   
   const client = hygraphClient(preview)
   
+  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
+    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+  })
+
   const { genericPage: page } = await client.request(genericPageQuery, {
     locale,
     slug: params.slug
@@ -30,7 +34,8 @@ export async function getStaticProps({ locale, params, preview = false }) {
   return {
     props: {
       page: parsedPageData,
-      preview
+      preview,
+      siteConfiguration
     },
     revalidate: 60
   }

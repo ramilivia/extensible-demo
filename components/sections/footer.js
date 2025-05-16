@@ -13,9 +13,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/assets/icons'
 import { locales } from '@/lib/_locales'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 function GridColumnHeading({ children }) {
-  const siteConfig = {}
+  const siteConfig = useSiteConfiguration()
   return (
     <Heading
       as="h3"
@@ -31,7 +32,7 @@ function GridColumnHeading({ children }) {
 }
 
 function GridColumn({ links, title }) {
-  const siteConfig = {}
+  const siteConfig = useSiteConfiguration()
 
   return (
     <div>
@@ -59,7 +60,7 @@ function GridColumn({ links, title }) {
 }
 
 function SocialMediaLink({ href, title, icon }) {
-  const siteConfig = {}
+  const siteConfig = useSiteConfiguration()
 
   return (
     <ChakraLink
@@ -71,14 +72,14 @@ function SocialMediaLink({ href, title, icon }) {
       }}
     >
       <VisuallyHidden>{title}</VisuallyHidden>
-      <Box as={icon} w={6} h={6} color="white" />
+      <Box as={icon} w={6} h={6} color={siteConfig?.navFontColor?.hex} />
     </ChakraLink>
   )
 }
 
 export default function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
-  const siteConfig = {}
+  const siteConfig = useSiteConfiguration()
 
   const activeLocale = locales.find((locale) => locale.value === router.locale)
 
