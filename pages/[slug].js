@@ -48,11 +48,13 @@ export async function getStaticPaths({ locales }) {
 
   const { pages } = await client.request(gql`
     {
-      pages(where: { slug_not_in: ["home", "blog"] }) {
+      pages(where: { slug_not_in: ["home"] }) {
         slug
       }
     }
   `)
+
+  console.log('LOCALIZED PIBIN', pages);
 
   for (const locale of locales) {
     paths = [

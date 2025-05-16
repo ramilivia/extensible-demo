@@ -11,7 +11,7 @@ export default function PageLayout({ children, page, siteConfiguration }) {
   const pageBanner = page?.marketing?.find(
     (block) => block.__typename === 'Banner'
   )
-  console.log('PAGE LAYOUT', page)
+  
   return (
     <>
       {page?.seo && <SEO {...page.seo} />}

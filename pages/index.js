@@ -14,7 +14,7 @@ export async function getStaticProps({ locale, preview = false }) {
   const { siteConfiguration } = await client.request(siteConfigurationQuery, {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
   })
-  
+  console.log('LOCALE', locale);
   const { page } = await client.request(pageQuery, {
     locale,
     slug: 'home'
