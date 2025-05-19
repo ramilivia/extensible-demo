@@ -114,7 +114,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
         Footer
       </VisuallyHidden>
 
-      <Container maxW="8xl" py={{ base: 16, lg: 20 }} px={{ base: 4, md: 4, lg: 6, xl: 8 }} pl={{ base: 6, md: 10, lg: 0 }}>
+      <Container maxW="7.5xl" py={{ base: 16, lg: 20 }} px={{ base: 4, md: 4, lg: 6, xl: 8 }} pl={{ base: 6, md: 10, lg: 0 }}>
         <Box
           pb={12}
           display={{ xl: 'grid' }}

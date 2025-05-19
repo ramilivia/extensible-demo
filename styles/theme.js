@@ -15,6 +15,9 @@ export const createTheme = (siteConfiguration) => {
   
   return extendTheme({
     breakpoints,
+    sizes: {
+      '7.5xl': '88rem',
+    },
     lineHeights: {
       tall: 1.8
     },

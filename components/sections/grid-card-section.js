@@ -8,11 +8,12 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
   
   return (
     <Box bg="white">
-      <Box maxW="8xl" mx="auto" py={[12, 16]}>
+      <Box maxW="7.5xl" mx="auto" py={[12, 16]}>
         {gridTitle && (
           <Heading 
             as="h2" 
             fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+            px={{ base: 4, md: 8, lg: 0 }}
             marginLeft={{ base: 4, md: 0 }}
             fontWeight="bold"
             lineHeight="1.05"

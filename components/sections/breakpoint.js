@@ -9,7 +9,7 @@ export default function Breakpoint({ buttons, subtitle, title }) {
 
   return (
     <Box bg="white">
-      <Box maxW="8xl" mx="auto" py={[12, null, 16, 20]} px={{ base: 4, md: 6, lg: 0 }}>
+      <Box maxW="7.5xl" mx="auto" py={[12, null, 16, 20]} px={{ base: 4, md: 6, lg: 0 }}>
         <Heading
           as="h2"
           fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
