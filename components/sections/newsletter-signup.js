@@ -14,7 +14,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
   
   return (
     <Box bg="white">
-      <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
+      <Box maxW="8xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
         <Heading
           as="h2"
           fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}

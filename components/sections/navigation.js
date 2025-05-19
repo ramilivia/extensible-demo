@@ -169,7 +169,7 @@ export default function Navigation({ pages }) {
         )}
       </Transition>
 
-      <Box maxW="7xl" mx="auto" px={[4, 6]}>
+      <Box maxW="8xl" mx="auto" px={[4, 6]}>
         <Stack
           display="flex"
           justifyContent={['space-between', null, 'flex-start']}

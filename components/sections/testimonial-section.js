@@ -18,7 +18,7 @@ export default function TestimonialSection({
 
   return (
     <Box bg="#f9f6f5" borderRadius="2xl" py={{ base: 12, md: 20 }} px={{ base: 6, md: 8 }}>
-      <Container maxW="7xl">
+      <Container maxW="8xl">
         <Flex
           direction={{ base: 'column', md: 'column', lg: 'row' }}
           align="center"
