@@ -4,7 +4,7 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, image, title, description }) {
+export default function HeroRemoteSource({ buttons, image, title, description }) {
   const siteConfig = useSiteConfiguration()
 
   return (
