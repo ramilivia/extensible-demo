@@ -16,7 +16,7 @@ const siteConfig = {}
       bg={siteConfig?.bannerBackground?.hex}
       color={siteConfig?.bannerFontColor?.hex}
     >
-      <Box maxW={1280} mx="auto" py={3} px={[3, 6, null, 8]}>
+      <Box maxW="8xl" mx="auto" py={3} px={[3, 6, null, 8]}>
         <Flex
           alignItems="center"
           justifyContent="space-between"

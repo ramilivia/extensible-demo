@@ -27,7 +27,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
         <SimpleGrid
           columns={{ base: 1, md: 3, lg: 3 }}
           spacing={{ base: 8, md: 12 }}
-          px={{ base: 4, md: 8 }}
+          px={{ base: 4, md: 8, lg: 0 }}
           justifyItems="center"
         >
           {cards.map((card) => (
