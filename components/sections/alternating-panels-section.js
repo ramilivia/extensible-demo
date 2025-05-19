@@ -43,6 +43,7 @@ console.log(alternatingPanelsTitle, 'TITLE')
               fontSize={{ base: 'lg', md: 'xl' }}
               color={siteConfig?.textColor?.hex}
               maxW="2xl"
+              whiteSpace="pre-wrap"
             >
               {description}
             </Text>
@@ -70,10 +71,10 @@ console.log(alternatingPanelsTitle, 'TITLE')
             minH={{ base: '300px' }}
           >
             <Image
-              src={image.url}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
+              src={image?.url}
+              alt={image?.alt}
+              width={image?.width}
+              height={image?.height}
               style={{
                 objectFit: 'cover',
                 borderRadius: '12px',

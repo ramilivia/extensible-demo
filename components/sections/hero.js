@@ -44,8 +44,8 @@ export default function Hero({ buttons, image, title, description }) {
             opacity={1}
           >
             <Image
-              src={image.url}
-              alt={image.alt}
+              src={image?.url}
+              alt={image?.alt}
               layout="fill"
               objectFit="cover"
               objectPosition="center"
