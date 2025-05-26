@@ -11,14 +11,27 @@ export default function Hero({ buttons, image, title, description }) {
     <Box 
       position="relative" 
       w="100vw" 
-      h={{ base: 'auto', md: '85vh' }}
-      minH={{ base: '100vh', md: '85vh' }}
+      h={{ base: 'auto', md: '79vh' }}
+      minH={{ base: '100vh', md: '79vh' }}
       left="50%"
       right="50%"
       marginLeft="-50vw"
       marginRight="-50vw"
       overflow="hidden"
       bg="white"
+      sx={{
+        '--container-height': '100%',
+        '@container (min-height: 400px)': {
+          '--heading-size': 'clamp(2.5rem, 8vh, 5.5rem)',
+        },
+        '@container (min-height: 600px)': {
+          '--heading-size': 'clamp(3.8rem, 10vh, 5.5rem)',
+        },
+        '@container (min-height: 800px)': {
+          '--heading-size': 'clamp(4.5rem, 12vh, 5.5rem)',
+        },
+      }}
+      containerType="size"
     >
       <Grid
         templateColumns={{ base: '1fr', md: '1fr 1fr' }}
@@ -88,7 +101,7 @@ export default function Hero({ buttons, image, title, description }) {
             >
               <Heading
                 as="h1"
-                fontSize={{ base: '2.5rem', md: '3.8rem', lg: '5.5rem' }}
+                fontSize="var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))"
                 fontWeight="bold"
                 lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"

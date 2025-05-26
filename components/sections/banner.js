@@ -15,6 +15,7 @@ const siteConfig = {}
     <Box
       bg={siteConfig?.bannerBackground?.hex}
       color={siteConfig?.bannerFontColor?.hex}
+      h={{ base: 'auto', md: '7vh' }}
     >
       <Box maxW="7.5xl" mx="auto" py={3} px={[3, 6, null, 8]}>
         <Flex

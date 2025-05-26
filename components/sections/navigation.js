@@ -73,7 +73,7 @@ export default function Navigation({ pages }) {
 
 
   return (
-    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base">
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: '14vh' }}>
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box
