@@ -40,7 +40,7 @@ export default function Hero({ buttons, image, title, description }) {
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          minH={{ base: '400px', lg: '0' }}
+          minH={{ base: '400px', lg: '79vh' }}
           display="block"
           order={{ base: 2, lg: 1 }}
         >
@@ -50,7 +50,7 @@ export default function Hero({ buttons, image, title, description }) {
             alt={image?.alt}
             w="100%"
             h="100%"
-            minH={{ base: '400px', lg: '0' }}
+            minH={{ base: '400px', lg: '79vh' }}
             objectFit={{ base: 'cover', lg: 'cover' }}
             objectPosition="center"
             style={{ display: 'block' }}
