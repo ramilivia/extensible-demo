@@ -7,7 +7,7 @@ const themeColor = {
 }
 
 export default function Banner({ content, href }) {
-  
+   
 const siteConfig = {}
   if (!content || !href) return null
 
