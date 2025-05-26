@@ -11,8 +11,6 @@ export default function Hero({ buttons, image, title, description }) {
     <Box 
       position="relative" 
       w="100vw" 
-      h={{ base: 'auto', md: '79vh' }}
-      minH={{ base: '100vh', md: '79vh' }}
       left="50%"
       right="50%"
       marginLeft="-50vw"
@@ -32,49 +30,31 @@ export default function Hero({ buttons, image, title, description }) {
         },
       }}
       containerType="size"
+      h={{ base: 'auto', lg: '79vh' }}
     >
       <Grid
-        templateColumns={{ base: '1fr', md: '1fr 1fr' }}
-        templateRows={{ base: 'auto auto', md: '1fr' }}
-        h="100%"
+        templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
+        templateRows={{ base: 'auto auto', lg: '1fr' }}
         position="relative"
       >
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          h={{ base: '50vh', md: '100%' }}
+          minH={{ base: '400px', lg: '0' }}
           display="block"
+          order={{ base: 2, lg: 1 }}
         >
           <Box
-            position="absolute"
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            zIndex={1}
+            as="img"
+            src={image?.url}
+            alt={image?.alt}
             w="100%"
             h="100%"
-            opacity={1}
-          >
-            <Image
-              src={image?.url}
-              alt={image?.alt}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              priority
-              quality={100}
-            />
-            {/* Subtle Gradient Overlay */}
-            <Box
-              position="absolute"
-              top={0}
-              left={0}
-              right={0}
-              bottom={0}
-              bg="linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%)"
-            />
-          </Box>
+            minH={{ base: '400px', lg: '0' }}
+            objectFit={{ base: 'cover', lg: 'cover' }}
+            objectPosition="center"
+            style={{ display: 'block' }}
+          />
         </GridItem>
 
         {/* Content Section */}
@@ -84,6 +64,7 @@ export default function Hero({ buttons, image, title, description }) {
           bg="white"
           display="flex"
           alignItems="center"
+          order={{ base: 1, lg: 2 }}
         >
           <Container 
             maxW="container.xl" 
