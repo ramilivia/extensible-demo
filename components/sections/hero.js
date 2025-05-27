@@ -61,7 +61,7 @@ export default function Hero({ buttons, image, title, description }) {
         <GridItem
           position="relative"
           zIndex={2}
-          bg="white"
+          bg="white" 
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
