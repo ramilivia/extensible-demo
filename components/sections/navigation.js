@@ -7,7 +7,8 @@ import {
   Button,
   Text,
   Link as ChakraLink,
-  Stack
+  Stack,
+  Center
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -23,7 +24,7 @@ const defaultStyle = {
 
 const transitionStyles = {
   entering: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' },
-  entered: { transform: 'scale(1)', opacity: 1, visibility: 'visible' },
+  entered: { transform: 'scale(1)', opacity: 1, visibility: 'visible', },
   exiting: { transform: 'scale(1)', opacity: 1, visibility: 'visible' },
   exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
 }
@@ -73,7 +74,7 @@ export default function Navigation({ pages }) {
 
 
   return (
-    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: '10vh' }}>
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: '14vh' }}>
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box
@@ -169,10 +170,11 @@ export default function Navigation({ pages }) {
         )}
       </Transition>
 
-      <Box maxW="7.5xl" mx="auto" px={[4, 6]}>
+      <Box maxW="7.5xl" mx="auto" px={[4, 6]} height={{ base: 'auto', md: '100%' }} display="flex" alignItems="center">
         <Stack
           display="flex"
-          justifyContent={['space-between', null, 'flex-start']}
+          w="100%"
+          justifyContent={['space-between']}
           alignItems="center"
           py={6}
           direction="row"
