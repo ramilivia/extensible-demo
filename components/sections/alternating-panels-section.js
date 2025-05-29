@@ -10,14 +10,14 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
 console.log(alternatingPanelsTitle, 'TITLE')
 
   return (
-    <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 10, lg: 25 }}>
+    <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 10, lg: 50 }}>
       <Container maxW="container.xl" h="full">
         <Flex
           direction={{ base: 'column', md: assetPosition === 'right' ? 'row' : 'row-reverse' }}
           align={{ base: 'center', md: 'center' }}
           justify={{ base: 'center', md: 'space-between' }}
           gap={{ base: 8, md: 12 }}
-          minH={{ base: 'auto', md: '420px', lg: '450px' }}
+          minH={{ base: 'auto', md: '420px', lg: '350px' }}
         >
           {/* Content Section */}
           <Stack 
