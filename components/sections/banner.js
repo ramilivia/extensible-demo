@@ -1,15 +1,13 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
-
-
-const themeColor = {
-  WARNING: 'orange.600'
-}
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 export default function Banner({ content, href }) {
-   
-const siteConfig = {}
+  
   if (!content || !href) return null
+
+  const siteConfig = useSiteConfiguration()
+  
 
   return (
     <Box
