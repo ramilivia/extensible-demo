@@ -15,7 +15,7 @@ export default function Hero({ buttons, image, title, description }) {
       right="50%"
       marginLeft="-50vw"
       marginRight="-50vw"
-      overflow="hidden"
+      overflow="visible"
       bg="white"
       sx={{
         '--container-height': '100%',
@@ -30,17 +30,20 @@ export default function Hero({ buttons, image, title, description }) {
         },
       }}
       containerType="size"
-      h={{ base: 'auto', lg: '79vh' }}
+      minH={{ base: 'auto', lg: '79vh' }}
+      h="auto"
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
-        templateRows={{ base: 'auto auto', lg: '1fr' }}
+        templateRows={{ base: 'auto', lg: 'auto' }}
         position="relative"
+        h="auto"
       >
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
           minH={{ base: '400px', lg: '79vh' }}
+          h="auto"
           display="block"
           order={{ base: 2, lg: 1 }}
         >
@@ -63,14 +66,15 @@ export default function Hero({ buttons, image, title, description }) {
           zIndex={2}
           bg="white" 
           display="flex"
-          alignItems="center"
+          alignItems="flex-start"
           order={{ base: 1, lg: 2 }}
+          h="auto"
         >
           <Container 
             maxW="container.xl" 
-            h="full"
+            h="auto"
             display="flex"
-            alignItems="center"
+            alignItems="flex-start"
             py={{ base: 16, md: 32 }}
             px={{ base: 4, md: 12 }}
           >
@@ -79,6 +83,7 @@ export default function Hero({ buttons, image, title, description }) {
               maxW={{ base: '100%', md: '90%' }}
               textAlign="left"
               color="gray.800"
+              h="auto"
             >
               <Heading
                 as="h1"

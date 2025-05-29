@@ -15,7 +15,7 @@ console.log(alternatingPanelsTitle, 'TITLE')
         <Flex
           direction={{ base: 'column', md: assetPosition === 'right' ? 'row' : 'row-reverse' }}
           align={{ base: 'center', md: 'center' }}
-          justify="space-between"
+          justify={{ base: 'center', md: 'space-between' }}
           gap={{ base: 8, md: 12 }}
           minH={{ base: 'auto', md: '420px', lg: '600px' }}
         >
@@ -69,6 +69,9 @@ console.log(alternatingPanelsTitle, 'TITLE')
             w={{ base: '100%', md: '55%' }}
             h={{ base: '300px', md: '100%' }}
             minH={{ base: '300px' }}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
             <Image
               src={image?.url}
