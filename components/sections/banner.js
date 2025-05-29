@@ -2,9 +2,9 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
-export default function Banner({ content, href }) {
+export default function Banner({ content, button }) {
   
-  if (!content || !href) return null
+  if (!content || !button) return null
 
   const siteConfig = useSiteConfiguration()
   
@@ -29,9 +29,10 @@ export default function Banner({ content, href }) {
           <Box w={['full', 'auto']} order={[3, 2]} mt={[2, 0]} flexShrink="0">
             <Box borderRadius="md" boxShadow="sm">
               <Button
-                href={href}
-                label="Learn more"
+                href={button?.href}
+                label={button?.label}
                 size="SMALL"
+                {...button}
               />
             </Box>
           </Box>
