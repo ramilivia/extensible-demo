@@ -3,11 +3,9 @@ import Button from '@/components/blocks/button'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 export default function Banner({ content, button }) {
-  
-  if (!content || !button) return null
-
   const siteConfig = useSiteConfiguration()
   
+  if (!content || !button) return null
 
   return (
     <Box
