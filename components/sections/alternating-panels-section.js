@@ -10,7 +10,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
 console.log(alternatingPanelsTitle, 'TITLE')
 
   return (
-    <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 10, lg: 50 }}>
+    <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
       <Container maxW="container.xl" h="full">
         <Flex
           direction={{ base: 'column', md: assetPosition === 'right' ? 'row' : 'row-reverse' }}
