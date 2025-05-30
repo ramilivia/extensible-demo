@@ -67,8 +67,8 @@ console.log(alternatingPanelsTitle, 'TITLE')
           <Box
             position="relative"
             w={{ base: '100%', md: '55%' }}
-            h={{ base: '300px', md: '100%' }}
-            minH={{ base: '300px' }}
+            h={{ base: 'auto', md: '100%' }}
+            minH={{ base: '180px' }}
             display="flex"
             justifyContent="center"
             alignItems="center"
