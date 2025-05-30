@@ -2,6 +2,10 @@ import { hygraphClient } from '@/lib/_client'
 import { pageQuery, genericPageQuery } from '@/lib/_queries'
 
 export default async function handler(req, res) {
+
+  console.log('HYGRAPH_PREVIEW_SECRET ENV', process.env.HYGRAPH_PREVIEW_SECRET)
+  console.log('HYGRAPH_PREVIEW_SECRET REQ', process.env.HYGRAPH_PREVIEW_SECRET)
+
   if (
     req.query.secret !== process.env.HYGRAPH_PREVIEW_SECRET ||
     !req.query.slug
