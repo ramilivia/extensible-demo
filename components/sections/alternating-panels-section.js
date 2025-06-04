@@ -11,21 +11,23 @@ console.log(alternatingPanelsTitle, 'TITLE')
 
   return (
     <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
-      <Container maxW="container.xl" h="full">
+      <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 0, lg: 0 }}>
         <Flex
-          direction={{ base: 'column', md: assetPosition === 'right' ? 'row' : 'row-reverse' }}
-          align={{ base: 'center', md: 'center' }}
-          justify={{ base: 'center', md: 'space-between' }}
-          gap={{ base: 8, md: 12 }}
-          minH={{ base: 'auto', md: '420px', lg: '350px' }}
+          direction={{ base: 'column', lg: assetPosition === 'right' ? 'row' : 'row-reverse' }}
+          align={{ base: 'flex-start', lg: 'center' }}
+          justify={{ base: 'flex-start', lg: 'space-between' }}
+          gap={{ base: 8, lg: 12 }}
+          minH={{ base: 'auto', lg: '350px' }}
+          px={{ base: 4, md: 6 }}
         >
           {/* Content Section */}
           <Stack 
             spacing={6} 
-            maxW={{ base: '100%', md: '40%' }}
+            maxW={{ base: '100%', lg: '40%' }}
             textAlign="left"
-            justify="center"
+            justify="flex-start"
             h="full"
+            w="full"
           >
             <Heading
               as="h1"
@@ -66,8 +68,8 @@ console.log(alternatingPanelsTitle, 'TITLE')
           {/* Image Section */}
           <Box
             position="relative"
-            w={{ base: '100%', md: '55%' }}
-            h={{ base: 'auto', md: '100%' }}
+            w={{ base: '100%', lg: '55%' }}
+            h={{ base: 'auto', lg: '100%' }}
             minH={{ base: '180px' }}
             display="flex"
             justifyContent="center"
@@ -88,7 +90,7 @@ console.log(alternatingPanelsTitle, 'TITLE')
             />
           </Box>
         </Flex>
-      </Container>
+      </Box>
     </Box>
   )
 }
