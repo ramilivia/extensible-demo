@@ -66,7 +66,7 @@ export default function Hero({ buttons, image, title, description }) {
           zIndex={2}
           bg="white" 
           display="flex"
-          alignItems="flex-start"
+          alignItems="center"
           order={{ base: 1, lg: 2 }}
           h="auto"
         >
@@ -74,7 +74,7 @@ export default function Hero({ buttons, image, title, description }) {
             maxW="container.xl" 
             h="auto"
             display="flex"
-            alignItems="flex-start"
+            alignItems="center"
             py={{ base: 16, md: 32 }}
             px={{ base: 4, md: 12 }}
           >
