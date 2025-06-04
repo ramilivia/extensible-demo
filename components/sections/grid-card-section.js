@@ -29,7 +29,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
           </Heading>
         )}
         <SimpleGrid
-          columns={{ base: 1, md: 3, lg: columns|| 3 }}
+          columns={{ base: 1, md: 2, lg: columns|| 3 }}
           spacing={{ base: 8, md: 12 }}
           px={{ base: 4, md: 8, lg: 0 }}
           justifyItems="center"
