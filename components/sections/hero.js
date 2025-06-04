@@ -10,13 +10,9 @@ export default function Hero({ buttons, image, title, description }) {
   return (
     <Box 
       position="relative" 
-      w="100vw" 
-      left="50%"
-      right="50%"
-      marginLeft="-50vw"
-      marginRight="-50vw"
-      overflow="visible"
+      w="100%"
       bg="white"
+      mb={{ base: 8, md: 16 }}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {
@@ -30,20 +26,20 @@ export default function Hero({ buttons, image, title, description }) {
         },
       }}
       containerType="size"
-      minH={{ base: 'auto', lg: '79vh' }}
-      h="auto"
+      minH={{ base: '400px', lg: 'calc(100vh - 111px - 61px)' }}
+      h={{ base: 'auto', lg: 'calc(100vh - 111px - 61px)' }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
-        templateRows={{ base: 'auto', lg: 'auto' }}
+        templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
-        h="auto"
+        h={{ base: 'auto', lg: '100%' }}
       >
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          minH={{ base: '400px', lg: '79vh' }}
-          h="auto"
+          minH={{ base: '400px', lg: '100%' }}
+          h={{ base: 'auto', lg: '100%' }}
           display="block"
           order={{ base: 2, lg: 1 }}
         >
@@ -53,8 +49,8 @@ export default function Hero({ buttons, image, title, description }) {
             alt={image?.alt}
             w="100%"
             h="100%"
-            minH={{ base: '400px', lg: '79vh' }}
-            objectFit={{ base: 'cover', lg: 'cover' }}
+            minH={{ base: '400px', lg: '100%' }}
+            objectFit="cover"
             objectPosition="center"
             style={{ display: 'block' }}
           />
@@ -68,7 +64,7 @@ export default function Hero({ buttons, image, title, description }) {
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
-          h="auto"
+          h={{ base: 'auto', lg: '100%' }}
         >
           <Container 
             maxW="container.xl" 
