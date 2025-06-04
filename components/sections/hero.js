@@ -22,7 +22,7 @@ export default function Hero({ buttons, image, title, description }) {
           '--heading-size': 'clamp(3.8rem, 10vh, 5.5rem)',
         },
         '@container (min-height: 800px)': {
-          '--heading-size': 'clamp(4.5rem, 12vh, 5.5rem)',
+          '--heading-size': '5.5rem',
         },
       }}
       containerType="size"
@@ -76,14 +76,14 @@ export default function Hero({ buttons, image, title, description }) {
           >
             <Stack 
               spacing={{ base: 8, md: 10 }} 
-              maxW={{ base: '100%', md: '690px' }}
+              maxW={{ base: '100%', md: '630px' }}
               textAlign="left"
               color="gray.800"
               h="auto"
             >
               <Heading
                 as="h1"
-                fontSize="var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))"
+                fontSize={{ base: 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', lg: '5rem' }}
                 fontWeight="bold"
                 lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"
@@ -112,6 +112,8 @@ export default function Hero({ buttons, image, title, description }) {
                   direction={{ base: 'column', lg: 'row' }}
                   spacing={8}
                   pt={4}
+                  w="100%"
+                  maxW="100%"
                 >
                   {buttons.map((button, index) => (
                     <Button 
@@ -123,6 +125,7 @@ export default function Hero({ buttons, image, title, description }) {
                       letterSpacing="0.1em"
                       fontSize="sm"
                       textTransform="uppercase"
+                      w={{ base: '100%', lg: 'auto' }}
                       _hover={{ 
                         bg: 'gray.100',
                         transform: 'translateY(-1px)'
