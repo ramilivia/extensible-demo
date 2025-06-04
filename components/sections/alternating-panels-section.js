@@ -18,7 +18,7 @@ console.log(alternatingPanelsTitle, 'TITLE')
           justify={{ base: 'flex-start', lg: 'space-between' }}
           gap={{ base: 8, lg: 12 }}
           minH={{ base: 'auto', lg: '350px' }}
-          px={{ base: 4, md: 6 }}
+          px={{ base: 4, md: 6, lg: 0 }}
         >
           {/* Content Section */}
           <Stack 
