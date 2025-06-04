@@ -183,7 +183,7 @@ export default function Navigation({ pages }) {
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-              {siteConfig?.logo && <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: '251px'}}/>}
+              {siteConfig?.logo && <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: '241px'}}/>}
               </a>
             </Link>
           </Flex>
