@@ -76,7 +76,7 @@ export default function Hero({ buttons, image, title, description }) {
           >
             <Stack 
               spacing={{ base: 8, md: 10 }} 
-              maxW={{ base: '100%', md: '720px' }}
+              maxW={{ base: '100%', md: '690px' }}
               textAlign="left"
               color="gray.800"
               h="auto"
