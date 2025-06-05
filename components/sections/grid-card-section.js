@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Heading, Image, Link, Text } from '@chakra-ui/react'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
-export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle, columnsNumber, areImagesSameHeight }) {
+export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle, columnsNumber, areImagesSameHeight, middleCrop }) {
   const siteConfig = useSiteConfiguration()
 
   if (!cards || !cards.length) return null
@@ -51,7 +51,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                   alt={card.cardTitle}
                   
                   h={areImagesSameHeight ? 'auto' : 56 }
-                  objectFit="cover"
+                  objectFit={middleCrop ? 'cover' : 'contain'}
                 />
               </Link>
               <Box mt={4} w="100%" textAlign="left">
