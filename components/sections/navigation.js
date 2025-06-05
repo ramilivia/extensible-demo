@@ -34,7 +34,7 @@ export default function Navigation({ pages }) {
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-  
+  console.log('SITE CONFIG', siteConfig);
   
   useEffect(() => {
     const handleOutsideClick = (event) => {

@@ -2,7 +2,8 @@ import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { genericPageQuery, siteConfigurationQuery, pageQuery } from '@/lib/_queries'
+import { pageQuery as defaultPageQuery, siteConfigurationQuery as defaultSiteConfigQuery } from '@/lib/_queries'
+import { loadQuery } from '@/lib/queryLoader'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
 
@@ -11,14 +12,21 @@ export default function Page({ page }) {
 }
 
 export async function getStaticProps({ locale, params, preview = false }) {
-  
   const client = hygraphClient(preview)
   
-  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
+  // Load version-specific queries with fallback to defaults
+  const { 
+    queryFile = defaultPageQuery, 
+    configurationFile = defaultSiteConfigQuery 
+  } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
+
+  // Get site configuration using either version-specific or default query
+  const { siteConfiguration } = await client.request(configurationFile, {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
   })
 
-  const { page } = await client.request(pageQuery, {
+  // Get page data using either version-specific or default query
+  const { page } = await client.request(queryFile, {
     locale,
     slug: params.slug
   })
