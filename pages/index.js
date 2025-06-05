@@ -12,14 +12,27 @@ export default function IndexPage({ page }) {
 export async function getStaticProps({ locale, preview = false }) {
   const client = hygraphClient(preview)
 
-  const { siteConfiguration } = await client.request(siteConfigurationQuery, {
-    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
-  })
+
+  const { queryFile, configurationFile} = await loadQuery(process.env.NEXT_PUBLIC_VERSION);
+
+  let siteConfiguration;
+  if (!configurationFile) {
+    const { siteConfiguration: config } = await client.request(siteConfigurationQuery, {
+      brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+    })
+    siteConfiguration = config;
+  } else {
+    const { siteConfiguration: config } = await client.request(configurationFile, {
+      brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+    })
+    siteConfiguration = config;
+  }
+  
   console.log('LOCALE', locale);
 
   console.log('HYGRAPH VERSION', process.env.NEXT_PUBLIC_VERSION);
-  const queryFile = await loadQuery(process.env.NEXT_PUBLIC_VERSION);
-  console.log('QUERY FILE', queryFile);
+  
+  //console.log('QUERY FILE', queryFile);
 
   let page;
 
@@ -33,7 +46,7 @@ export async function getStaticProps({ locale, preview = false }) {
     });
     page = result.page;
   } else {
-    console.log('QUERY FILE ', process.env.NEXT_PUBLIC_HYGRAPH_VERSION);
+    console.log('QUERY FILE LOADED');
     const result = await client.request(queryFile, {
       locale,
       slug: 'home'
@@ -42,7 +55,7 @@ export async function getStaticProps({ locale, preview = false }) {
   }
 
   const parsedPageData = await parsePageData(page)
-  
+   console.log('PARSED PAGE DATA', parsedPageData);
   return {
     props: {
       page: parsedPageData,

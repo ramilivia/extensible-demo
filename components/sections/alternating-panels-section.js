@@ -7,7 +7,7 @@ import Button from '@/components/blocks/button'
 export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right' }) {
 
   const siteConfig = useSiteConfiguration()
-console.log(alternatingPanelsTitle, 'TITLE')
+
 
   return (
     <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>

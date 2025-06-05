@@ -4,7 +4,6 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle, columnsNumber }) {
   const siteConfig = useSiteConfiguration()
 
-  console.log(columnsNumber)
   if (!cards || !cards.length) return null
   
   const columns = columnsNumber === 'THREE' ? 3 : columnsNumber === 'FOUR' ? 4 : 3

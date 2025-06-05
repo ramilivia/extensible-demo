@@ -4,7 +4,7 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, image, title, description }) {
+export default function Hero({ buttons, image, video, title, description }) {
   const siteConfig = useSiteConfiguration()
 
   return (
@@ -35,7 +35,7 @@ export default function Hero({ buttons, image, title, description }) {
         position="relative"
         h={{ base: 'auto', lg: '100%' }}
       >
-        {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
+        {/* Image/Video Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
           minH={{ base: '400px', lg: '100%' }}
@@ -43,17 +43,34 @@ export default function Hero({ buttons, image, title, description }) {
           display="block"
           order={{ base: 2, lg: 1 }}
         >
-          <Box
-            as="img"
-            src={image?.url}
-            alt={image?.alt}
-            w="100%"
-            h="100%"
-            minH={{ base: '400px', lg: '100%' }}
-            objectFit="cover"
-            objectPosition="center"
-            style={{ display: 'block' }}
-          />
+          {video ? (
+            <Box
+              as="video"
+              src={video.url}
+              autoPlay
+              muted
+              loop
+              playsInline
+              w="100%"
+              h="100%"
+              minH={{ base: '400px', lg: '100%' }}
+              objectFit="cover"
+              objectPosition="center"
+              style={{ display: 'block' }}
+            />
+          ) : (
+            <Box
+              as="img"
+              src={image?.url}
+              alt={image?.alt}
+              w="100%"
+              h="100%"
+              minH={{ base: '400px', lg: '100%' }}
+              objectFit="cover"
+              objectPosition="center"
+              style={{ display: 'block' }}
+            />
+          )}
         </GridItem>
 
         {/* Content Section */}
