@@ -1,6 +1,6 @@
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { pageQuery, siteConfigurationQuery } from '@/lib/_queries'
+import { pageQuery as defaultPageQuery, siteConfigurationQuery as defaultSiteConfigQuery } from '@/lib/_queries'
 import { loadQuery } from '@/lib/queryLoader'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
@@ -11,55 +11,30 @@ export default function IndexPage({ page }) {
 
 export async function getStaticProps({ locale, preview = false }) {
   const client = hygraphClient(preview)
-
-
-  const { queryFile, configurationFile} = await loadQuery(process.env.NEXT_PUBLIC_VERSION);
-
-  let siteConfiguration;
-  if (!configurationFile) {
-    const { siteConfiguration: config } = await client.request(siteConfigurationQuery, {
-      brandName: process.env.NEXT_PUBLIC_BRAND_NAME
-    })
-    siteConfiguration = config;
-  } else {
-    const { siteConfiguration: config } = await client.request(configurationFile, {
-      brandName: process.env.NEXT_PUBLIC_BRAND_NAME
-    })
-    siteConfiguration = config;
-  }
   
-  console.log('LOCALE', locale);
+  // Load version-specific queries with fallback to defaults
+  const { 
+    queryFile = defaultPageQuery, 
+    configurationFile = defaultSiteConfigQuery 
+  } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
 
-  console.log('HYGRAPH VERSION', process.env.NEXT_PUBLIC_VERSION);
-  
-  //console.log('QUERY FILE', queryFile);
+  // Get site configuration using either version-specific or default query
+  const { siteConfiguration: config } = await client.request(configurationFile, {
+    brandName: process.env.NEXT_PUBLIC_BRAND_NAME
+  })
 
-  let page;
-
-
-
-  if (!queryFile) {
-    console.log('NO QUERY FILE');
-    const result = await client.request(pageQuery, {
-      locale,
-      slug: 'home'
-    });
-    page = result.page;
-  } else {
-    console.log('QUERY FILE LOADED');
-    const result = await client.request(queryFile, {
-      locale,
-      slug: 'home'
-    });
-    page = result.page;
-  }
+  // Get page data using either version-specific or default query
+  const { page } = await client.request(queryFile, {
+    locale,
+    slug: 'home'
+  })
 
   const parsedPageData = await parsePageData(page)
    console.log('PARSED PAGE DATA', parsedPageData);
   return {
     props: {
       page: parsedPageData,
-      siteConfiguration,
+      siteConfiguration: config,
       preview
     },
     revalidate: 60

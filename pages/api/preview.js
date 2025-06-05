@@ -1,5 +1,6 @@
 import { hygraphClient } from '@/lib/_client'
-import { pageQuery, genericPageQuery } from '@/lib/_queries'
+import { pageQuery as defaultPageQuery } from '@/lib/_queries'
+import { loadQuery } from '@/lib/queryLoader'
 
 export default async function handler(req, res) {
 
@@ -17,30 +18,16 @@ export default async function handler(req, res) {
 
   const [rootSlug, nestedSlug] = req.query.slug.split('/')
 
+  // Load version-specific query with fallback to default
+  const { queryFile = defaultPageQuery } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
 
-  console.log('HYGRAPH VERSION', process.env.NEXT_PUBLIC_VERSION);
-  const queryFile = await loadQuery(process.env.NEXT_PUBLIC_VERSION);
-  console.log('QUERY FILE', queryFile);
+  // Get page data using either version-specific or default query
+  const { page } = await client.request(queryFile, {
+    slug: rootSlug,
+    ...(rootSlug && { locale: 'en' })
+  })
 
-  let page;
-
-  if (!queryFile) {
-    console.log('NO QUERY FILE');
-    const result = await client.request(pageQuery, {
-      slug: rootSlug,
-      ...(rootSlug && { locale: 'en' })
-    });
-    page = result.page;
-  } else {
-    console.log('QUERY FILE ', process.env.NEXT_PUBLIC_HYGRAPH_VERSION);
-    const result = await client.request(queryFile, {
-      slug: rootSlug,
-      ...(rootSlug && { locale: 'en' })
-    });
-    page = result.page;
-  }
-
-  if (!data) {
+  if (!page) {
     return res
       .status(401)
       .json({ message: 'Slug not found - cannot enter preview mode' })
