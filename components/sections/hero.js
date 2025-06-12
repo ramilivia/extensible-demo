@@ -13,7 +13,7 @@ export default function Hero({ buttons, asset, title, description }) {
       position="relative" 
       w="100%"
       bg="white"
-      mb={{ base: 8, md: 16 }}
+      mb={{ base: 8, md: 0 }}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {

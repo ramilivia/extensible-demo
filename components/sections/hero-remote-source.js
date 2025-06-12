@@ -18,7 +18,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
       marginRight="-50vw"
       overflow="hidden"
       bg="white"
-      mb={{ base: 8, md: 16 }}
+      mb={{ base: 8, md: 0 }}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {
