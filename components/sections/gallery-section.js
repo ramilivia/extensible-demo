@@ -134,10 +134,6 @@ export default function GallerySection({ images, galleryTitle, description }) {
             preload: 3,
             imageFit: "contain"
           }}
-          render={{
-            buttonPrev: () => null,
-            buttonNext: () => null
-          }}
         />
       </Container>
     </Box>
