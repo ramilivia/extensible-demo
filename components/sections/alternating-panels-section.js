@@ -4,13 +4,13 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right' }) {
+export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor }) {
 
   const siteConfig = useSiteConfiguration()
 
 
   return (
-    <Box position="relative" bg="gray.50" minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
+    <Box position="relative" bg={backgroundColor?.hex || "gray.50"} minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
       <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 0, lg: 0 }}>
         <Flex
           direction={{ base: 'column', lg: assetPosition === 'right' ? 'row' : 'row-reverse' }}
@@ -31,19 +31,19 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
           >
             <Heading
               as="h1"
-              fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+              fontSize={{ base: '2.25rem', md: '2.75rem', lg: '4.8rem' }}
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"
               fontFamily="serif"
-              color={siteConfig?.titlesFontColor?.hex}
+              color={textColor?.hex || siteConfig?.textColor?.hex}
             >
               {alternatingPanelsTitle}
             </Heading>
             
             <Text
               fontSize={{ base: 'lg', md: 'xl' }}
-              color={siteConfig?.textColor?.hex}
+              color={textColor?.hex || siteConfig?.textColor?.hex}
               maxW="2xl"
               whiteSpace="pre-wrap"
             >

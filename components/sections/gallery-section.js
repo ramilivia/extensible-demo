@@ -26,7 +26,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
   }));
 
   return (
-    <Box as="section" bg="white" py={[12, 16]}>
+    <Box as="section" bg="white" py={[12, 12]}>
       <Container maxW="7.5xl" mx="auto">
         {galleryTitle && (
           <Heading 
@@ -40,7 +40,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
           letterSpacing="-0.04em"
           fontFamily="serif"
           color={siteConfig?.textColor?.hex} 
-          mb={10}
+          mb={5}
         >
           {galleryTitle}
         </Heading>
@@ -51,7 +51,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
               color={siteConfig?.textColor?.hex}
               maxW="2xl"
               whiteSpace="pre-wrap"
-              marginBottom={10}
+              marginBottom={5}
             >
               {description}
             </Text>
@@ -66,6 +66,8 @@ export default function GallerySection({ images, galleryTitle, description }) {
             _hover={{ opacity: 0.9 }}
             transition="opacity 0.2s"
             onClick={() => setIndex(0)}
+            overflow="hidden"
+            borderRadius="lg"
           >
             <AspectRatio ratio={1}>
               <Image
@@ -75,10 +77,9 @@ export default function GallerySection({ images, galleryTitle, description }) {
                 height={images[0].height}
                 objectFit="cover"
                 _hover={{ transform: "scale(1.05)" }}
-                transition="transform 0.3s"
+                transition="transform 0.4s ease-in-out"
                 loading="eager"
                 decoding="async"
-                borderRadius="lg"
                 sx={{
                   WebkitFontSmoothing: "antialiased",
                   backfaceVisibility: "hidden",
@@ -99,6 +100,8 @@ export default function GallerySection({ images, galleryTitle, description }) {
               _hover={{ opacity: 0.9 }}
               transition="opacity 0.2s"
               onClick={() => setIndex(idx + 1)}
+              overflow="hidden"
+              borderRadius="lg"
             >
               <AspectRatio ratio={1}>
                 <Image
@@ -107,11 +110,10 @@ export default function GallerySection({ images, galleryTitle, description }) {
                   width={image.width}
                   height={image.height}
                   objectFit="cover"
-                  _hover={{ transform: "scale(1.05)" }}
-                  transition="transform 0.3s"
+                  _hover={{ transform: "scale(1.1)" }}
+                  transition="transform 0.4s ease-in-out"
                   loading="lazy"
                   decoding="async"
-                  borderRadius="lg"
                   sx={{
                     WebkitFontSmoothing: "antialiased",
                     backfaceVisibility: "hidden",
