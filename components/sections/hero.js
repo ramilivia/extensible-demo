@@ -13,7 +13,7 @@ export default function Hero({ buttons, asset, title, description }) {
       position="relative" 
       w="100%"
       bg="white"
-      mb={{ base: 8, md: 0 }}
+      mb={0}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {
@@ -27,22 +27,24 @@ export default function Hero({ buttons, asset, title, description }) {
         },
       }}
       containerType="size"
-      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
         templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
         h={{ base: 'auto', lg: '100%' }}
+        gap={{ base: 4, lg: 0 }}
       >
         {/* Image/Video Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          minH={{ base: '400px', lg: '100%' }}
+          minH={{ base: '300px', md: '400px', lg: '100%' }}
           h={{ base: 'auto', lg: '100%' }}
           display="block"
           order={{ base: 2, lg: 1 }}
+          mb={0}
         >
           {asset?.mimeType?.includes('video') ? (
             <Box
@@ -83,6 +85,7 @@ export default function Hero({ buttons, asset, title, description }) {
           alignItems="center"
           order={{ base: 1, lg: 2 }}
           h={{ base: 'auto', lg: '100%' }}
+          mb={0}
         >
           <Container 
             maxW="container.xl" 

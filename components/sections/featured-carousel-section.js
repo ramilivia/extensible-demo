@@ -3,8 +3,9 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
+import Button from '@/components/blocks/button'
 
-export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards }) {
+export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons }) {
   const sliderRef = useRef(null);
 
   const settings = {
@@ -91,6 +92,19 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
           <Text fontSize={{ base: 'lg', md: 'xl' }} color="white" maxW="2xl" whiteSpace="pre-wrap">
             {description}
           </Text>
+          {buttons && buttons.length > 0 && (
+              <Stack
+                direction={{ base: 'column', sm: 'row' }}
+                spacing={4}
+                justify={{ base: 'center', md: 'flex-start' }}
+                pt={4}
+              >
+                
+                {buttons.map((button, index) => (
+                  <Button key={index} {...button}/>
+                ))}
+              </Stack>
+            )}
         </Stack>
 
         {/* Right Panel: Carousel */}

@@ -32,20 +32,30 @@ export default function HeroRemoteSource({ buttons, image, title, description })
         },
       }}
       containerType="size"
-      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ 
+        base: 'auto',
+        md: 'auto',
+        lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` 
+      }}
+      h={{ 
+        base: 'auto',
+        md: 'auto',
+        lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` 
+      }}
     >
       <Grid
-        templateColumns={{ base: '1fr', md: '1fr 1fr' }}
-        templateRows={{ base: 'auto auto', md: '1fr' }}
-        h="100%"
+        templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
+        templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
+        h="auto"
       >
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          h={{ base: '50vh', md: '100%' }}
+          minH={{ base: '400px', md: '500px', lg: '100%' }}
+          h={{ base: 'auto', md: 'auto', lg: '100%' }}
           display="block"
+          order={{ base: 2, lg: 1 }}
         >
           <Box
             position="absolute"
@@ -83,13 +93,15 @@ export default function HeroRemoteSource({ buttons, image, title, description })
         <GridItem
           position="relative"
           zIndex={2}
-          bg="white"
+          bg="white" 
           display="flex"
           alignItems="center"
+          order={{ base: 1, lg: 2 }}
+          h={{ base: 'auto', lg: '100%' }}
         >
           <Container 
             maxW="container.xl" 
-            h="full"
+            h="auto"
             display="flex"
             alignItems="center"
             py={{ base: 16, md: 32 }}
@@ -97,9 +109,10 @@ export default function HeroRemoteSource({ buttons, image, title, description })
           >
             <Stack 
               spacing={{ base: 8, md: 10 }} 
-              maxW={{ base: '100%', md: '90%' }}
+              maxW={{ base: '100%', md: '630px' }}
               textAlign="left"
               color="gray.800"
+              h="auto"
             >
               <Heading
                 as="h1"
@@ -132,6 +145,8 @@ export default function HeroRemoteSource({ buttons, image, title, description })
                   direction={{ base: 'column', lg: 'row' }}
                   spacing={8}
                   pt={4}
+                  w="100%"
+                  maxW="100%"
                 >
                   {buttons.map((button, index) => (
                     <Button 
@@ -143,6 +158,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
                       letterSpacing="0.1em"
                       fontSize="sm"
                       textTransform="uppercase"
+                      w={{ base: '100%', lg: 'auto' }}
                       _hover={{ 
                         bg: 'gray.100',
                         transform: 'translateY(-1px)'
