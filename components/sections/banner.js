@@ -14,14 +14,14 @@ export default function Banner({ content, button }) {
       color={siteConfig?.bannerFontColor?.hex}
       h={{ base: 'auto', md: theme.bannerHeight }}
     >
-      <Box maxW="7.5xl" mx="auto" py={3} px={[3, 6, null, 8]}>
+      <Box maxW="7.5xl" mx="auto" py={[3, 1]} px={[4, 6]}>
         <Flex
           alignItems="center"
           justifyContent="space-between"
           flexWrap="wrap"
         >
           <Flex flex="1 1 0" alignItems="center">
-            <Text fontWeight="medium" color={siteConfig?.bannerFontColor?.hex}>
+            <Text fontWeight="medium" color={siteConfig?.bannerFontColor?.hex} fontSize="sm">
               {content}
             </Text>
           </Flex>

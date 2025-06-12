@@ -220,7 +220,7 @@ export default function Navigation({ pages }) {
                 return (
                   <Link key={page.id} href={`/${page.slug}`} passHref>
                     <ChakraLink
-                      fontSize="md"
+                      fontSize="sm"
                       fontWeight="medium"
                       color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}
                       _hover={{

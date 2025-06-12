@@ -25,7 +25,7 @@ const buttonSizes = {
   SMALL: {
     px: [2, null, 4],
     py: [1, null, 2],
-    fontSize: ['sm', null, 'base']
+    fontSize: ['sm', 'xs', 'xs']
   },
   MEDIUM: {
     px: [4, null, 8],

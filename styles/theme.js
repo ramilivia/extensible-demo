@@ -19,7 +19,7 @@ export const createTheme = (siteConfiguration) => {
       '7.5xl': '88rem',
     },
     navigationHeight: '4.5rem',  
-    bannerHeight: '2.5rem',
+    bannerHeight: '2.8rem',
     lineHeights: {
       tall: 1.8
     },
