@@ -18,7 +18,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
       marginRight="-50vw"
       overflow="hidden"
       bg="white"
-      mb={{ base: 8, md: 0 }}
+      mb={0}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {
@@ -32,30 +32,24 @@ export default function HeroRemoteSource({ buttons, image, title, description })
         },
       }}
       containerType="size"
-      minH={{ 
-        base: 'auto',
-        md: 'auto',
-        lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` 
-      }}
-      h={{ 
-        base: 'auto',
-        md: 'auto',
-        lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` 
-      }}
+      minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
         templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
-        h="auto"
+        h={{ base: 'auto', lg: '100%' }}
+        gap={{ base: 4, lg: 0 }}
       >
         {/* Image Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          minH={{ base: '400px', md: '500px', lg: '100%' }}
-          h={{ base: 'auto', md: 'auto', lg: '100%' }}
+          minH={{ base: '300px', md: '400px', lg: '100%' }}
+          h={{ base: 'auto', lg: '100%' }}
           display="block"
           order={{ base: 2, lg: 1 }}
+          mb={0}
         >
           <Box
             position="absolute"
@@ -67,16 +61,26 @@ export default function HeroRemoteSource({ buttons, image, title, description })
             w="100%"
             h="100%"
             opacity={1}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
           >
-            <Image
-              src={image.url}
-              alt={image.alt}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="center"
-              priority
-              quality={100}
-            />
+            <Box
+              position="relative"
+              w="100%"
+              h="100%"
+            >
+              <Image
+                src={image.url}
+                alt={image.alt}
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+                priority
+                quality={100}
+                style={{ height: '100%', width: '100%' }}
+              />
+            </Box>
             {/* Subtle Gradient Overlay */}
             <Box
               position="absolute"
@@ -98,6 +102,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
           alignItems="center"
           order={{ base: 1, lg: 2 }}
           h={{ base: 'auto', lg: '100%' }}
+          mb={0}
         >
           <Container 
             maxW="container.xl" 
@@ -116,7 +121,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
             >
               <Heading
                 as="h1"
-                fontSize={{ base: '2.5rem', md: '3.8rem', lg: '5.5rem' }}
+                fontSize={{ base: 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', lg: '5rem' }}
                 fontWeight="bold"
                 lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"
