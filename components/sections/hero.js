@@ -4,7 +4,7 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, image, video, title, description }) {
+export default function Hero({ buttons, asset, title, description }) {
   const siteConfig = useSiteConfiguration()
 
   return (
@@ -43,10 +43,10 @@ export default function Hero({ buttons, image, video, title, description }) {
           display="block"
           order={{ base: 2, lg: 1 }}
         >
-          {video ? (
+          {asset?.mimeType?.includes('video') ? (
             <Box
               as="video"
-              src={video.url}
+              src={asset.url}
               autoPlay
               muted
               loop
@@ -61,8 +61,8 @@ export default function Hero({ buttons, image, video, title, description }) {
           ) : (
             <Box
               as="img"
-              src={image?.url}
-              alt={image?.alt}
+              src={asset?.url}
+              alt={asset?.alt}
               w="100%"
               h="100%"
               minH={{ base: '400px', lg: '100%' }}
