@@ -45,7 +45,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
           {galleryTitle}
         </Heading>
         )}
-        <Box marginX={{ base: 4, md: 8, lg: 4 }}>
+        <Box marginX={{ base: 0, md: 0, lg: 0 }}>
         <Text
               fontSize={{ base: 'lg', md: 'xl' }}
               color={siteConfig?.textColor?.hex}
