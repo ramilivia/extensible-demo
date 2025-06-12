@@ -8,8 +8,9 @@ import {
   Text,
   Link as ChakraLink,
   Stack,
-  Center
-} from '@chakra-ui/react'
+  Center,
+  useTheme
+} from '@chakra-ui/react' 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
@@ -31,6 +32,7 @@ const transitionStyles = {
 
 export default function Navigation({ pages }) {
   const siteConfig = useSiteConfiguration()
+  const theme = useTheme()
   const container = useRef(null)
   const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
@@ -74,7 +76,7 @@ export default function Navigation({ pages }) {
 
 
   return (
-    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: '111px' }}>
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: theme.navigationHeight }}>
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box

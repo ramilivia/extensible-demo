@@ -1,13 +1,14 @@
 import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
-
+import { useTheme } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
 
 export default function FullBleedVideo({ buttons, asset, title, description }) {
-  const siteConfig = useSiteConfiguration()
-  console.log('ASSET', asset)
-  const isVideo = asset?.mimeType?.includes('video/')
+  
+  const siteConfig = useSiteConfiguration();
+  const theme = useTheme();
+  const isVideo = asset?.mimeType?.includes('video/');
   
   return (
     <Box 
@@ -15,8 +16,8 @@ export default function FullBleedVideo({ buttons, asset, title, description }) {
       w="100%"
       bg="white"
       mb={{ base: 8, md: 16 }}
-      minH={{ base: '400px', lg: 'calc(100vh - 111px - 61px)' }}
-      h={{ base: 'auto', lg: 'calc(100vh - 111px - 61px)' }}
+      minH={{ base: '400px', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns="1fr"

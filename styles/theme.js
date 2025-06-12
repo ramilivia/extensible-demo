@@ -18,6 +18,8 @@ export const createTheme = (siteConfiguration) => {
     sizes: {
       '7.5xl': '88rem',
     },
+    navigationHeight: '4.5rem',  
+    bannerHeight: '2.5rem',
     lineHeights: {
       tall: 1.8
     },
