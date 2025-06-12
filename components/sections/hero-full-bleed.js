@@ -68,13 +68,8 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
               <Image
                 src={asset.url}
                 alt={title || 'Hero image'}
-                width="100%"
-                height="100%"
-                fill
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
+                layout="fill"
+                objectFit="cover"
                 priority
               />
             </Box>
