@@ -1,9 +1,9 @@
-import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem, useTheme } from '@chakra-ui/react'
+import { Box, Container, Heading, Stack, Text, Grid, GridItem, useTheme } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 import Button from '@/components/blocks/button'
 
-export default function FullBleedVideo({ buttons, asset, title, description, opaque, textColor }) {
+export default function FullBleedVideo({ buttons, asset, title, description, opaque, textColor, contentPosition }) {
   
   const siteConfig = useSiteConfiguration();
   const theme = useTheme();
@@ -28,19 +28,19 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
         },
       }}
       containerType="size"
-      minH={{ base: '400px', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns="1fr"
         position="relative"
-        h={{ base: 'auto', lg: '100%' }}
+        h="100%"
       >
         {/* Media Section - Full Width */}
         <GridItem
           position="relative"
-          minH={{ base: '400px', lg: '100%' }}
-          h={{ base: 'auto', lg: '100%' }}
+          minH="100%"
+          h="100%"
           display="block"
         >
           {isVideo ? (
@@ -84,56 +84,64 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
             bottom="0"
             bg={`rgba(0, 0, 0, ${opaque ? 0.35 : 0})`}
             display="flex"
-            alignItems="center"
-            justifyContent="center"
+            alignItems={contentPosition === 'bottom_left' ? 'flex-end' : 'center'}
+            justifyContent={contentPosition === 'bottom_left' ? 'flex-start' : 'center'}
             zIndex="1"
           >
             <Container 
               maxW="container.xl" 
               h="auto"
               display="flex"
-              alignItems="center"
-              py={{ base: 16, md: 32 }}
-              px={{ base: 4, md: 12 }}
+              alignItems={contentPosition === 'bottom_left' ? 'flex-end' : 'center'}
+              justifyContent={contentPosition === 'bottom_left' ? 'flex-start' : 'center'}
+              py={{ base: contentPosition === 'bottom_left' ? 8 : 16, md: contentPosition === 'bottom_left' ? 16 : 32 }}
+              px={{ base: contentPosition === 'bottom_left' ? 4 : 4, md: contentPosition === 'bottom_left' ? 8 : 12 }}
+              ml={contentPosition === 'bottom_left' ? { base: 0, md: '-4' } : 0}
             >
               <Stack 
-                spacing={{ base: 8, md: 10 }} 
-                maxW={{ base: '100%', md: '630px' }}
+                spacing={{ base: contentPosition === 'bottom_left' ? 4 : 8, md: contentPosition === 'bottom_left' ? 6 : 10 }} 
+                maxW={{ base: '100%', md: contentPosition === 'bottom_left' ? '400px' : '630px' }}
                 textAlign="left"
                 color="white"
                 h="auto"
+                ml={contentPosition === 'bottom_left' ? { base: 6, md: 12 } : 0}
               >
                 <Heading
                   as="h1"
-                  fontSize={{ base: 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', lg: '5rem' }}
+                  fontSize={{ 
+                    base: contentPosition === 'bottom_left' 
+                      ? 'var(--heading-size, clamp(2rem, 6vh, 4rem))' 
+                      : 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', 
+                    lg: contentPosition === 'bottom_left' ? '4rem' : '5rem' 
+                  }}
                   fontWeight="bold"
                   lineHeight={{ base: '1.2', md: '1.05' }}
                   letterSpacing="-0.04em"
                   fontFamily="serif"
-                  mb={{ base: 4, md: 2 }}
+                  mb={{ base: contentPosition === 'bottom_left' ? 2 : 4, md: contentPosition === 'bottom_left' ? 1 : 2 }}
                   color={textColor?.hex || siteConfig?.titlesFontColor?.hex}
                 >
                   {title}
                 </Heading>
                 
                 <Text
-                  fontSize={{ base: 'sm', md: 'lg' }}
+                  fontSize={{ base: contentPosition === 'bottom_left' ? 'xs' : 'sm', md: contentPosition === 'bottom_left' ? 'md' : 'lg' }}
                   maxW="2xl"
                   fontWeight="normal"
                   color={textColor?.hex || siteConfig?.textColor?.hex}
                   lineHeight={{ base: '1.6', md: '1.8' }}
                   letterSpacing="0.02em"
                   opacity={0.95}
-                  mb={{ base: 6, md: 0 }}
+                  mb={{ base: contentPosition === 'bottom_left' ? 4 : 6, md: 0 }}
                 >
                   {description}
                 </Text>
 
                 {buttons && buttons.length > 0 && (
                   <Stack
-                    direction={{ base: 'column', lg: 'row' }}
-                    spacing={8}
-                    pt={4}
+                    direction={{ base: 'column', lg: contentPosition === 'bottom_left' ? 'row' : 'row' }}
+                    spacing={contentPosition === 'bottom_left' ? 4 : 8}
+                    pt={contentPosition === 'bottom_left' ? 2 : 4}
                     w="100%"
                     maxW="100%"
                   >
@@ -142,10 +150,10 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                         key={index} 
                         {...button} 
                         colorScheme="whiteAlpha"
-                        size="LARGE"
+                        size={contentPosition === 'bottom_left' ? 'MEDIUM' : 'LARGE'}
                         fontWeight="normal"
                         letterSpacing="0.1em"
-                        fontSize="sm"
+                        fontSize={contentPosition === 'bottom_left' ? 'xs' : 'sm'}
                         textTransform="uppercase"
                         w={{ base: '100%', lg: 'auto' }}
                         _hover={{ 

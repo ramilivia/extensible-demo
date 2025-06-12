@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem, useTheme } from '@chakra-ui/react'
 import Image from 'next/image'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
@@ -6,19 +6,34 @@ import Button from '@/components/blocks/button'
 
 export default function HeroRemoteSource({ buttons, image, title, description }) {
   const siteConfig = useSiteConfiguration()
+  const theme = useTheme()
 
   return (
     <Box 
       position="relative" 
       w="100vw" 
-      h={{ base: 'auto', md: '85vh' }}
-      minH={{ base: '100vh', md: '85vh' }}
       left="50%"
       right="50%"
       marginLeft="-50vw"
       marginRight="-50vw"
       overflow="hidden"
       bg="white"
+      mb={{ base: 8, md: 16 }}
+      sx={{
+        '--container-height': '100%',
+        '@container (min-height: 400px)': {
+          '--heading-size': 'clamp(2.5rem, 8vh, 5.5rem)',
+        },
+        '@container (min-height: 600px)': {
+          '--heading-size': 'clamp(3.8rem, 10vh, 5.5rem)',
+        },
+        '@container (min-height: 800px)': {
+          '--heading-size': '5.5rem',
+        },
+      }}
+      containerType="size"
+      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', md: '1fr 1fr' }}

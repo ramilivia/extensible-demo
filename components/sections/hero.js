@@ -27,8 +27,8 @@ export default function Hero({ buttons, asset, title, description }) {
         },
       }}
       containerType="size"
-      minH={{ base: '400px', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
