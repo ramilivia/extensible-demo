@@ -66,7 +66,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
               minH={{ base: '400px', lg: '100%' }}
             >
               <Image
-                src={asset.url}
+                src={asset?.url}
                 alt={title || 'Hero image'}
                 layout="fill"
                 objectFit="cover"
