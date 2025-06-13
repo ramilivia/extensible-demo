@@ -4,9 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
 import Button from '@/components/blocks/button'
+import { useSiteConfiguration } from '@/lib/hooks/useSiteConfiguration';
 
-export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons }) {
+export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor }) {
+  const siteConfig = useSiteConfiguration();
   const sliderRef = useRef(null);
+
 
   const settings = {
     dots: true,
@@ -24,7 +27,7 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
   const cardHeight = useBreakpointValue({ base: '220px', md: '340px', lg: '400px' });
 
   return (
-    <Box bg="#120933" py={{ base: 8, md: 20 }} px={{ base: 0, md: 0 }} minH={{ base: 'auto', md: '600px' }}>
+    <Box bg={backgroundColor?.hex || 'unset' } py={{ base: 8, md: 20 }} px={{ base: 0, md: 0 }} minH={{ base: 'auto', md: '600px' }}>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
         align={{ base: 'flex-start', lg: 'center' }}
