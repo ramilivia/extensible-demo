@@ -28,20 +28,21 @@ export default function Hero({ buttons, asset, title, description }) {
       }}
       containerType="size"
       minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h="auto"
+      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
         templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
-        h={{ base: 'auto', lg: '100%' }}
+        h="100%"
+        minH="100%"
         gap={{ base: 4, lg: 0 }}
       >
         {/* Image/Video Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
           minH={{ base: '300px', md: '400px', lg: '100%' }}
-          h={{ base: 'auto', lg: '100%' }}
+          h="100%"
           display="block"
           order={{ base: 2, lg: 1 }}
           mb={0}
@@ -84,12 +85,13 @@ export default function Hero({ buttons, asset, title, description }) {
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
-          h={{ base: 'auto', lg: '100%' }}
+          h="100%"
+          minH="100%"
           mb={0}
         >
           <Container 
             maxW="container.xl" 
-            h="auto"
+            h="100%"
             display="flex"
             alignItems="center"
             py={{ base: 16, md: 32 }}
@@ -101,6 +103,7 @@ export default function Hero({ buttons, asset, title, description }) {
               textAlign="left"
               color="gray.800"
               h="auto"
+              w="100%"
             >
               <Heading
                 as="h1"
