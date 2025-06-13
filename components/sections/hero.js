@@ -28,7 +28,7 @@ export default function Hero({ buttons, asset, title, description }) {
       }}
       containerType="size"
       minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h="auto"
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
