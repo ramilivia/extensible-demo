@@ -28,21 +28,21 @@ export default function Hero({ buttons, asset, title, description }) {
       }}
       containerType="size"
       minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      h={{ base: 'auto', lg: `auto` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
         templateRows={{ base: 'auto', lg: '1fr' }}
         position="relative"
         h="100%"
-        minH="100%"
+        minH="inherit"
         gap={{ base: 4, lg: 0 }}
       >
         {/* Image/Video Section - Full Width on Mobile, Half Width on Desktop */}
         <GridItem
           position="relative"
-          minH={{ base: '300px', md: '400px', lg: '100%' }}
-          h="100%"
+          minH={{ base: '300px', md: '400px', lg: 'inherit' }}
+          h={{ base: 'auto', lg: '100%' }}
           display="block"
           order={{ base: 2, lg: 1 }}
           mb={0}
@@ -85,8 +85,8 @@ export default function Hero({ buttons, asset, title, description }) {
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
-          h="100%"
-          minH="100%"
+          h={{ base: 'auto', lg: '100%' }}
+          minH={{ base: 'auto', lg: 'inherit' }}
           mb={0}
         >
           <Container 
