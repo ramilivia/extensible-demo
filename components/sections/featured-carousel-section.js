@@ -4,9 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
 import Button from '@/components/blocks/button'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
-export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor }) {
+export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor }) {
   const sliderRef = useRef(null);
+  const siteConfig = useSiteConfiguration();
 
 
   const settings = {
@@ -55,7 +57,7 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
               }
               onClick={() => sliderRef.current?.slickPrev()}
               variant="ghost"
-              color="white"
+              color={textColor?.hex || siteConfig?.textColor?.hex}
               fontSize="2xl"
               _hover={{ bg: 'whiteAlpha.200' }}
               _focus={{ outline: 'none' }}
@@ -71,7 +73,7 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
               }
               onClick={() => sliderRef.current?.slickNext()}
               variant="ghost"
-              color="white"
+              color={textColor?.hex || siteConfig?.textColor?.hex}
               fontSize="2xl"
               _hover={{ bg: 'whiteAlpha.200' }}
               _focus={{ outline: 'none' }}
@@ -86,11 +88,11 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
               lineHeight="1.05"
               letterSpacing="-0.04em"
               fontFamily="serif"
-              color="white"
+              color={textColor?.hex || siteConfig?.textColor?.hex || 'white'}
             >
             {title}
           </Heading>
-          <Text fontSize={{ base: 'lg', md: 'xl' }} color="white" maxW="2xl" whiteSpace="pre-wrap">
+          <Text fontSize={{ base: 'lg', md: 'xl' }} color={textColor?.hex || siteConfig?.textColor?.hex || 'white'} maxW="2xl" whiteSpace="pre-wrap">
             {description}
           </Text>
           {buttons && buttons.length > 0 && (
@@ -127,11 +129,10 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
                 overflow="hidden"
                 position="relative"
                 h={cardHeight}
-                boxShadow="2xl"
+                boxShadow="md"
                 display="flex"
                 alignItems="flex-end"
                 justifyContent="center"
-                bg="gray.900"
               >
                 <Box
                   as="img"
@@ -156,10 +157,10 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
                   px={2}
                   textAlign="center"
                 >
-                  <Text fontSize={{ base: 'lg', md: 'xl' }} color="white" maxW="2xl" whiteSpace="pre-wrap">
+                  <Text fontSize={{ base: 'lg', md: 'xl' }} color={textColor?.hex || siteConfig?.textColor?.hex } maxW="2xl" whiteSpace="pre-wrap">
                     {card.title}
                   </Text>
-                  <Text fontSize="md" color="whiteAlpha.900" mt={2}>
+                  <Text fontSize="md" color={textColor?.hex || siteConfig?.textColor?.hex} mt={2}>
                     {card.description}
                   </Text>
                 </Box>
