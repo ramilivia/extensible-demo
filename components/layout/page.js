@@ -8,7 +8,7 @@ import Banner from '@/components/sections/banner'
 
 export default function PageLayout({ children, page, siteConfiguration }) {
   const pageBanner = page.marketing.find((item) => item.__typename === 'Banner');
-  const HeroComponent = Blocks[page.hero.__typename]
+  const HeroComponent = page.hero ? Blocks[page.hero.__typename] : null;
   
   
   return (
