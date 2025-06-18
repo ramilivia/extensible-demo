@@ -93,10 +93,10 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
               h="auto"
               display="flex"
               alignItems={contentPosition === 'bottom_left' ? 'flex-end' : 'center'}
-              justifyContent={contentPosition === 'bottom_left' ? 'flex-start' : 'center'}
+              justifyContent={contentPosition === 'bottom_left' ? 'flex-start' : { base: 'center', lg: 'flex-start', '2xl': 'center' }}
               py={{ base: contentPosition === 'bottom_left' ? 8 : 16, md: contentPosition === 'bottom_left' ? 16 : 32 }}
               px={{ base: contentPosition === 'bottom_left' ? 4 : 4, md: contentPosition === 'bottom_left' ? 8 : 12 }}
-              ml={contentPosition === 'bottom_left' ? { base: 0, md: '-4' } : 0}
+              ml={contentPosition === 'bottom_left' ? { base: 0, md: '-4' } : { base: 0, lg: '8', '2xl': 0 }}
             >
               <Stack 
                 spacing={{ base: contentPosition === 'bottom_left' ? 4 : 8, md: contentPosition === 'bottom_left' ? 6 : 10 }} 
@@ -111,7 +111,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                   fontSize={{ 
                     base: contentPosition === 'bottom_left' 
                       ? 'var(--heading-size, clamp(2rem, 6vh, 4rem))' 
-                      : 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', 
+                      : 'var(--heading-size, clamp(2.5rem, 8vh, 4.5rem))', 
                     lg: contentPosition === 'bottom_left' ? '4rem' : '5rem' 
                   }}
                   fontWeight="bold"
