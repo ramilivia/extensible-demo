@@ -74,12 +74,14 @@ export default function GridEventsSection({ eventCards: cards, sectionTitle: gri
               alignItems="center"
               overflow="hidden"
             >
-              <Link href={card.link} w="100%" display="flex" justifyContent="center">
-                <Image
-                  src={card?.image?.url}
-                  alt={card.cardTitle}
-                />
-              </Link>
+              {card?.image?.url && (
+                <Link href={card.link} w="100%" display="flex" justifyContent="center">
+                  <Image
+                    src={card.image.url}
+                    alt={card.cardTitle}
+                  />
+                </Link>
+              )}
               <Box mt={4} w="100%" textAlign={'left'}>
                 <Link
                   href={card.link}
