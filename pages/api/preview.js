@@ -24,7 +24,8 @@ export default async function handler(req, res) {
   // Get page data using either version-specific or default query
   const { page } = await client.request(queryFile, {
     slug: rootSlug,
-    ...(rootSlug && { locale: 'en' })
+    ...(rootSlug && { locale: 'en' }),
+    today: new Date().toISOString()
   })
 
   if (!page) {

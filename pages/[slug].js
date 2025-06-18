@@ -28,7 +28,8 @@ export async function getStaticProps({ locale, params, preview = false }) {
   // Get page data using either version-specific or default query
   const { page } = await client.request(queryFile, {
     locale,
-    slug: params.slug
+    slug: params.slug,
+    today: new Date().toISOString()
   })
 
   if (!page) {
