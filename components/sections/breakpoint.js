@@ -8,7 +8,7 @@ export default function Breakpoint({ buttons, subtitle, title }) {
   if (!(buttons || buttons.length)) return null
 
   return (
-    <Box bg="white">
+    <Box bg={siteConfig?.backgroundColor?.hex || 'white'}>
       <Box maxW="7.5xl" mx="auto" py={[12, null, 16, 20]} px={{ base: 4, md: 6, lg: 0 }}>
         <Heading
           as="h2"

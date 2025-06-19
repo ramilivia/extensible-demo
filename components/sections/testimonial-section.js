@@ -1,5 +1,6 @@
 import { Box, Container, Flex, Stack, Heading, Text, Avatar, useBreakpointValue } from '@chakra-ui/react'
 import Image from 'next/image'
+import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 export default function TestimonialSection({
     title,
@@ -8,6 +9,7 @@ export default function TestimonialSection({
     personProfession,
     personImage,
 }) {
+  const siteConfig = useSiteConfiguration()
   // Responsive font size for the heading
   const headingFontSize = useBreakpointValue({ base: '2xl', md: '3xl', lg: '4xl' })
 
@@ -17,7 +19,7 @@ export default function TestimonialSection({
     : content
 
   return (
-    <Box bg="#f9f6f5" borderRadius="2xl" py={{ base: 12, md: 20 }} px={{ base: 6, md: 8 }}>
+    <Box bg={siteConfig?.backgroundColor?.hex || '#f9f6f5'} borderRadius="2xl" py={{ base: 12, md: 20 }} px={{ base: 6, md: 8 }}>
       <Container maxW="8xl">
         <Flex
           direction={{ base: 'column', md: 'column', lg: 'row' }}
@@ -31,7 +33,7 @@ export default function TestimonialSection({
               as="h2"
               fontSize={headingFontSize}
               fontWeight="bold"
-              color="brand.900"
+              color={siteConfig?.titlesFontColor?.hex || 'brand.900'}
               mb={6}
               fontFamily="serif"
             >
@@ -41,7 +43,7 @@ export default function TestimonialSection({
               {/* Opening quote */}
               <Box 
                 as="span" 
-                color="red.400" 
+                color={siteConfig?.titlesFontColor?.hex || 'red.400'} 
                 fontSize={{ base: '6xl', md: '7xl' }} 
                 mr={2} 
                 mt={{ base: -4, md: -6 }}
@@ -55,7 +57,7 @@ export default function TestimonialSection({
               </Box>
               <Text 
                 fontSize={{ base: 'lg', md: 'xl' }} 
-                color="gray.700" 
+                color={siteConfig?.textColor?.hex || 'gray.700'} 
                 fontWeight="medium" 
                 lineHeight="1.8"
                 pl={2}
@@ -67,7 +69,7 @@ export default function TestimonialSection({
             <Box display="flex" justifyContent="flex-end" mt={2} pr={0}>
               <Box 
                 as="span" 
-                color="red.400" 
+                color={siteConfig?.titlesFontColor?.hex || 'red.400'} 
                 fontSize={{ base: '6xl', md: '7xl' }}
                 fontWeight="light"
                 opacity={0.9}
@@ -91,7 +93,7 @@ export default function TestimonialSection({
               w={{ base: '140px', md: '180px' }}
               h={{ base: '140px', md: '180px' }}
               boxShadow="md"
-              bg="white"
+              bg={siteConfig?.backgroundColor?.hex || 'white'}
             >
               {personImage?.url ? (
                 <Image
@@ -106,10 +108,10 @@ export default function TestimonialSection({
                 <Avatar name={personName} size="2xl" />
               )}
             </Box>
-            <Heading as="h3" fontSize="xl" fontWeight="semibold" color="brand.900" textAlign="center">
+            <Heading as="h3" fontSize="xl" fontWeight="semibold" color={siteConfig?.titlesFontColor?.hex || 'brand.900'} textAlign="center">
               {personName}
             </Heading>
-            <Text color="red.400" fontSize="md" textAlign="center">
+            <Text color={siteConfig?.titlesFontColor?.hex || 'red.400'} fontSize="md" textAlign="center">
               {personProfession}
             </Text>
           </Stack>

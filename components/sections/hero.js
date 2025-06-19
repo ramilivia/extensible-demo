@@ -12,7 +12,6 @@ export default function Hero({ buttons, asset, title, description }) {
     <Box 
       position="relative" 
       w="100%"
-      bg="white"
       mb={0}
       sx={{
         '--container-height': '100%',
@@ -81,7 +80,7 @@ export default function Hero({ buttons, asset, title, description }) {
         <GridItem
           position="relative"
           zIndex={2}
-          bg="white" 
+          bg={siteConfig?.backgroundColor?.hex || 'white'} 
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
@@ -96,12 +95,13 @@ export default function Hero({ buttons, asset, title, description }) {
             alignItems="center"
             py={{ base: 16, md: 32 }}
             px={{ base: 4, md: 12 }}
+            bg={siteConfig?.backgroundColor?.hex || 'white'}
           >
             <Stack 
               spacing={{ base: 8, md: 10 }} 
               maxW={{ base: '100%', md: '630px' }}
               textAlign="left"
-              color="gray.800"
+              color={siteConfig?.textColor?.hex || 'gray.800'}
               h="auto"
               w="100%"
             >

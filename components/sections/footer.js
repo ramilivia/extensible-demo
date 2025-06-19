@@ -106,8 +106,6 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
     <Box 
       as="footer" 
       bg={siteConfig?.navBackground?.hex || "white"}
-      borderTop="1px solid"
-      borderColor="gray.100"
       aria-labelledby="footerHeading"
     >
       <VisuallyHidden as="h2" id="footerHeading">
@@ -151,7 +149,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                     id="language"
                     name="language"
                     color={siteConfig?.textColor?.hex || "gray.900"}
-                    bg="white"
+                    bg={siteConfig?.backgroundColor?.hex || "white"}
                     borderColor="gray.200"
                     fontSize="md"
                     value={activeLocale.value}
@@ -162,7 +160,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                     {locales.map((locale) => (
                       <Box
                         as="option"
-                        bg="white"
+                        bg={siteConfig?.backgroundColor?.hex || "white"}
                         color={siteConfig?.textColor?.hex || "gray.900"}
                         key={locale.value}
                         value={locale.value}

@@ -17,7 +17,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
       marginLeft="-50vw"
       marginRight="-50vw"
       overflow="hidden"
-      bg="white"
+      bg={siteConfig?.backgroundColor?.hex || 'white'}
       mb={0}
       sx={{
         '--container-height': '100%',
@@ -97,7 +97,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
         <GridItem
           position="relative"
           zIndex={2}
-          bg="white" 
+          bg={siteConfig?.backgroundColor?.hex || 'white'} 
           display="flex"
           alignItems="center"
           order={{ base: 1, lg: 2 }}
@@ -116,7 +116,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
               spacing={{ base: 8, md: 10 }} 
               maxW={{ base: '100%', md: '630px' }}
               textAlign="left"
-              color="gray.800"
+              color={siteConfig?.textColor?.hex || 'gray.800'}
               h="auto"
             >
               <Heading

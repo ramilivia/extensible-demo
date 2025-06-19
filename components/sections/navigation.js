@@ -82,7 +82,7 @@ export default function Navigation({ pages }) {
           <Box
             borderRadius="lg"
             boxShadow="lg"
-            bg="white"
+            bg={siteConfig?.navBackground?.hex || 'white'}
             m={2}
             border="1px solid rgba(0, 0, 0, 0.05)"
             pos="absolute"
@@ -110,13 +110,13 @@ export default function Navigation({ pages }) {
                 <Box mr={-2}>
                   <Button
                     type="button"
-                    bg="white"
+                    bg={siteConfig?.backgroundColor?.hex || 'white'}
                     borderRadius="md"
                     p={2}
                     display="inline-flex"
-                    color="gray.400"
+                    color={siteConfig?.navFontColor?.hex || 'gray.400'}
                     _hover={{
-                      color: 'gray.500',
+                      color: siteConfig?.navFontColor?.hex || 'gray.500',
                       bg: 'gray.100'
                     }}
                     onClick={() => setMobileNavOpen(false)}
@@ -154,7 +154,7 @@ export default function Navigation({ pages }) {
                               ml={3}
                               fontSize="md"
                               fontWeight="medium"
-                              color="gray.900"
+                              color={siteConfig?.navFontColor?.hex || 'gray.900'}
                             >
                               {page.navigationLabel ||
                                 page.slug.charAt(0).toUpperCase() +
@@ -192,13 +192,13 @@ export default function Navigation({ pages }) {
           <Box mr={-2} my={-2} display={{ md: 'none' }}>
             <Button
               type="button"
-              bg="white"
+              bg={siteConfig?.backgroundColor?.hex || 'white'}
               borderRadius="md"
               p={2}
               display="inline-flex"
-              color="gray.400"
+              color={siteConfig?.navFontColor?.hex || 'gray.400'}
               _hover={{
-                color: 'gray.500',
+                color: siteConfig?.navFontColor?.hex || 'gray.500',
                 bg: 'gray.100'
               }}
               onClick={() => setMobileNavOpen(true)}

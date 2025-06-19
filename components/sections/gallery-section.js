@@ -26,7 +26,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
   }));
 
   return (
-    <Box as="section" bg="white" py={[12, 12]}>
+    <Box as="section" bg={siteConfig?.backgroundColor?.hex || 'white'} py={[12, 12]}>
       <Container maxW="7.5xl" mx="auto">
         {galleryTitle && (
           <Heading 

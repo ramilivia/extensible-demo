@@ -9,7 +9,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
   const columns = columnsNumber === 'THREE' ? 3 : columnsNumber === 'FOUR' ? 4 : 3
 
   return (
-    <Box bg="white">
+    <Box bg={siteConfig?.backgroundColor?.hex || 'white'}>
       <Box maxW="7.5xl" mx="auto" py={[12, 16]}>
         {gridTitle && (
           <Heading 
@@ -47,7 +47,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
           {cards.map((card) => (
             <Box
               key={card.cardTitle}
-              bg="white"
+              bg={siteConfig?.backgroundColor?.hex || 'white'}
               borderRadius="lg"
               w="100%"
               maxW="400px"

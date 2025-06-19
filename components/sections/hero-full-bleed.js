@@ -13,7 +13,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
     <Box 
       position="relative" 
       w="100%"
-      bg="white"
+      bg={siteConfig?.backgroundColor?.hex || 'white'}
       mb={{ base: 8, md: 0 }}
       sx={{
         '--container-height': '100%',
@@ -102,7 +102,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                 spacing={{ base: contentPosition === 'bottom_left' ? 4 : 8, md: contentPosition === 'bottom_left' ? 6 : 10 }} 
                 maxW={{ base: '100%', md: contentPosition === 'bottom_left' ? '400px' : '630px' }}
                 textAlign="left"
-                color="white"
+                color={textColor?.hex || siteConfig?.textColor?.hex || 'white'}
                 h="auto"
                 ml={contentPosition === 'bottom_left' ? { base: 6, md: 12 } : 0}
               >

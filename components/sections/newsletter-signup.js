@@ -13,7 +13,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
   const siteConfig = useSiteConfiguration()
   
   return (
-    <Box bg="white">
+    <Box bg={siteConfig?.backgroundColor?.hex || 'white'}>
       <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 4, md: 6, lg: 0 }}>
         <Heading
           as="h2"
@@ -22,7 +22,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
           lineHeight="1.05"
           letterSpacing="-0.04em"
           fontFamily="serif"
-          color="gray.900"
+          color={siteConfig?.textColor?.hex || 'gray.900'}
         >
           {title}
         </Heading>
@@ -52,9 +52,9 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
             maxW={{ sm: 'xs' }}
             px={5}
             py={3}
-            borderColor="gray.300"
+            borderColor={siteConfig?.textColor?.hex || 'gray.300'}
             _placeholder={{
-              color: 'gray.500'
+              color: siteConfig?.textColor?.hex || 'gray.500'
             }}
           />
           <Box
