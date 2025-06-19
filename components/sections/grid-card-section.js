@@ -1,5 +1,6 @@
-import { Box, SimpleGrid, Heading, Image, Link, Text } from '@chakra-ui/react'
+import { Box, SimpleGrid, Heading, Image, Link, Text, Stack } from '@chakra-ui/react'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
+import Button from '@/components/blocks/button'
 
 export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle, description, columnsNumber, cardTextAlignment, areImagesSameHeight, middleCrop }) {
   const siteConfig = useSiteConfiguration()
@@ -79,6 +80,16 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                 <Text color={siteConfig?.textColor?.hex} fontSize="md" mt={4}>
                   {card.description}
                 </Text>
+                {card.button && (
+                  <Stack
+                    direction={{ base: 'column', sm: 'row' }}
+                    spacing={4}
+                    justify={{ base: 'center', md: 'flex-start' }}
+                    pt={4}
+                  >
+                    <Button {...card.button} />
+                  </Stack>
+                )}
               </Box>
             </Box>
           ))}
