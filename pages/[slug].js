@@ -30,7 +30,7 @@ export async function getStaticProps({ locale, params, preview = false }) {
     locale,
     slug: params.slug
   })
-
+ 
   if (!page) {
     return {
       notFound: true
