@@ -2,7 +2,7 @@ import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
 import { hygraphClient } from '@/lib/_client'
-import { pageQuery as defaultPageQuery, siteConfigurationQuery as defaultSiteConfigQuery } from '@/lib/_queries'
+import { pageQuery as defaultPageQuery, siteConfigurationQuery as defaultSiteConfigQuery, segmentsQuery } from '@/lib/_queries'
 import { loadQuery } from '@/lib/queryLoader'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/layout/wrapper'
@@ -17,13 +17,19 @@ export async function getStaticProps({ locale, params, preview = false }) {
   // Load version-specific queries with fallback to defaults
   const { 
     queryFile = defaultPageQuery, 
-    configurationFile = defaultSiteConfigQuery 
+    configurationFile = defaultSiteConfigQuery, 
+    segmentsFile = segmentsQuery
   } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
 
   // Get site configuration using either version-specific or default query
   const { siteConfiguration } = await client.request(configurationFile, {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
   })
+
+  let segments = {};
+  if (process.env.NEXT_PUBLIC_PERSONALIZATION === 'true') {
+    segments = await client.request(segmentsFile);
+  }
 
   // Get page data using either version-specific or default query
   const { page } = await client.request(queryFile, {
@@ -43,7 +49,8 @@ export async function getStaticProps({ locale, params, preview = false }) {
     props: {
       page: parsedPageData,
       preview,
-      siteConfiguration
+      siteConfiguration,
+      segments
     },
     revalidate: 60
   }

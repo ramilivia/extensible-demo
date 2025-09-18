@@ -102,6 +102,10 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
     router.push(router.asPath, router.asPath, { locale: event.target.value })
   }
 
+  const setSegment = (event) => {
+    router.push({ pathname: router.pathname, query: { ...router.query, segment: event.target.value } })
+  }
+
   return (
     <Box 
       as="footer" 
@@ -116,7 +120,9 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
         <Box
           pb={12}
           display={{ xl: 'grid' }}
-          gridTemplateColumns={{ xl: 'repeat(4, 1fr)' }}
+          gridTemplateColumns={{ 
+            xl: siteConfig?.segments?.length > 0 ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)'
+          }}
           gridGap={{ xl: 16 }}
         >
           <Grid
@@ -135,7 +141,10 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             />
           </Grid>
 
-          <Box mt={{ base: 12, xl: 0 }}>
+          <Box 
+            mt={{ base: 12, xl: 0 }}
+            gridColumn={{ xl: siteConfig?.segments?.length > 0 ? 'auto' : 'span 1 / span 1' }}
+          >
             <GridColumnHeading>Language</GridColumnHeading>
 
             <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
@@ -169,10 +178,49 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                       </Box>
                     ))}
                   </Select>
-                </Box>
+                </Box>    
               </Box>
             </Box>
           </Box>
+          {siteConfig?.segments?.length > 0 && (
+          <Box mt={{ base: 12, xl: 0 }}>
+            <GridColumnHeading>Segment Simulator</GridColumnHeading>
+            <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
+              <Box as="fieldset" w="full">
+                <VisuallyHidden as={FormLabel} htmlFor="segment-simulator">
+                  Segment Simulator
+                </VisuallyHidden>
+
+                <Box position="relative">
+                  <Select
+                    id="segment-simulator"
+                    name="segment-simulator"
+                    color={siteConfig?.textColor?.hex || "gray.900"}
+                    bg={siteConfig?.backgroundColor?.hex || "white"}
+                    borderColor="gray.200"
+                    fontSize="md"
+                    value={activeLocale.value}
+                    onChange={setSegment}
+                    _hover={{ borderColor: "gray.300" }}
+                    borderRadius="md"
+                  >
+                    {siteConfig?.segments?.map((segment) => (
+                      <Box
+                        as="option"
+                        bg={siteConfig?.backgroundColor?.hex || "white"}
+                        color={siteConfig?.textColor?.hex || "gray.900"}
+                        key={segment.id}
+                        value={segment.id}
+                      >
+                        {segment.name}
+                      </Box>
+                    ))}
+                  </Select>
+                </Box>    
+              </Box>
+            </Box>
+          </Box>
+          )}
         </Box>
 
         <Box
