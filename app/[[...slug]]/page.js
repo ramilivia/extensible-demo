@@ -1,7 +1,7 @@
 import { getPageData } from '@/lib/fetchers/page'
 import { generateSEOMetadata } from '@/lib/metadata'
 import { Flex, Box } from '@chakra-ui/react'
-import ClientProviders from '@/components/providers/client-providers'
+import ChakraThemeProvider from '@/components/layout/chakra-provider'
 import Wrapper from '@/components/layout/wrapper'
 import * as Blocks from '@/components/sections'
 import Navigation from '@/components/sections/navigation'
@@ -48,7 +48,7 @@ export default async function SlugPage({ params, searchParams }) {
   const HeroComponent = page.hero ? Blocks[page.hero.__typename] : null;
 
   return (
-    <ClientProviders siteConfiguration={siteConfiguration}>
+    <ChakraThemeProvider siteConfiguration={siteConfiguration}>
       <Flex flexDir="column" minH="100vh">
         <PreviewBanner enabled={preview} />
         <Box flexGrow="1">
@@ -63,6 +63,6 @@ export default async function SlugPage({ params, searchParams }) {
         </Box>
         {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} />}
       </Flex>
-    </ClientProviders>
+    </ChakraThemeProvider>
   )
 }
