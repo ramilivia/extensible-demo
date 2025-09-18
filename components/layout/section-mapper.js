@@ -1,6 +1,6 @@
 import * as Blocks from '@/components/sections'
 
-export default function Wrapper({ banner, blocks, hero, navigation, siteConfiguration, ...page }) {  
+export default function SectionMapper({ banner, blocks, hero, navigation, siteConfiguration, ...page }) {  
 
   return (
     <>

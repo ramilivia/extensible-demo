@@ -2,7 +2,7 @@ import { getPageData } from '@/lib/fetchers/page'
 import { generateSEOMetadata } from '@/lib/metadata'
 import { Flex, Box } from '@chakra-ui/react'
 import ChakraThemeProvider from '@/components/layout/chakra-provider'
-import Wrapper from '@/components/layout/wrapper'
+import SectionMapper from '@/components/layout/section-mapper'
 import * as Blocks from '@/components/sections'
 import Navigation from '@/components/sections/navigation'
 import Banner from '@/components/sections/banner'
@@ -57,7 +57,7 @@ export default async function SlugPage({ params, searchParams }) {
             <Navigation pages={page?.navigation?.[0]?.pages} siteConfiguration={siteConfiguration} />
             {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
             <div>
-              <Wrapper {...page} siteConfiguration={siteConfiguration} />
+              <SectionMapper {...page} siteConfiguration={siteConfiguration} />
             </div>
           </div>
         </Box>
