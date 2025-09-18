@@ -1,9 +1,7 @@
 'use client'
 
 import { ChakraProvider } from '@chakra-ui/react'
-import { DefaultSeo } from 'next-seo'
 import { SiteLayout } from '@/layout'
-import { defaultSEO } from '../../next-seo.config'
 import { createTheme } from '../../styles/theme'
 
 export default function ClientWrapper({ children, siteConfiguration }) {
@@ -11,7 +9,6 @@ export default function ClientWrapper({ children, siteConfiguration }) {
 
   return (
     <ChakraProvider theme={theme}>
-      <DefaultSeo {...defaultSEO} />
       <SiteLayout>{children}</SiteLayout>
     </ChakraProvider>
   )

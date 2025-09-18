@@ -1,10 +1,10 @@
 import { getPageData } from '@/lib/fetchers/page'
+import { generateSEOMetadata } from '@/lib/metadata'
 import { Flex, Box } from '@chakra-ui/react'
 import ClientProviders from '@/components/providers/client-providers'
 import Wrapper from '@/components/layout/wrapper'
 import * as Blocks from '@/components/sections'
 import Navigation from '@/components/sections/navigation'
-import SEO from '@/components/blocks/seo'
 import Banner from '@/components/sections/banner'
 import Footer from '@/components/sections/footer'
 import Link from 'next/link'
@@ -20,6 +20,16 @@ function PreviewBanner({ enabled = false }) {
       </Link>
     </Box>
   )
+}
+
+export async function generateMetadata({ params, searchParams }) {
+  const slug = params?.slug?.[0] || 'home'
+  const data = await getPageData(slug, searchParams, { throwOnNotFound: false })
+  
+  if (!data?.page?.seo) return {}
+  
+  const pathname = params?.slug ? `/${params.slug.join('/')}` : '/'
+  return generateSEOMetadata(data.page.seo, pathname)
 }
 
 export default async function SlugPage({ params, searchParams }) {
@@ -43,7 +53,6 @@ export default async function SlugPage({ params, searchParams }) {
         <PreviewBanner enabled={preview} />
         <Box flexGrow="1">
           <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
-            {page?.seo && <SEO {...page.seo} />}
             {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
             <Navigation pages={page?.navigation?.[0]?.pages} siteConfiguration={siteConfiguration} />
             {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
