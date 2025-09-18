@@ -9,9 +9,6 @@ import Banner from '@/components/sections/banner'
 import Footer from '@/components/sections/footer'
 import Link from 'next/link'
 
-// Force dynamic rendering
-export const dynamic = 'force-dynamic'
-
 function PreviewBanner({ enabled = false }) {
   if (!enabled) return null
 
