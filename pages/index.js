@@ -9,9 +9,8 @@ export default function IndexPage({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ locale, preview = false, segment }) {
+export async function getServerSideProps({ locale, preview = false, query }) {
   const client = hygraphClient(preview)
-  console.log('SEGMENT STATIC PROPS', segment)
   
   // Load version-specific queries with fallback to defaults
   const { 
@@ -38,7 +37,7 @@ export async function getStaticProps({ locale, preview = false, segment }) {
     const { page } = await client.request(personalizationQueryFile, {
       locale,
       slug: 'home',
-      segment: 'Commuter'
+      segment: query.segment || ''
     });
     pageResult = page;
   } else {
@@ -50,14 +49,13 @@ export async function getStaticProps({ locale, preview = false, segment }) {
   }
 
   const parsedPageData = await parsePageData(pageResult)
-   console.log('PARSED PAGE DATA', parsedPageData);
+   //console.log('PARSED PAGE DATA', parsedPageData);
   return {
     props: {
       page: parsedPageData,
       siteConfiguration: {...config, ...segments},
       preview
-    },
-    revalidate: 60
+    }
   }
 }
 

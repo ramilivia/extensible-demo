@@ -11,77 +11,61 @@ export default function Page({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ locale, params, preview = false }) {
+export async function getServerSideProps({ locale, params, query, preview = false }) {
   const client = hygraphClient(preview)
   
   // Load version-specific queries with fallback to defaults
   const { 
     queryFile = defaultPageQuery, 
+    personalizationQueryFile,
     configurationFile = defaultSiteConfigQuery, 
     segmentsFile = segmentsQuery
   } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
 
   // Get site configuration using either version-specific or default query
-  const { siteConfiguration } = await client.request(configurationFile, {
+  const { siteConfiguration: config } = await client.request(configurationFile, {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
   })
 
-  let segments = {};
+  let segments = [];
   if (process.env.NEXT_PUBLIC_PERSONALIZATION === 'true') {
     segments = await client.request(segmentsFile);
   }
 
   // Get page data using either version-specific or default query
-  const { page } = await client.request(queryFile, {
-    locale,
-    slug: params.slug
-  })
+  let pageResult = null;
+  if (process.env.NEXT_PUBLIC_PERSONALIZATION === 'true') {
+    const { page } = await client.request(personalizationQueryFile, {
+      locale,
+      slug: params.slug,
+      segment: query.segment || ''
+    });
+    pageResult = page;
+  } else {
+    const { page } = await client.request(queryFile, {
+      locale,
+      slug: params.slug
+    })
+    pageResult = page;
+  }
  
-  if (!page) {
+  if (!pageResult) {
     return {
       notFound: true
     }
   }
 
-  const parsedPageData = await parsePageData(page)
+  const parsedPageData = await parsePageData(pageResult)
 
   return {
     props: {
       page: parsedPageData,
       preview,
-      siteConfiguration,
-      segments
-    },
-    revalidate: 60
-  }
-}
-
-export async function getStaticPaths({ locales }) {
-  let paths = []
-
-  const client = hygraphClient()
-
-  const { pages } = await client.request(gql`
-    {
-      pages(where: { slug_not_in: ["home"] }) {
-        slug
-      }
+      siteConfiguration: {...config, ...segments}
     }
-  `)
-
-  console.log('LOCALIZED PIBIN', pages);
-
-  for (const locale of locales) {
-    paths = [
-      ...paths,
-      ...pages.map((page) => ({ params: { slug: page.slug }, locale }))
-    ]
-  }
-
-  return {
-    paths,
-    fallback: 'blocking'
   }
 }
+
+// Remove getStaticPaths since we're using getServerSideProps now
 
 Page.getLayout = getPageLayout
