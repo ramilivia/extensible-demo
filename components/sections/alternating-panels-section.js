@@ -4,9 +4,11 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor }) {
+export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [] }) {
 
   const siteConfig = useSiteConfiguration()
+
+  
 
 
   return (
@@ -38,7 +40,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
               fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
               color={textColor?.hex || siteConfig?.textColor?.hex}
             >
-              {alternatingPanelsTitle}
+              {variants.length > 0 ? variants[0].alternatingPanelsTitle : alternatingPanelsTitle}
             </Heading>
             
             <Text
@@ -47,7 +49,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
               maxW="2xl"
               whiteSpace="pre-wrap"
             >
-              {description}
+              {variants.length > 0 ? variants[0].description : description}
             </Text>
 
             {buttons && buttons.length > 0 && (
@@ -76,7 +78,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
             alignItems="center"
           >
             <Image
-              src={image?.url}
+              src={variants.length > 0 ? variants[0].image?.url : image?.url}
               alt={image?.alt}
               width={image?.width}
               height={image?.height}

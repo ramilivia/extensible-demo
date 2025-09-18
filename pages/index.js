@@ -9,16 +9,19 @@ export default function IndexPage({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ locale, preview = false }) {
+export async function getStaticProps({ locale, preview = false, segment }) {
   const client = hygraphClient(preview)
+  console.log('SEGMENT STATIC PROPS', segment)
   
   // Load version-specific queries with fallback to defaults
   const { 
     queryFile = defaultPageQuery, 
+    personalizationQueryFile,
     configurationFile = defaultSiteConfigQuery,
     segmentsFile = segmentsQuery
   } = await loadQuery(process.env.NEXT_PUBLIC_VERSION) ?? {}
 
+  console.log('VERSION', process.env.NEXT_PUBLIC_VERSION)
   // Get site configuration using either version-specific or default query
   const { siteConfiguration: config } = await client.request(configurationFile, {
     brandName: process.env.NEXT_PUBLIC_BRAND_NAME
@@ -30,12 +33,23 @@ export async function getStaticProps({ locale, preview = false }) {
   }
 
   // Get page data using either version-specific or default query
-  const { page } = await client.request(queryFile, {
-    locale,
-    slug: 'home'
-  })
+  let pageResult = null;
+  if (process.env.NEXT_PUBLIC_PERSONALIZATION === 'true') {
+    const { page } = await client.request(personalizationQueryFile, {
+      locale,
+      slug: 'home',
+      segment: 'Commuter'
+    });
+    pageResult = page;
+  } else {
+    const { page } = await client.request(queryFile, {
+      locale,
+      slug: 'home'
+    })
+    pageResult = page;
+  }
 
-  const parsedPageData = await parsePageData(page)
+  const parsedPageData = await parsePageData(pageResult)
    console.log('PARSED PAGE DATA', parsedPageData);
   return {
     props: {

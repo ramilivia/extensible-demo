@@ -103,7 +103,14 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
   }
 
   const setSegment = (event) => {
-    router.push({ pathname: router.pathname, query: { ...router.query, segment: event.target.value } })
+    const selectedSegment = event.target.value
+    if (selectedSegment === 'no-segment') {
+      // Remove segment from query when "No Segment" is selected
+      const { segment, ...queryWithoutSegment } = router.query
+      router.push({ pathname: router.pathname, query: queryWithoutSegment })
+    } else {
+      router.push({ pathname: router.pathname, query: { ...router.query, segment: selectedSegment } })
+    }
   }
 
   return (
@@ -199,18 +206,26 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                     bg={siteConfig?.backgroundColor?.hex || "white"}
                     borderColor="gray.200"
                     fontSize="md"
-                    value={activeLocale.value}
+                    value={router.query.segment || 'no-segment'}
                     onChange={setSegment}
                     _hover={{ borderColor: "gray.300" }}
                     borderRadius="md"
                   >
+                    <Box
+                      as="option"
+                      bg={siteConfig?.backgroundColor?.hex || "white"}
+                      color={siteConfig?.textColor?.hex || "gray.900"}
+                      value="no-segment"
+                    >
+                      No Segment
+                    </Box>
                     {siteConfig?.segments?.map((segment) => (
                       <Box
                         as="option"
                         bg={siteConfig?.backgroundColor?.hex || "white"}
                         color={siteConfig?.textColor?.hex || "gray.900"}
                         key={segment.id}
-                        value={segment.id}
+                        value={segment.name}
                       >
                         {segment.name}
                       </Box>
