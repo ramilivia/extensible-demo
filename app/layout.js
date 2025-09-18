@@ -1,4 +1,7 @@
 import '../styles/css/global.css'
+import Link from 'next/link'
+import { Flex, Box } from '@chakra-ui/react'
+import Footer from '@/components/sections/footer'
 
 const description = `Learn how to build modern marketing websites, with localization and SEO, using Hygraph, NextJS, Chakra UI, and Vercel.`
 const title = `Build Modern Marketing Websites with a Headless CMS`
@@ -23,7 +26,20 @@ export const metadata = {
   metadataBase: new URL(url),
 }
 
-export default function RootLayout({ children }) {
+function PreviewBanner({ enabled = false }) {
+  if (!enabled) return null
+
+  return (
+    <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
+      Preview Mode Enabled (Content served from DRAFT) &mdash;&nbsp;
+      <Link href="/api/exit-preview">
+        Exit Preview Mode
+      </Link>
+    </Box>
+  )
+}
+
+export default function RootLayout({ children, page, preview = false }) {
   return (
     <html lang="en">
       <head>
@@ -33,7 +49,11 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
-        {children}
+        <Flex flexDir="column" minH="100vh">
+          <PreviewBanner enabled={preview} />
+          <Box flexGrow="1">{children}</Box>
+          {page?.footer && <Footer {...page.footer} />}
+        </Flex>
       </body>
     </html>
   )
