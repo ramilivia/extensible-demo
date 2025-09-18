@@ -4,6 +4,7 @@ import { SiteLayout } from '@/layout'
 import { defaultSEO } from '../next-seo.config'
 import { createTheme } from '../styles/theme'
 import { SiteConfigurationProvider } from '@/lib/context/SiteConfigurationContext'
+import { InspectorProvider } from '@/lib/inspector'
 import '../styles/css/global.css'
 
 export default function App({ Component, pageProps }) {
@@ -16,7 +17,9 @@ export default function App({ Component, pageProps }) {
     <ChakraProvider theme={theme}>
       <DefaultSeo {...defaultSEO} />
       <SiteConfigurationProvider siteConfiguration={pageProps.siteConfiguration}>
-        {getLayout(<Component {...pageProps} />)}
+        <InspectorProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </InspectorProvider>
       </SiteConfigurationProvider>
     </ChakraProvider>
   )

@@ -4,7 +4,7 @@ import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, asset, title, description }) {
+export default function Hero({ buttons, asset, title, description, id }) {
   const siteConfig = useSiteConfiguration()
   const theme = useTheme()
 
@@ -60,6 +60,8 @@ export default function Hero({ buttons, asset, title, description }) {
               objectFit="cover"
               objectPosition="center"
               style={{ display: 'block' }}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="image"
             />
           ) : (
             <Box
@@ -72,6 +74,8 @@ export default function Hero({ buttons, asset, title, description }) {
               objectFit="cover"
               objectPosition="center"
               style={{ display: 'block' }}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="image"
             />
           )}
         </GridItem>
@@ -114,6 +118,8 @@ export default function Hero({ buttons, asset, title, description }) {
                 fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                 color={siteConfig?.titlesFontColor?.hex || 'gray.800'}
                 mb={{ base: 4, md: 2 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="title"
               >
                 {title}
               </Heading>
@@ -127,6 +133,8 @@ export default function Hero({ buttons, asset, title, description }) {
                 letterSpacing="0.02em"
                 opacity={0.95}
                 mb={{ base: 6, md: 0 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="description"
               >
                 {description}
               </Text>

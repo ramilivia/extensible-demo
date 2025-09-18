@@ -8,6 +8,7 @@ export default function TestimonialSection({
     personName,
     personProfession,
     personImage,
+    id,
 }) {
   const siteConfig = useSiteConfiguration()
   // Responsive font size for the heading
@@ -36,6 +37,8 @@ export default function TestimonialSection({
               color={siteConfig?.titlesFontColor?.hex || 'brand.900'}
               mb={6}
               fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="sectionTitle"
             >
               {title}
             </Heading>
@@ -55,12 +58,14 @@ export default function TestimonialSection({
               >
                 &#x201C;
               </Box>
-              <Text 
-                fontSize={{ base: 'lg', md: 'xl' }} 
-                color={siteConfig?.textColor?.hex || 'gray.700'} 
-                fontWeight="medium" 
+              <Text
+                fontSize={{ base: 'lg', md: 'xl' }}
+                color={siteConfig?.textColor?.hex || 'gray.700'}
+                fontWeight="medium"
                 lineHeight="1.8"
                 pl={2}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="content"
               >
                 {testimonialContent}
               </Text>
@@ -94,6 +99,8 @@ export default function TestimonialSection({
               h={{ base: '140px', md: '180px' }}
               boxShadow="md"
               bg={siteConfig?.backgroundColor?.hex || 'white'}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="personImage"
             >
               {personImage?.url ? (
                 <Image
@@ -108,10 +115,10 @@ export default function TestimonialSection({
                 <Avatar name={personName} size="2xl" />
               )}
             </Box>
-            <Heading as="h3" fontSize="xl" fontWeight="semibold" color={siteConfig?.titlesFontColor?.hex || 'brand.900'} textAlign="center">
+            <Heading as="h3" fontSize="xl" fontWeight="semibold" color={siteConfig?.titlesFontColor?.hex || 'brand.900'} textAlign="center" data-hygraph-entry-id={id} data-hygraph-field-api-id="personName">
               {personName}
             </Heading>
-            <Text color={siteConfig?.titlesFontColor?.hex || 'red.400'} fontSize="md" textAlign="center">
+            <Text color={siteConfig?.titlesFontColor?.hex || 'red.400'} fontSize="md" textAlign="center" data-hygraph-entry-id={id} data-hygraph-field-api-id="personProfession">
               {personProfession}
             </Text>
           </Stack>
