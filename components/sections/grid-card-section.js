@@ -21,7 +21,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
             fontWeight="bold"
             lineHeight="1.05"
             letterSpacing="-0.04em"
-            fontFamily="serif"
+            fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
             color={siteConfig?.textColor?.hex} 
             mb={10}
           >

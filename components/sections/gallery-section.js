@@ -38,7 +38,7 @@ export default function GallerySection({ images, galleryTitle, description }) {
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
-          fontFamily="serif"
+          fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.textColor?.hex} 
           mb={5}
         >

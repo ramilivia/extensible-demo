@@ -21,7 +21,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
-          fontFamily="serif"
+          fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.textColor?.hex || 'gray.900'}
         >
           {title}
@@ -31,7 +31,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
-          fontFamily="serif"
+          fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.titlesFontColor?.hex}
         >
           {subtitle}

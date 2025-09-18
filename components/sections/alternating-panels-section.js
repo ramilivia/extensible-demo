@@ -35,7 +35,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"
-              fontFamily="serif"
+              fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
               color={textColor?.hex || siteConfig?.textColor?.hex}
             >
               {alternatingPanelsTitle}

@@ -125,7 +125,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
                 fontWeight="bold"
                 lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"
-                fontFamily="serif"
+                fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                 color={siteConfig?.titlesFontColor?.hex || 'gray.800'}
                 mb={{ base: 4, md: 2 }}
               >

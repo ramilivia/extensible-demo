@@ -16,7 +16,7 @@ export default function Breakpoint({ buttons, subtitle, title }) {
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
-          fontFamily="serif"
+          fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.textColor?.hex}
         >
           <Text as="span" display="block" color={siteConfig?.titlesFontColor?.hex}>

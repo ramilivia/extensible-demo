@@ -15,6 +15,10 @@ export const createTheme = (siteConfiguration) => {
   
   return extendTheme({
     breakpoints,
+    fonts: {
+      body: '-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
+      heading: 'Helvetica, Arial, sans-serif',
+    },
     sizes: {
       '7.5xl': '88rem',
     },

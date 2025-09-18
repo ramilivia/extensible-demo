@@ -35,7 +35,7 @@ export default function TestimonialSection({
               fontWeight="bold"
               color={siteConfig?.titlesFontColor?.hex || 'brand.900'}
               mb={6}
-              fontFamily="serif"
+              fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
             >
               {title}
             </Heading>
@@ -51,7 +51,7 @@ export default function TestimonialSection({
                 opacity={0.9}
                 lineHeight="1"
                 transform="rotate(-5deg)"
-                style={{ fontFamily: "'Times New Roman', serif" }}
+                style={{ fontFamily: siteConfig?.typography === 'serif' ? "'Times New Roman', serif" : 'Helvetica, Arial, sans-serif' }}
               >
                 &#x201C;
               </Box>
@@ -76,7 +76,7 @@ export default function TestimonialSection({
                 lineHeight="1"
                 mt={{ base: -8, md: -10 }}
                 transform="rotate(5deg)"
-                style={{ fontFamily: "'Times New Roman', serif" }}
+                style={{ fontFamily: siteConfig?.typography === 'serif' ? "'Times New Roman', serif" : 'Helvetica, Arial, sans-serif' }}
                 ml="auto"
                 mr={-4}
               >

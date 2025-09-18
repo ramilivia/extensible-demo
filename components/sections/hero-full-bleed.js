@@ -117,7 +117,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                   fontWeight="bold"
                   lineHeight={{ base: '1.2', md: '1.05' }}
                   letterSpacing="-0.04em"
-                  fontFamily="serif"
+                  fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                   mb={{ base: contentPosition === 'bottom_left' ? 2 : 4, md: contentPosition === 'bottom_left' ? 1 : 2 }}
                   color={textColor?.hex || siteConfig?.titlesFontColor?.hex}
                 >
