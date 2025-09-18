@@ -13,7 +13,7 @@ import {
   Container
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname, useParams } from 'next/navigation'
 import { 
   InstagramIcon, 
   PinterestIcon, 
@@ -41,19 +41,19 @@ function GridColumnHeading({ children, siteConfiguration }) {
   )
 }
 
-function GridColumn({ links, title, siteConfiguration }) {
+function GridColumn({ links, title, siteConfiguration, currentLocale }) {
   const siteConfig = siteConfiguration
 
   return (
     <div>
-      <GridColumnHeading>{title}</GridColumnHeading>
+      <GridColumnHeading siteConfiguration={siteConfiguration}>{title}</GridColumnHeading>
 
       <Stack as="ul" spacing={4}>
         {links && links.map((link) => (
           <li key={link.id}>
             <ChakraLink
               as={Link}
-              href={`/${link.slug}`}
+              href={`/${currentLocale}/${link.slug}`}
               color={siteConfig?.textColor?.hex || "gray.600"}
               fontSize="md"
               fontWeight="normal"
@@ -94,15 +94,25 @@ function SocialMediaLink({ href, title, icon, siteConfiguration }) {
 
 export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration }) {
   const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
   const siteConfig = siteConfiguration
 
-  // App Router doesn't have router.locale, so use default locale
-  const activeLocale = locales.find((locale) => locale.default) || locales[0]
+  // Get current locale from URL params
+  const currentLocale = params?.locale || 'en'
+  const activeLocale = locales.find((locale) => locale.value === currentLocale) || locales[0]
 
   const setLocale = (event) => {
-    // In App Router, locale switching would be handled differently
-    // For now, just log the selection
-    console.log('Locale change requested:', event.target.value)
+    const newLocale = event.target.value
+    
+    // Remove the current locale from the pathname to get the base path
+    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/'
+    
+    // Construct the new URL with the selected locale
+    const newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+    
+    // Navigate to the new locale path
+    router.push(newPath)
   }
 
   const setSegment = (event) => {
@@ -140,12 +150,14 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
               links={primaryLinks.length && primaryLinks}
               title="Primary"
               siteConfiguration={siteConfiguration}
+              currentLocale={currentLocale}
             />
 
             <GridColumn
               links={secondaryLinks.length && secondaryLinks}
               title="Secondary"
               siteConfiguration={siteConfiguration}
+              currentLocale={currentLocale}
             />
           </Grid>
 

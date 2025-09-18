@@ -22,20 +22,33 @@ function PreviewBanner({ enabled = false }) {
   )
 }
 
+export async function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'de' },
+    { locale: 'fr' }
+  ]
+}
+
 export async function generateMetadata({ params, searchParams }) {
-  const slug = params?.slug?.[0] || 'home'
-  const data = await getPageData(slug, searchParams, { throwOnNotFound: false })
+  const resolvedParams = await params
+  const locale = resolvedParams?.locale || 'en'
+  const slug = resolvedParams?.slug?.[0] || 'home'
+  const data = await getPageData(slug, searchParams, { throwOnNotFound: false, locale })
   
   if (!data?.page?.seo) return {}
   
-  const pathname = params?.slug ? `/${params.slug.join('/')}` : '/'
+  const pathname = resolvedParams?.slug ? `/${resolvedParams.slug.join('/')}` : '/'
   return generateSEOMetadata(data.page.seo, pathname)
 }
 
 export default async function SlugPage({ params, searchParams }) {
+  const resolvedParams = await params
+  const locale = resolvedParams?.locale || 'en'
+  
   // Handle root route (/) as home page, otherwise use the first slug segment
-  const slug = params?.slug?.[0] || 'home'
-  const data = await getPageData(slug, searchParams, { throwOnNotFound: slug !== 'home' })
+  const slug = resolvedParams?.slug?.[0] || 'home'
+  const data = await getPageData(slug, searchParams, { throwOnNotFound: slug !== 'home', locale })
   
   const { page, siteConfiguration, preview } = data
 

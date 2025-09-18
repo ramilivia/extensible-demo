@@ -39,22 +39,6 @@ function PreviewBanner({ enabled = false }) {
   )
 }
 
-export default function RootLayout({ children, page, preview = false }) {
-  return (
-    <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/@tailwindcss/typography@0.2.x/dist/typography.min.css"
-        />
-      </head>
-      <body>
-        <Flex flexDir="column" minH="100vh">
-          <PreviewBanner enabled={preview} />
-          <Box flexGrow="1">{children}</Box>
-          {page?.footer && <Footer {...page.footer} />}
-        </Flex>
-      </body>
-    </html>
-  )
+export default function RootLayout({ children }) {
+  return children
 }
