@@ -23,7 +23,7 @@ import {
   SlackIcon,
   GithubIcon 
 } from '@/assets/icons'
-import { locales } from '@/lib/_locales'
+import { LOCALES } from '@/lib/constants'
 function GridColumnHeading({ children, siteConfiguration }) {
   const siteConfig = siteConfiguration
   return (
@@ -100,7 +100,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
 
   // Get current locale from URL params
   const currentLocale = params?.locale || 'en'
-  const activeLocale = locales.find((locale) => locale.value === currentLocale) || locales[0]
+  const activeLocale = LOCALES.find((locale) => locale.value === currentLocale) || LOCALES[0]
 
   const setLocale = (event) => {
     const newLocale = event.target.value
@@ -201,7 +201,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
                     _hover={{ borderColor: "gray.300" }}
                     borderRadius="md"
                   >
-                    {locales.map((locale) => (
+                    {LOCALES.map((locale) => (
                       <Box
                         as="option"
                         bg={siteConfig?.backgroundColor?.hex || "white"}

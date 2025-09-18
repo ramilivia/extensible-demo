@@ -1,5 +1,3 @@
-const { locales } = require('./lib/_locales')
-
 module.exports = {
   images: {
     dangerouslyAllowSVG: true,

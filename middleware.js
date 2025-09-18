@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server'
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
+import { LOCALE_VALUES, DEFAULT_LOCALE } from './lib/constants'
 
-// Import locales from your configuration
-const locales = ['en', 'de', 'fr']
-const defaultLocale = 'en'
+// Use locale configuration from constants
+const locales = LOCALE_VALUES
+const defaultLocale = DEFAULT_LOCALE
 
 // Get the preferred locale, similar to the Next.js docs example
 function getLocale(request) {
