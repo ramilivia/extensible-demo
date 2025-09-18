@@ -1,3 +1,4 @@
+import { getPageData } from '@/lib/fetchers/page'
 import { Flex, Box } from '@chakra-ui/react'
 import ClientProviders from '@/components/providers/client-providers'
 import Wrapper from '@/components/layout/wrapper'
@@ -7,6 +8,9 @@ import SEO from '@/components/blocks/seo'
 import Banner from '@/components/sections/banner'
 import Footer from '@/components/sections/footer'
 import Link from 'next/link'
+
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
 
 function PreviewBanner({ enabled = false }) {
   if (!enabled) return null
@@ -21,7 +25,13 @@ function PreviewBanner({ enabled = false }) {
   )
 }
 
-export default function PageWrapper({ page, siteConfiguration, preview }) {
+export default async function SlugPage({ params, searchParams }) {
+  // Handle root route (/) as home page, otherwise use the first slug segment
+  const slug = params?.slug?.[0] || 'home'
+  const data = await getPageData(slug, searchParams, { throwOnNotFound: slug !== 'home' })
+  
+  const { page, siteConfiguration, preview } = data
+
   // Add safety checks
   if (!page || !siteConfiguration) {
     return <div>Loading...</div>
