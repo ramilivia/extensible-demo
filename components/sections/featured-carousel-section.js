@@ -6,11 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
 import Button from '@/components/blocks/button'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
-
-export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor }) {
+export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor, siteConfiguration }) {
   const sliderRef = useRef(null);
-  const siteConfig = useSiteConfiguration();
+  const siteConfig = siteConfiguration;
 
 
   const settings = {
@@ -106,7 +104,7 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
               >
                 
                 {buttons.map((button, index) => (
-                  <Button key={index} {...button}/>
+                  <Button key={index} {...button} siteConfiguration={siteConfiguration}/>
                 ))}
               </Stack>
             )}

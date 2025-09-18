@@ -1,8 +1,5 @@
-'use client'
-
-import { ChakraProvider, Flex, Box } from '@chakra-ui/react'
-import { SiteConfigurationProvider } from '@/lib/context/SiteConfigurationContext'
-import { createTheme } from '../styles/theme'
+import { Flex, Box } from '@chakra-ui/react'
+import ClientProviders from '@/components/providers/client-providers'
 import Wrapper from '@/components/layout/wrapper'
 import * as Blocks from '@/components/sections'
 import Navigation from '@/components/sections/navigation'
@@ -30,30 +27,26 @@ export default function PageWrapper({ page, siteConfiguration, preview }) {
     return <div>Loading...</div>
   }
   
-  const theme = createTheme(siteConfiguration)
   const pageBanner = page.marketing?.find((item) => item.__typename === 'Banner');
   const HeroComponent = page.hero ? Blocks[page.hero.__typename] : null;
 
   return (
-    <ChakraProvider theme={theme}>
-      <SiteConfigurationProvider siteConfiguration={siteConfiguration}>
-        <Flex flexDir="column" minH="100vh">
-          <PreviewBanner enabled={preview} />
-          <Box flexGrow="1">
-            <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
-              {page?.seo && <SEO {...page.seo} />}
-              {pageBanner && <Banner {...pageBanner} />}
-              <Navigation pages={page?.navigation?.[0]?.pages} siteConfiguration={siteConfiguration} />
-              {HeroComponent && <HeroComponent {...page.hero} />}
-              
-              <div>
-                <Wrapper {...page} />
-              </div>
+    <ClientProviders siteConfiguration={siteConfiguration}>
+      <Flex flexDir="column" minH="100vh">
+        <PreviewBanner enabled={preview} />
+        <Box flexGrow="1">
+          <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
+            {page?.seo && <SEO {...page.seo} />}
+            {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
+            <Navigation pages={page?.navigation?.[0]?.pages} siteConfiguration={siteConfiguration} />
+            {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
+            <div>
+              <Wrapper {...page} siteConfiguration={siteConfiguration} />
             </div>
-          </Box>
-          {page?.footer && <Footer {...page.footer} />}
-        </Flex>
-      </SiteConfigurationProvider>
-    </ChakraProvider>
+          </div>
+        </Box>
+        {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} />}
+      </Flex>
+    </ClientProviders>
   )
 }

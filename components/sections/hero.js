@@ -1,12 +1,11 @@
-import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem, useTheme } from '@chakra-ui/react'
+import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
+import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, asset, title, description }) {
-  const siteConfig = useSiteConfiguration()
-  const theme = useTheme()
+export default function Hero({ buttons, asset, title, description, siteConfiguration }) {
+  const siteConfig = siteConfiguration
 
   return (
     <Box 
@@ -26,7 +25,7 @@ export default function Hero({ buttons, asset, title, description }) {
         },
       }}
       containerType="size"
-      minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: 'auto', lg: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})` }}
       h={{ base: 'auto', lg: `auto` }}
     >
       <Grid
@@ -157,6 +156,7 @@ export default function Hero({ buttons, asset, title, description }) {
                       _active={{
                         bg: 'gray.200'
                       }}
+                      siteConfiguration={siteConfiguration}
                     />
                   ))}
                 </Stack>

@@ -14,9 +14,9 @@ export default function PageLayout({ children, page, siteConfiguration }) {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
       {page?.seo && <SEO {...page.seo} />}
-      {pageBanner && <Banner {...pageBanner} />}
+      {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
       <Navigation pages={page?.navigation[0]?.pages} siteConfiguration={siteConfiguration} />
-      {HeroComponent && <HeroComponent {...page.hero} />}
+      {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
 
       <div>
         {children}

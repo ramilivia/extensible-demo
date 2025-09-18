@@ -1,15 +1,11 @@
 import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [] }) {
+export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
 
-  const siteConfig = useSiteConfiguration()
-
-  
-
+  const siteConfig = siteConfiguration
 
   return (
     <Box position="relative" bg={backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
@@ -61,7 +57,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
               >
                 
                 {buttons.map((button, index) => (
-                  <Button key={index} {...button}/>
+                  <Button key={index} {...button} siteConfiguration={siteConfiguration}/>
                 ))}
               </Stack>
             )}

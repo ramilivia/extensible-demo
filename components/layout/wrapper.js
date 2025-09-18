@@ -9,7 +9,7 @@ export default function Wrapper({ banner, blocks, hero, navigation, siteConfigur
 
         if (!Component) return null
 
-        return <Component key={block.id} page={page} siteConfig={siteConfiguration} {...block} />
+        return <Component key={block.id} page={page} siteConfiguration={siteConfiguration} {...block} />
       })}
     </>
   )

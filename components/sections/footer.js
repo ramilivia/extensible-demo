@@ -24,10 +24,8 @@ import {
   GithubIcon 
 } from '@/assets/icons'
 import { locales } from '@/lib/_locales'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
-
-function GridColumnHeading({ children }) {
-  const siteConfig = useSiteConfiguration()
+function GridColumnHeading({ children, siteConfiguration }) {
+  const siteConfig = siteConfiguration
   return (
     <Heading
       as="h3"
@@ -43,8 +41,8 @@ function GridColumnHeading({ children }) {
   )
 }
 
-function GridColumn({ links, title }) {
-  const siteConfig = useSiteConfiguration()
+function GridColumn({ links, title, siteConfiguration }) {
+  const siteConfig = siteConfiguration
 
   return (
     <div>
@@ -75,8 +73,8 @@ function GridColumn({ links, title }) {
   )
 }
 
-function SocialMediaLink({ href, title, icon }) {
-  const siteConfig = useSiteConfiguration()
+function SocialMediaLink({ href, title, icon, siteConfiguration }) {
+  const siteConfig = siteConfiguration
 
   return (
     <ChakraLink
@@ -94,9 +92,9 @@ function SocialMediaLink({ href, title, icon }) {
   )
 }
 
-export default function Footer({ primaryLinks, secondaryLinks }) {
+export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration }) {
   const router = useRouter()
-  const siteConfig = useSiteConfiguration()
+  const siteConfig = siteConfiguration
 
   // App Router doesn't have router.locale, so use default locale
   const activeLocale = locales.find((locale) => locale.default) || locales[0]
@@ -141,11 +139,13 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             <GridColumn
               links={primaryLinks.length && primaryLinks}
               title="Primary"
+              siteConfiguration={siteConfiguration}
             />
 
             <GridColumn
               links={secondaryLinks.length && secondaryLinks}
               title="Secondary"
+              siteConfiguration={siteConfiguration}
             />
           </Grid>
 
@@ -153,7 +153,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             mt={{ base: 12, xl: 0 }}
             gridColumn={{ xl: siteConfig?.segments?.length > 0 ? 'auto' : 'span 1 / span 1' }}
           >
-            <GridColumnHeading>Language</GridColumnHeading>
+            <GridColumnHeading siteConfiguration={siteConfiguration}>Language</GridColumnHeading>
 
             <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
               <Box as="fieldset" w="full">
@@ -192,7 +192,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
           </Box>
           {siteConfig?.segments?.length > 0 && (
           <Box mt={{ base: 12, xl: 0 }}>
-            <GridColumnHeading>Segment Simulator</GridColumnHeading>
+            <GridColumnHeading siteConfiguration={siteConfiguration}>Segment Simulator</GridColumnHeading>
             <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
               <Box as="fieldset" w="full">
                 <VisuallyHidden as={FormLabel} htmlFor="segment-simulator">
@@ -253,21 +253,25 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
               title="LinkedIn"
               icon={LinkedInIcon}
               href="https://linkedin.com/company/hygraph"
+              siteConfiguration={siteConfiguration}
             />
             <SocialMediaLink
               title="Slack"
               icon={SlackIcon}
               href="https://slack.hygraph.com"
+              siteConfiguration={siteConfiguration}
             />
             <SocialMediaLink
               title="Twitter"
               icon={TwitterIcon}
               href="https://twitter.com/Hygraphcom"
+              siteConfiguration={siteConfiguration}
             />
             <SocialMediaLink
               title="GitHub"
               icon={GithubIcon}
               href="https://github.com/Hygraph/reference-nextjs-marketing"
+              siteConfiguration={siteConfiguration}
             />
           </Stack>
 

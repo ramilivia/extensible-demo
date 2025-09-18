@@ -1,12 +1,11 @@
-import { Box, Container, Heading, Stack, Text, Grid, GridItem, useTheme } from '@chakra-ui/react'
+import { Box, Container, Heading, Stack, Text, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 import Button from '@/components/blocks/button'
+import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
-export default function FullBleedVideo({ buttons, asset, title, description, opaque, textColor, contentPosition }) {
+export default function FullBleedVideo({ buttons, asset, title, description, opaque, textColor, contentPosition, siteConfiguration }) {
   
-  const siteConfig = useSiteConfiguration();
-  const theme = useTheme();
+  const siteConfig = siteConfiguration;
   const isVideo = asset?.mimeType?.includes('video/');
   
   return (
@@ -28,8 +27,8 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
         },
       }}
       containerType="size"
-      minH={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})`, lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})`, lg: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})` }}
+      h={{ base: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})`, lg: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})` }}
     >
       <Grid
         templateColumns="1fr"
@@ -163,6 +162,7 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                         _active={{
                           bg: 'whiteAlpha.300'
                         }}
+                        siteConfiguration={siteConfiguration}
                       />
                     ))}
                   </Stack>

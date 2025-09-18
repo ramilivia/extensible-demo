@@ -11,12 +11,11 @@ import {
   Link as ChakraLink,
   Stack,
   Center,
-  useTheme
 } from '@chakra-ui/react' 
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Transition } from 'react-transition-group'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
+import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
 import { LogoSVG, MarkSVG } from '@/svgs'
 import { MenuIcon, XIcon } from '@/icons'
@@ -32,9 +31,8 @@ const transitionStyles = {
   exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
 }
 
-export default function Navigation({ pages }) {
-  const siteConfig = useSiteConfiguration()
-  const theme = useTheme()
+export default function Navigation({ pages, siteConfiguration }) {
+  const siteConfig = siteConfiguration
   const container = useRef(null)
   const router = useRouter()
   const pathname = usePathname()
@@ -76,7 +74,7 @@ export default function Navigation({ pages }) {
 
 
   return (
-    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: theme.navigationHeight }} zIndex="sticky">
+    <Box ref={container} pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: LAYOUT_CONSTANTS.navigationHeight }} zIndex="sticky">
       <Transition in={mobileNavOpen} timeout={150}>
         {(state) => (
           <Box

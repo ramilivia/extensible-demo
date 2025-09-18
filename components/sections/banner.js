@@ -1,10 +1,9 @@
-import { Box, Flex, Text, useTheme } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
+import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
-export default function Banner({ content, button }) {
-  const siteConfig = useSiteConfiguration()
-  const theme = useTheme()
+export default function Banner({ content, button, siteConfiguration }) {
+  const siteConfig = siteConfiguration
   
   if (!content || !button) return null
 
@@ -12,7 +11,7 @@ export default function Banner({ content, button }) {
     <Box
       bg={siteConfig?.bannerBackground?.hex}
       color={siteConfig?.bannerFontColor?.hex}
-      h={{ base: 'auto', md: theme.bannerHeight }}
+      h={{ base: 'auto', md: LAYOUT_CONSTANTS.bannerHeight }}
     >
       <Box maxW="7.5xl" mx="auto" py={[3, 1]} px={[4, 6]}>
         <Flex
@@ -31,6 +30,7 @@ export default function Banner({ content, button }) {
                 href={button?.href}
                 label={button?.label}
                 size="SMALL"
+                siteConfiguration={siteConfiguration}
                 {...button}
               />
             </Box>

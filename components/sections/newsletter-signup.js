@@ -7,10 +7,9 @@ import {
   Input
 } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
-export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) {
-  const siteConfig = useSiteConfiguration()
+export default function NewsletterSignup({ ctaLabel, subtitle, title, button, siteConfiguration }) {
+  const siteConfig = siteConfiguration
   
   return (
     <Box bg={siteConfig?.backgroundColor?.hex || 'white'}>
@@ -68,6 +67,7 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button }) 
               size={button?.size || "MEDIUM"}
               theme={button?.theme || "PRIMARY"}
               label={button?.label || ctaLabel || 'Submit'}
+              siteConfiguration={siteConfiguration}
             />
           </Box>
         </Box>

@@ -1,12 +1,11 @@
-import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem, useTheme } from '@chakra-ui/react'
+import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
+import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
 import Button from '@/components/blocks/button'
 
-export default function HeroRemoteSource({ buttons, image, title, description }) {
-  const siteConfig = useSiteConfiguration()
-  const theme = useTheme()
+export default function HeroRemoteSource({ buttons, image, title, description, siteConfiguration }) {
+  const siteConfig = siteConfiguration
 
   return (
     <Box 
@@ -32,8 +31,8 @@ export default function HeroRemoteSource({ buttons, image, title, description })
         },
       }}
       containerType="size"
-      minH={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
-      h={{ base: 'auto', lg: `calc(100vh - ${theme.navigationHeight} - ${theme.bannerHeight})` }}
+      minH={{ base: 'auto', lg: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})` }}
+      h={{ base: 'auto', lg: `calc(100vh - ${LAYOUT_CONSTANTS.navigationHeight} - ${LAYOUT_CONSTANTS.bannerHeight})` }}
     >
       <Grid
         templateColumns={{ base: '1fr', lg: '1fr 1fr' }}
@@ -171,6 +170,7 @@ export default function HeroRemoteSource({ buttons, image, title, description })
                       _active={{
                         bg: 'gray.200'
                       }}
+                      siteConfiguration={siteConfiguration}
                     />
                   ))}
                 </Stack>

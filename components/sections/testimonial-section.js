@@ -1,6 +1,5 @@
 import { Box, Container, Flex, Stack, Heading, Text, Avatar, useBreakpointValue } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 export default function TestimonialSection({
     title,
@@ -8,8 +7,9 @@ export default function TestimonialSection({
     personName,
     personProfession,
     personImage,
+    siteConfiguration,
 }) {
-  const siteConfig = useSiteConfiguration()
+  const siteConfig = siteConfiguration
   // Responsive font size for the heading
   const headingFontSize = useBreakpointValue({ base: '2xl', md: '3xl', lg: '4xl' })
 

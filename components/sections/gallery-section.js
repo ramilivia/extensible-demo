@@ -12,10 +12,8 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { useSiteConfiguration } from "@/lib/context/SiteConfigurationContext";
-
-export default function GallerySection({ images, galleryTitle, description }) {
-    const siteConfig = useSiteConfiguration()
+export default function GallerySection({ images, galleryTitle, description, siteConfiguration }) {
+    const siteConfig = siteConfiguration
   const [index, setIndex] = useState(-1);
 
   if (images.length === 0) return null;

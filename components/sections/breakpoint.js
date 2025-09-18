@@ -1,10 +1,9 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 import Button from '@/components/blocks/button'
 
-export default function Breakpoint({ buttons, subtitle, title }) {
-  const siteConfig = useSiteConfiguration()
+export default function Breakpoint({ buttons, subtitle, title, siteConfiguration }) {
+  const siteConfig = siteConfiguration
   if (!(buttons || buttons.length)) return null
 
   return (
@@ -34,7 +33,7 @@ export default function Breakpoint({ buttons, subtitle, title }) {
               borderRadius="md"
               boxShadow="md"
             >
-              <Button {...button} />
+              <Button {...button} siteConfiguration={siteConfiguration} />
             </Box>
           ))}
         </Stack>

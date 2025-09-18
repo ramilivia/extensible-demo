@@ -1,6 +1,5 @@
 import { Box, Link as ChakraLink } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
 const linkDefaultStyles = {
   width: 'full',
@@ -62,8 +61,8 @@ const themeStyles = {
   })
 }
 
-export default function Button({ href, label, size = 'MEDIUM', theme = 'PRIMARY' }) {
-  const siteConfig = useSiteConfiguration()
+export default function Button({ href, label, size = 'MEDIUM', theme = 'PRIMARY', siteConfiguration }) {
+  const siteConfig = siteConfiguration
   const buttonStyles = {
     ...linkDefaultStyles,
     ...buttonSizes[size],
