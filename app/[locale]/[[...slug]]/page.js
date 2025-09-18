@@ -1,6 +1,7 @@
 import { getPageData } from '@/lib/fetchers/page'
 import { generateSEOMetadata } from '@/lib/metadata'
-import { Flex, Box } from '@chakra-ui/react'
+import { Flex, Box, Text, Badge } from '@chakra-ui/react'
+import { getCurrentSegment, isPersonalizationEnabled } from '@/lib/segment'
 import ChakraThemeProvider from '@/components/layout/chakra-provider'
 import SectionMapper from '@/components/layout/section-mapper'
 import * as Blocks from '@/components/sections'
@@ -22,6 +23,29 @@ function PreviewBanner({ enabled = false }) {
   )
 }
 
+function SegmentBanner({ segment, personalizationEnabled }) {
+  // Only show in development or when personalization is enabled
+  if (!personalizationEnabled && process.env.NODE_ENV === 'production') return null
+
+  return (
+    <Box textAlign="center" p="2" backgroundColor="blue.50" borderBottom="1px" borderColor="blue.200">
+      <Text fontSize="sm" color="blue.800">
+        Current Segment: {' '}
+        {segment ? (
+          <Badge colorScheme="blue">{segment}</Badge>
+        ) : (
+          <Badge colorScheme="gray">Default</Badge>
+        )}
+        {process.env.NODE_ENV === 'development' && (
+          <Text as="span" ml={2} fontSize="xs" color="blue.600">
+            (Cookie-based personalization active)
+          </Text>
+        )}
+      </Text>
+    </Box>
+  )
+}
+
 export async function generateStaticParams() {
   return [
     { locale: 'en' },
@@ -34,7 +58,8 @@ export async function generateMetadata({ params, searchParams }) {
   const resolvedParams = await params
   const locale = resolvedParams?.locale || 'en'
   const slug = resolvedParams?.slug?.[0] || 'home'
-  const data = await getPageData(slug, searchParams, { throwOnNotFound: false, locale })
+  // Note: searchParams no longer used for segment - cookies only
+  const data = await getPageData(slug, {}, { throwOnNotFound: false, locale })
   
   if (!data?.page?.seo) return {}
   
@@ -46,9 +71,13 @@ export default async function SlugPage({ params, searchParams }) {
   const resolvedParams = await params
   const locale = resolvedParams?.locale || 'en'
   
+  // Get current segment using utility
+  const currentSegment = getCurrentSegment()
+  const personalizationEnabled = isPersonalizationEnabled()
+  
   // Handle root route (/) as home page, otherwise use the first slug segment
   const slug = resolvedParams?.slug?.[0] || 'home'
-  const data = await getPageData(slug, searchParams, { throwOnNotFound: slug !== 'home', locale })
+  const data = await getPageData(slug, {}, { throwOnNotFound: slug !== 'home', locale })
   
   const { page, siteConfiguration, preview } = data
 
@@ -64,6 +93,7 @@ export default async function SlugPage({ params, searchParams }) {
     <ChakraThemeProvider siteConfiguration={siteConfiguration}>
       <Flex flexDir="column" minH="100vh">
         <PreviewBanner enabled={preview} />
+        <SegmentBanner segment={currentSegment} personalizationEnabled={personalizationEnabled} />
         <Box flexGrow="1">
           <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
             {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
@@ -74,7 +104,7 @@ export default async function SlugPage({ params, searchParams }) {
             </div>
           </div>
         </Box>
-        {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} />}
+        {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} currentSegment={currentSegment} />}
       </Flex>
     </ChakraThemeProvider>
   )

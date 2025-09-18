@@ -47,16 +47,18 @@ export function middleware(request) {
   // If pathname starts with /en/, redirect to remove the /en prefix
   if (pathname.startsWith('/en/') || pathname === '/en') {
     const newPathname = pathname === '/en' ? '/' : pathname.slice(3)
-    return NextResponse.redirect(
-      new URL(newPathname, request.url)
-    )
+    const url = new URL(newPathname, request.url)
+    // Preserve query parameters during redirect
+    url.search = request.nextUrl.search
+    return NextResponse.redirect(url)
   }
 
   // For all other paths (including root /), rewrite to /en internally
   // This serves English content without showing /en in the URL
-  return NextResponse.rewrite(
-    new URL(`/en${pathname}`, request.url)
-  )
+  const url = new URL(`/en${pathname}`, request.url)
+  // Preserve query parameters during rewrite
+  url.search = request.nextUrl.search
+  return NextResponse.rewrite(url)
 }
 
 export const config = {

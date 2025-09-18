@@ -24,6 +24,7 @@ import {
   GithubIcon 
 } from '@/assets/icons'
 import { LOCALES } from '@/lib/constants'
+import SegmentSelector from '@/components/blocks/segment-selector'
 function GridColumnHeading({ children, siteConfiguration }) {
   const siteConfig = siteConfiguration
   return (
@@ -92,7 +93,7 @@ function SocialMediaLink({ href, title, icon, siteConfiguration }) {
   )
 }
 
-export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration }) {
+export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration, currentSegment }) {
   const router = useRouter()
   const pathname = usePathname()
   const params = useParams()
@@ -130,12 +131,6 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
     router.push(newPath)
   }
 
-  const setSegment = (event) => {
-    const selectedSegment = event.target.value
-    // In App Router, segment switching would be handled differently
-    // For now, just log the selection
-    console.log('Segment change requested:', selectedSegment)
-  }
 
   return (
     <Box 
@@ -152,7 +147,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
           pb={12}
           display={{ xl: 'grid' }}
           gridTemplateColumns={{ 
-            xl: siteConfig?.segments?.length > 0 ? 'repeat(5, 1fr)' : 'repeat(4, 1fr)'
+            xl: 'repeat(5, 1fr)'
           }}
           gridGap={{ xl: 16 }}
         >
@@ -178,7 +173,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
 
           <Box 
             mt={{ base: 12, xl: 0 }}
-            gridColumn={{ xl: siteConfig?.segments?.length > 0 ? 'auto' : 'span 1 / span 1' }}
+            gridColumn={{ xl: 'auto' }}
           >
             <GridColumnHeading siteConfiguration={siteConfiguration}>Language</GridColumnHeading>
 
@@ -217,53 +212,10 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
               </Box>
             </Box>
           </Box>
-          {siteConfig?.segments?.length > 0 && (
-          <Box mt={{ base: 12, xl: 0 }}>
-            <GridColumnHeading siteConfiguration={siteConfiguration}>Segment Simulator</GridColumnHeading>
-            <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
-              <Box as="fieldset" w="full">
-                <VisuallyHidden as={FormLabel} htmlFor="segment-simulator">
-                  Segment Simulator
-                </VisuallyHidden>
-
-                <Box position="relative">
-                  <Select
-                    id="segment-simulator"
-                    name="segment-simulator"
-                    color={siteConfig?.textColor?.hex || "gray.900"}
-                    bg={siteConfig?.backgroundColor?.hex || "white"}
-                    borderColor="gray.200"
-                    fontSize="md"
-                    value={'no-segment'}
-                    onChange={setSegment}
-                    _hover={{ borderColor: "gray.300" }}
-                    borderRadius="md"
-                  >
-                    <Box
-                      as="option"
-                      bg={siteConfig?.backgroundColor?.hex || "white"}
-                      color={siteConfig?.textColor?.hex || "gray.900"}
-                      value="no-segment"
-                    >
-                      No Segment
-                    </Box>
-                    {siteConfig?.segments?.map((segment) => (
-                      <Box
-                        as="option"
-                        bg={siteConfig?.backgroundColor?.hex || "white"}
-                        color={siteConfig?.textColor?.hex || "gray.900"}
-                        key={segment.id}
-                        value={segment.name}
-                      >
-                        {segment.name}
-                      </Box>
-                    ))}
-                  </Select>
-                </Box>    
-              </Box>
-            </Box>
-          </Box>
-          )}
+          <SegmentSelector 
+            siteConfiguration={siteConfiguration} 
+            currentSegment={currentSegment} 
+          />
         </Box>
 
         <Box
