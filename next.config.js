@@ -1,11 +1,6 @@
 const { locales } = require('./lib/_locales')
 
 module.exports = {
-  i18n: {
-    defaultLocale: locales.find((locale) => locale.default).value,
-    locales: locales.map((locale) => locale.value),
-    localeDetection: false  // Changed to false as per Next.js 13 requirements
-  },
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [

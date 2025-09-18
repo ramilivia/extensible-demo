@@ -1,3 +1,5 @@
+'use client'
+
 import { useRef, useState, useEffect } from 'react'
 import {
   Box,
@@ -12,7 +14,7 @@ import {
   useTheme
 } from '@chakra-ui/react' 
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter, usePathname } from 'next/navigation'
 import { Transition } from 'react-transition-group'
 import { useSiteConfiguration } from '@/lib/context/SiteConfigurationContext'
 
@@ -35,6 +37,7 @@ export default function Navigation({ pages }) {
   const theme = useTheme()
   const container = useRef(null)
   const router = useRouter()
+  const pathname = usePathname()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   console.log('SITE CONFIG', siteConfig);
   
@@ -67,12 +70,9 @@ export default function Navigation({ pages }) {
   }, [mobileNavOpen])
 
   useEffect(() => {
-    const handleRouteChange = () => setMobileNavOpen(false)
-
-    router.events.on('routeChangeStart', handleRouteChange)
-
-    return () => router.events.off('routeChangeStart', handleRouteChange)
-  }, [router.events])
+    // Close mobile nav when pathname changes
+    setMobileNavOpen(false)
+  }, [pathname])
 
 
   return (
@@ -128,7 +128,7 @@ export default function Navigation({ pages }) {
                 {pages && pages.length && (
                   <Grid as="nav" gridRowGap={8}>
                     {pages.map((page) => {
-                      const isActive = router.asPath.startsWith(`/${page.slug}`)
+                      const isActive = pathname.startsWith(`/${page.slug}`)
 
                       return (
                         <ChakraLink
@@ -212,7 +212,7 @@ export default function Navigation({ pages }) {
               spacing={10}
             >
               {pages.map((page) => {
-                const isActive = router.asPath.startsWith(`/${page.slug}`)
+                const isActive = pathname.startsWith(`/${page.slug}`)
 
                 return (
                   <ChakraLink

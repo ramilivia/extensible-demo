@@ -1,5 +1,7 @@
+'use client'
+
 import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 
 import { defaultUrl } from '../../next-seo.config'
 
@@ -10,7 +12,7 @@ export default function SEO({
   noIndex: noindex = false,
   ...props
 }) {
-  const router = useRouter()
+  const pathname = usePathname()
 
   const SEO = {
     ...(keywords && { keywords: keywords.toString() }),
@@ -24,7 +26,7 @@ export default function SEO({
           }
         ]
       }),
-      url: defaultUrl + router.asPath,
+      url: defaultUrl + pathname,
       ...props
     },
     ...props
