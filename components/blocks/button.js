@@ -72,11 +72,9 @@ export default function Button({ href, label, size = 'MEDIUM', theme = 'PRIMARY'
 
   if (href) {
     return (
-      <Link href={href} passHref>
-        <ChakraLink {...buttonStyles}>
-          {label}
-        </ChakraLink>
-      </Link>
+      <ChakraLink as={Link} href={href} {...buttonStyles}>
+        {label}
+      </ChakraLink>
     )
   }
 

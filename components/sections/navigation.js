@@ -101,10 +101,8 @@ export default function Navigation({ pages }) {
               <Flex alignItems="center" justifyContent="space-between">
                 <div>
                   <Link href="/">
-                    <a>
-                      <VisuallyHidden>Hygraph</VisuallyHidden>
-                      <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
-                    </a>
+                    <VisuallyHidden>Hygraph</VisuallyHidden>
+                    <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
                   </Link>
                 </div>
                 <Box mr={-2}>
@@ -133,35 +131,36 @@ export default function Navigation({ pages }) {
                       const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                       return (
-                        <Link key={page.id} href={`/${page.slug}`} passHref>
-                          <ChakraLink
-                            m={-3}
-                            p={3}
-                            display="flex"
-                            alignItems="center"
-                            borderRadius="md"
-                            color={isActive ? 'indigo.600' : 'inherit'}
-                            _hover={{
-                              bg: 'gray.50'
-                            }}
-                            _focus={{
-                              outline: 'none',
-                              boxShadow: 'none'
-                            }}
+                        <ChakraLink
+                          key={page.id}
+                          as={Link}
+                          href={`/${page.slug}`}
+                          m={-3}
+                          p={3}
+                          display="flex"
+                          alignItems="center"
+                          borderRadius="md"
+                          color={isActive ? 'indigo.600' : 'inherit'}
+                          _hover={{
+                            bg: 'gray.50'
+                          }}
+                          _focus={{
+                            outline: 'none',
+                            boxShadow: 'none'
+                          }}
+                        >
+                          <Text
+                            as="span"
+                            ml={3}
+                            fontSize="md"
+                            fontWeight="medium"
+                            color={siteConfig?.navFontColor?.hex || 'gray.900'}
                           >
-                            <Text
-                              as="span"
-                              ml={3}
-                              fontSize="md"
-                              fontWeight="medium"
-                              color={siteConfig?.navFontColor?.hex || 'gray.900'}
-                            >
-                              {page.navigationLabel ||
-                                page.slug.charAt(0).toUpperCase() +
-                                  page.slug.slice(1)}
-                            </Text>
-                          </ChakraLink>
-                        </Link>
+                            {page.navigationLabel ||
+                              page.slug.charAt(0).toUpperCase() +
+                                page.slug.slice(1)}
+                          </Text>
+                        </ChakraLink>
                       )
                     })}
                   </Grid>
@@ -184,9 +183,7 @@ export default function Navigation({ pages }) {
         >
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
-              <a>
               {siteConfig?.logo && <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: siteConfig?.maxLogoWidthPx || '241px'}}/>}
-              </a>
             </Link>
           </Flex>
           <Box mr={-2} my={-2} display={{ md: 'none' }}>
@@ -218,23 +215,24 @@ export default function Navigation({ pages }) {
                 const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                 return (
-                  <Link key={page.id} href={`/${page.slug}`} passHref>
-                    <ChakraLink
-                      fontSize="sm"
-                      fontWeight="medium"
-                      color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}
-                      _hover={{
-                        color: 'gray.900'
-                      }}
-                      _focus={{
-                        outline: 'none',
-                        boxShadow: 'none'
-                      }}
-                    >
-                      {page.navigationLabel ||
-                        page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
-                    </ChakraLink>
-                  </Link>
+                  <ChakraLink
+                    key={page.id}
+                    as={Link}
+                    href={`/${page.slug}`}
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}
+                    _hover={{
+                      color: 'gray.900'
+                    }}
+                    _focus={{
+                      outline: 'none',
+                      boxShadow: 'none'
+                    }}
+                  >
+                    {page.navigationLabel ||
+                      page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
+                  </ChakraLink>
                 )
               })}
             </Stack>

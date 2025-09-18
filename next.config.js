@@ -4,8 +4,7 @@ module.exports = {
   i18n: {
     defaultLocale: locales.find((locale) => locale.default).value,
     locales: locales.map((locale) => locale.value),
-    localeDetection: true,  // Enable automatic locale detection
-    localePrefix: 'as-needed'  
+    localeDetection: false  // Changed to false as per Next.js 13 requirements
   },
   images: {
     dangerouslyAllowSVG: true,

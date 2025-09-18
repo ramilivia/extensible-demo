@@ -1,13 +1,13 @@
 import { extendTheme } from '@chakra-ui/react'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
 
-const breakpoints = createBreakpoints({
+const breakpoints = {
+  base: '0em',
   sm: '40em',
   md: '48em',
   lg: '64em',
   xl: '80em',
   '2xl': '96em'
-})
+}
 
 // Create a function that returns the theme with dynamic colors from site config
 export const createTheme = (siteConfiguration) => {

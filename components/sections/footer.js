@@ -51,21 +51,21 @@ function GridColumn({ links, title }) {
       <Stack as="ul" spacing={4}>
         {links && links.map((link) => (
           <li key={link.id}>
-            <Link href={`/${link.slug}`} passHref>
-              <ChakraLink
-                color={siteConfig?.textColor?.hex || "gray.600"}
-                fontSize="md"
-                fontWeight="normal"
-                letterSpacing="0.02em"
-                _hover={{
-                  color: siteConfig?.titlesFontColor?.hex || "gray.900",
-                  textDecoration: "none"
-                }}
-              >
-                {link.navigationLabel ||
-                  link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
-              </ChakraLink>
-            </Link>
+            <ChakraLink
+              as={Link}
+              href={`/${link.slug}`}
+              color={siteConfig?.textColor?.hex || "gray.600"}
+              fontSize="md"
+              fontWeight="normal"
+              letterSpacing="0.02em"
+              _hover={{
+                color: siteConfig?.titlesFontColor?.hex || "gray.900",
+                textDecoration: "none"
+              }}
+            >
+              {link.navigationLabel ||
+                link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
+            </ChakraLink>
           </li>
         ))}
       </Stack>
