@@ -13,7 +13,7 @@ import {
   Center,
 } from '@chakra-ui/react' 
 import Link from 'next/link'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter, usePathname, useParams } from 'next/navigation'
 import { Transition } from 'react-transition-group'
 import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
@@ -36,7 +36,11 @@ export default function Navigation({ pages, siteConfiguration }) {
   const container = useRef(null)
   const router = useRouter()
   const pathname = usePathname()
+  const params = useParams()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  
+  // Get current locale from URL params
+  const currentLocale = params?.locale || 'en'
   console.log('SITE CONFIG', siteConfig);
   
   useEffect(() => {
@@ -98,7 +102,7 @@ export default function Navigation({ pages, siteConfiguration }) {
             <Box pt={5} pb={6} px={5}>
               <Flex alignItems="center" justifyContent="space-between">
                 <div>
-                  <Link href="/">
+                  <Link href={currentLocale === 'en' ? '/' : `/${currentLocale}`}>
                     <VisuallyHidden>Hygraph</VisuallyHidden>
                     <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
                   </Link>
@@ -132,7 +136,7 @@ export default function Navigation({ pages, siteConfiguration }) {
                         <ChakraLink
                           key={page.id}
                           as={Link}
-                          href={`/${page.slug}`}
+                          href={currentLocale === 'en' ? `/${page.slug}` : `/${currentLocale}/${page.slug}`}
                           m={-3}
                           p={3}
                           display="flex"
@@ -180,7 +184,7 @@ export default function Navigation({ pages, siteConfiguration }) {
           spacing={{ md: 10 }}
         >
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
-            <Link href="/">
+            <Link href={currentLocale === 'en' ? '/' : `/${currentLocale}`}>
               {siteConfig?.logo && <img src={siteConfig?.logo?.url} alt="Logo" style={{maxHeight: '100px', maxWidth: siteConfig?.maxLogoWidthPx || '241px'}}/>}
             </Link>
           </Flex>
@@ -216,7 +220,7 @@ export default function Navigation({ pages, siteConfiguration }) {
                   <ChakraLink
                     key={page.id}
                     as={Link}
-                    href={`/${page.slug}`}
+                    href={currentLocale === 'en' ? `/${page.slug}` : `/${currentLocale}/${page.slug}`}
                     fontSize="sm"
                     fontWeight="medium"
                     color={isActive ?  siteConfig?.navFontColor?.hex || 'indigo.600' : siteConfig?.navFontColor?.hex || 'gray.500'}

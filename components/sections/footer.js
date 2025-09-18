@@ -53,7 +53,7 @@ function GridColumn({ links, title, siteConfiguration, currentLocale }) {
           <li key={link.id}>
             <ChakraLink
               as={Link}
-              href={`/${currentLocale}/${link.slug}`}
+              href={currentLocale === 'en' ? `/${link.slug}` : `/${currentLocale}/${link.slug}`}
               color={siteConfig?.textColor?.hex || "gray.600"}
               fontSize="md"
               fontWeight="normal"
@@ -105,11 +105,26 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
   const setLocale = (event) => {
     const newLocale = event.target.value
     
-    // Remove the current locale from the pathname to get the base path
-    const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/'
+    // Get the base path without the current locale
+    let pathWithoutLocale
+    
+    if (currentLocale === 'en') {
+      // For English (no prefix), the pathname is already the base path
+      pathWithoutLocale = pathname
+    } else {
+      // For other locales, remove the locale prefix
+      pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/'
+    }
     
     // Construct the new URL with the selected locale
-    const newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+    let newPath
+    if (newLocale === 'en') {
+      // For English, don't add a locale prefix
+      newPath = pathWithoutLocale
+    } else {
+      // For other locales, add the locale prefix
+      newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
+    }
     
     // Navigate to the new locale path
     router.push(newPath)

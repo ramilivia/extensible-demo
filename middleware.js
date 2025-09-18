@@ -32,24 +32,30 @@ export function middleware(request) {
     return
   }
 
-  // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  // Check if there is any supported locale in the pathname (excluding default locale 'en')
+  const nonDefaultLocales = locales.filter(locale => locale !== defaultLocale)
+  const pathnameHasNonDefaultLocale = nonDefaultLocales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
 
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
+  // If pathname has a non-default locale, let it pass through
+  if (pathnameHasNonDefaultLocale) {
+    return
+  }
 
-    // e.g. incoming request is /products
-    // The new URL is now /en/products
+  // If pathname starts with /en/, redirect to remove the /en prefix
+  if (pathname.startsWith('/en/') || pathname === '/en') {
+    const newPathname = pathname === '/en' ? '/' : pathname.slice(3)
     return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-        request.url
-      )
+      new URL(newPathname, request.url)
     )
   }
+
+  // For all other paths (including root /), rewrite to /en internally
+  // This serves English content without showing /en in the URL
+  return NextResponse.rewrite(
+    new URL(`/en${pathname}`, request.url)
+  )
 }
 
 export const config = {
