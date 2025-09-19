@@ -59,6 +59,8 @@ export default function Hero({ buttons, asset, title, description, siteConfigura
               objectFit="cover"
               objectPosition="center"
               style={{ display: 'block' }}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="image"
             />
           ) : (
             <Box
@@ -71,6 +73,8 @@ export default function Hero({ buttons, asset, title, description, siteConfigura
               objectFit="cover"
               objectPosition="center"
               style={{ display: 'block' }}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="image"
             />
           )}
         </GridItem>
@@ -113,6 +117,8 @@ export default function Hero({ buttons, asset, title, description, siteConfigura
                 fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                 color={siteConfig?.titlesFontColor?.hex || 'gray.800'}
                 mb={{ base: 4, md: 2 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="title"
               >
                 {title}
               </Heading>
@@ -126,6 +132,8 @@ export default function Hero({ buttons, asset, title, description, siteConfigura
                 letterSpacing="0.02em"
                 opacity={0.95}
                 mb={{ base: 6, md: 0 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="description"
               >
                 {description}
               </Text>
