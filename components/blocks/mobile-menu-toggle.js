@@ -4,7 +4,7 @@ import { Box, Button, VisuallyHidden } from '@chakra-ui/react'
 import { MenuIcon } from '@/icons'
 import MobileNavigation from '../sections/mobile-navigation'
 
-export default function MobileMenuToggle({ pages, siteConfiguration }) {
+export default function MobileMenuToggle({ pages, siteConfiguration, currentLocale }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   
   const handleOpen = () => setMobileNavOpen(true)
@@ -15,6 +15,7 @@ export default function MobileMenuToggle({ pages, siteConfiguration }) {
       <MobileNavigation 
         pages={pages} 
         siteConfiguration={siteConfiguration}
+        currentLocale={currentLocale}
         isOpen={mobileNavOpen}
         onClose={handleClose}
       />

@@ -77,6 +77,10 @@ export default async function SlugPage({ params, searchParams }) {
   
   // Handle root route (/) as home page, otherwise use the first slug segment
   const slug = resolvedParams?.slug?.[0] || 'home'
+  
+  // Build current pathname for navigation
+  const currentPathname = resolvedParams?.slug ? `/${resolvedParams.slug.join('/')}` : '/'
+  
   const data = await getPageData(slug, {}, { throwOnNotFound: slug !== 'home', locale })
   
   const { page, siteConfiguration, preview } = data
@@ -97,7 +101,12 @@ export default async function SlugPage({ params, searchParams }) {
         <Box flexGrow="1">
           <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
             {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
-            <Navigation pages={page?.navigation?.[0]?.pages} siteConfiguration={siteConfiguration} />
+            <Navigation 
+              pages={page?.navigation?.[0]?.pages} 
+              siteConfiguration={siteConfiguration} 
+              currentPathname={currentPathname}
+              currentLocale={locale}
+            />
             {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
             <div>
               <SectionMapper {...page} siteConfiguration={siteConfiguration} />

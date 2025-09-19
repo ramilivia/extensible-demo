@@ -12,7 +12,6 @@ import MobileMenuToggle from '../blocks/mobile-menu-toggle'
 export default function Navigation({ pages, siteConfiguration, currentPathname, currentLocale = 'en' }) {
   const siteConfig = siteConfiguration
 
-
   return (
     <Box pos="relative" bg={siteConfig?.navBackground?.hex} color={siteConfig?.navFontColor?.hex} boxShadow="base" h={{ base: 'auto', md: LAYOUT_CONSTANTS.navigationHeight }} zIndex="sticky">
       <Box maxW="7.5xl" mx="auto" px={[4, 6]} height={{ base: 'auto', md: '100%' }} display="flex" alignItems="center">
@@ -31,7 +30,7 @@ export default function Navigation({ pages, siteConfiguration, currentPathname, 
             </Link>
             <Box />
           </Flex>
-          <MobileMenuToggle pages={pages} siteConfiguration={siteConfig} />
+          <MobileMenuToggle pages={pages} siteConfiguration={siteConfig} currentLocale={currentLocale} />
           {pages && pages.length && (
             <Stack
               as="nav"
@@ -40,7 +39,9 @@ export default function Navigation({ pages, siteConfiguration, currentPathname, 
               spacing={10}
             >
               {pages.map((page) => {
-                const isActive = currentPathname?.startsWith(`/${page.slug}`)
+                // Check if current path matches this page, accounting for locale
+                const isActive = currentPathname?.startsWith(`/${page.slug}`) || 
+                                (currentLocale !== 'en' && currentPathname?.startsWith(`/${currentLocale}/${page.slug}`))
 
                 return (
                   <ChakraLink
