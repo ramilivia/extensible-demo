@@ -46,13 +46,16 @@ function SegmentBanner({ segment, personalizationEnabled }) {
   )
 }
 
-export async function generateStaticParams() {
+// Use server-side rendering to support dynamic cookie-based personalization
+export const dynamic = 'force-dynamic'
+
+/*export async function generateStaticParams() {
   return [
     { locale: 'en' },
     { locale: 'de' },
     { locale: 'fr' }
   ]
-}
+}*/
 
 export async function generateMetadata({ params, searchParams }) {
   const resolvedParams = await params
