@@ -104,7 +104,7 @@ export default async function SlugPage({ params, searchParams }) {
             </div>
           </div>
         </Box>
-        {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} currentSegment={currentSegment} />}
+        {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} currentSegment={currentSegment} currentLocale={locale} />}
       </Flex>
     </ChakraThemeProvider>
   )

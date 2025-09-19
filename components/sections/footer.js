@@ -1,5 +1,3 @@
-'use client'
-
 import {
   VisuallyHidden,
   Link as ChakraLink,
@@ -8,12 +6,9 @@ import {
   Box,
   Grid,
   Heading,
-  FormLabel,
-  Select,
   Container
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useRouter, usePathname, useParams } from 'next/navigation'
 import { 
   InstagramIcon, 
   PinterestIcon, 
@@ -23,8 +18,8 @@ import {
   SlackIcon,
   GithubIcon 
 } from '@/assets/icons'
-import { LOCALES } from '@/lib/constants'
 import SegmentSelector from '@/components/blocks/segment-selector'
+import LanguageSelector from '@/components/blocks/language-selector'
 function GridColumnHeading({ children, siteConfiguration }) {
   const siteConfig = siteConfiguration
   return (
@@ -74,7 +69,7 @@ function GridColumn({ links, title, siteConfiguration, currentLocale }) {
   )
 }
 
-function SocialMediaLink({ href, title, icon, siteConfiguration }) {
+function SocialMediaLink({ href, title, children, siteConfiguration }) {
   const siteConfig = siteConfiguration
 
   return (
@@ -88,48 +83,13 @@ function SocialMediaLink({ href, title, icon, siteConfiguration }) {
       mx={2}
     >
       <VisuallyHidden>{title}</VisuallyHidden>
-      <Box as={icon} w={5} h={5} opacity={0.8} />
+      {children}
     </ChakraLink>
   )
 }
 
-export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration, currentSegment }) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const params = useParams()
+export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration, currentSegment, currentLocale }) {
   const siteConfig = siteConfiguration
-
-  // Get current locale from URL params
-  const currentLocale = params?.locale || 'en'
-  const activeLocale = LOCALES.find((locale) => locale.value === currentLocale) || LOCALES[0]
-
-  const setLocale = (event) => {
-    const newLocale = event.target.value
-    
-    // Get the base path without the current locale
-    let pathWithoutLocale
-    
-    if (currentLocale === 'en') {
-      // For English (no prefix), the pathname is already the base path
-      pathWithoutLocale = pathname
-    } else {
-      // For other locales, remove the locale prefix
-      pathWithoutLocale = pathname.replace(`/${currentLocale}`, '') || '/'
-    }
-    
-    // Construct the new URL with the selected locale
-    let newPath
-    if (newLocale === 'en') {
-      // For English, don't add a locale prefix
-      newPath = pathWithoutLocale
-    } else {
-      // For other locales, add the locale prefix
-      newPath = `/${newLocale}${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`
-    }
-    
-    // Navigate to the new locale path
-    router.push(newPath)
-  }
 
 
   return (
@@ -176,41 +136,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
             gridColumn={{ xl: 'auto' }}
           >
             <GridColumnHeading siteConfiguration={siteConfiguration}>Language</GridColumnHeading>
-
-            <Box as="form" mt={2} maxW={{ sm: 'xs' }}>
-              <Box as="fieldset" w="full">
-                <VisuallyHidden as={FormLabel} htmlFor="language">
-                  Language
-                </VisuallyHidden>
-
-                <Box position="relative">
-                  <Select
-                    id="language"
-                    name="language"
-                    color={siteConfig?.textColor?.hex || "gray.900"}
-                    bg={siteConfig?.backgroundColor?.hex || "white"}
-                    borderColor="gray.200"
-                    fontSize="md"
-                    value={activeLocale.value}
-                    onChange={setLocale}
-                    _hover={{ borderColor: "gray.300" }}
-                    borderRadius="md"
-                  >
-                    {LOCALES.map((locale) => (
-                      <Box
-                        as="option"
-                        bg={siteConfig?.backgroundColor?.hex || "white"}
-                        color={siteConfig?.textColor?.hex || "gray.900"}
-                        key={locale.value}
-                        value={locale.value}
-                      >
-                        {locale.label}
-                      </Box>
-                    ))}
-                  </Select>
-                </Box>    
-              </Box>
-            </Box>
+            <LanguageSelector siteConfiguration={siteConfiguration} currentLocale={currentLocale} />
           </Box>
           <SegmentSelector 
             siteConfiguration={siteConfiguration} 
@@ -228,30 +154,34 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
           justifyContent={{ md: 'space-between' }}
         >
           <Stack direction="row" display="flex" spacing={4} order={{ md: 2 }}>
-          <SocialMediaLink
+            <SocialMediaLink
               title="LinkedIn"
-              icon={LinkedInIcon}
               href="https://linkedin.com/company/hygraph"
               siteConfiguration={siteConfiguration}
-            />
+            >
+              <LinkedInIcon width={20} height={20} style={{ opacity: 0.8 }} />
+            </SocialMediaLink>
             <SocialMediaLink
               title="Slack"
-              icon={SlackIcon}
               href="https://slack.hygraph.com"
               siteConfiguration={siteConfiguration}
-            />
+            >
+              <SlackIcon width={20} height={20} style={{ opacity: 0.8 }} />
+            </SocialMediaLink>
             <SocialMediaLink
               title="Twitter"
-              icon={TwitterIcon}
               href="https://twitter.com/Hygraphcom"
               siteConfiguration={siteConfiguration}
-            />
+            >
+              <TwitterIcon width={20} height={20} style={{ opacity: 0.8 }} />
+            </SocialMediaLink>
             <SocialMediaLink
               title="GitHub"
-              icon={GithubIcon}
               href="https://github.com/Hygraph/reference-nextjs-marketing"
               siteConfiguration={siteConfiguration}
-            />
+            >
+              <GithubIcon width={20} height={20} style={{ opacity: 0.8 }} />
+            </SocialMediaLink>
           </Stack>
 
           <Text
