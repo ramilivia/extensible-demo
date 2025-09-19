@@ -8,7 +8,7 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
   const siteConfig = siteConfiguration
 
   return (
-    <Box position="relative" bg={backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
+    <Box position="relative" bg={variants.length > 0 ? variants[0].backgroundColor?.hex : backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
       <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 0, lg: 0 }}>
         <Flex
           direction={{ base: 'column', lg: assetPosition === 'right' ? 'row' : 'row-reverse' }}
@@ -34,14 +34,14 @@ export default function AlternatingPanels({ buttons, image, alternatingPanelsTit
               lineHeight="1.05"
               letterSpacing="-0.04em"
               fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
-              color={textColor?.hex || siteConfig?.textColor?.hex}
+              color={variants.length > 0 ? variants[0].textColor?.hex : textColor?.hex || siteConfig?.textColor?.hex}
             >
               {variants.length > 0 ? variants[0].alternatingPanelsTitle : alternatingPanelsTitle}
             </Heading>
             
             <Text
               fontSize={{ base: 'lg', md: 'xl' }}
-              color={textColor?.hex || siteConfig?.textColor?.hex}
+              color={variants.length > 0 ? variants[0].textColor?.hex : textColor?.hex || siteConfig?.textColor?.hex}
               maxW="2xl"
               whiteSpace="pre-wrap"
             >

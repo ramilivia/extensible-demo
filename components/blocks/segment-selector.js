@@ -7,6 +7,7 @@ import {
   Box,
   Heading
 } from '@chakra-ui/react'
+import React from 'react'
 import { setSegment, clearSegment } from '@/lib/actions/segment'
 
 // Client-safe version of personalization check
@@ -44,6 +45,14 @@ export default function SegmentSelector({ siteConfiguration, currentSegment }) {
     }
   }
 
+  const handleSelectChange = (e) => {
+    // Scroll to top immediately
+    window.scrollTo({ top: 0 })
+    
+    // Then submit the form
+    e.target.closest('form').requestSubmit()
+  }
+
   // Only render if segments exist or personalization is enabled
   if (!(siteConfig?.segments?.length > 0 || isPersonalizationEnabled())) {
     return null
@@ -67,7 +76,7 @@ export default function SegmentSelector({ siteConfiguration, currentSegment }) {
               borderColor="gray.200"
               fontSize="md"
               defaultValue={currentSegment || 'no-segment'}
-              onChange={(e) => e.target.closest('form').requestSubmit()}
+              onChange={handleSelectChange}
               _hover={{ borderColor: "gray.300" }}
               borderRadius="md"
             >
