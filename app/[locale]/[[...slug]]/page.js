@@ -8,7 +8,6 @@ import * as Blocks from '@/components/sections'
 import Navigation from '@/components/sections/navigation'
 import Banner from '@/components/sections/banner'
 import Footer from '@/components/sections/footer'
-import Link from 'next/link'
 import { InspectorProvider } from '@/lib/inspector'
 
 function PreviewBanner({ enabled = false }) {
@@ -17,9 +16,9 @@ function PreviewBanner({ enabled = false }) {
   return (
     <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
       Preview Mode Enabled (Content served from CMS DRAFT) &mdash;&nbsp;
-      <Link href="/api/exit-preview">
+      <a href="/api/exit-preview" style={{ color: 'inherit', textDecoration: 'underline' }}>
         Exit Preview Mode
-      </Link>
+      </a>
     </Box>
   )
 }

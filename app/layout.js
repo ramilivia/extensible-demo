@@ -1,5 +1,4 @@
 import '../styles/css/global.css'
-import Link from 'next/link'
 import { Flex, Box } from '@chakra-ui/react'
 import Footer from '@/components/sections/footer'
 
@@ -32,9 +31,9 @@ function PreviewBanner({ enabled = false }) {
   return (
     <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
       Preview Mode Enabled (Content served from DRAFT) &mdash;&nbsp;
-      <Link href="/api/exit-preview">
+      <a href="/api/exit-preview" style={{ color: 'inherit', textDecoration: 'underline' }}>
         Exit Preview Mode
-      </Link>
+      </a>
     </Box>
   )
 }
