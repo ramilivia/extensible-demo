@@ -19,19 +19,21 @@ export async function GET(request) {
   draftMode().enable()
 
 
-  // Known Next.js issue: https://github.com/vercel/next.js/issues/49433
-  // Force refresh the draft mode cookies to ensure they work across environments
+  // Fix for Next.js issues #49433 and #49927
+  // Next.js changed draft mode cookies from SameSite=None to SameSite=Lax
+  // This breaks iframe-based CMS preview functionality
   const draft = cookies().get('__prerender_bypass')
   const nonce = cookies().get('__next_preview_data')
 
-  // Adapt cookie settings based on environment
-  const isProduction = process.env.NODE_ENV === 'production'
+  // Always use SameSite=None for iframe compatibility with CMS
+  // This is required for cross-site cookie setting in preview iframes
+  const isSecure = request.url.startsWith('https://')
   
   if (draft?.value) {
     cookies().set('__prerender_bypass', draft.value, {
       httpOnly: true,
-      sameSite: isProduction ? 'None' : 'Lax',
-      secure: isProduction,
+      sameSite: 'None',
+      secure: isSecure,
       path: '/',
       maxAge: 60 * 60 * 24 // 24 hours
     });
@@ -40,8 +42,8 @@ export async function GET(request) {
   if (nonce?.value) {
     cookies().set('__next_preview_data', nonce.value, {
       httpOnly: true,
-      sameSite: isProduction ? 'None' : 'Lax', 
-      secure: isProduction,
+      sameSite: 'None',
+      secure: isSecure,
       path: '/',
       maxAge: 60 * 60 * 24 // 24 hours
     });
