@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { draftMode, cookies } from "next/headers";
 
 export async function GET(request) {
@@ -10,11 +9,8 @@ export async function GET(request) {
   console.log('HYGRAPH_PREVIEW_SECRET REQ', secret)
   console.log('Request URL:', request.url)
 
-  if (
-    secret !== process.env.HYGRAPH_PREVIEW_SECRET ||
-    !slug
-  ) {
-    return Response.json({ message: 'Invalid token' }, { status: 401 })
+  if (secret !== process.env.HYGRAPH_PREVIEW_SECRET) {
+    return new Response('Invalid token', { status: 401 });
   }
 
   // Enable draft mode which sets the initial cookie
@@ -39,13 +35,15 @@ export async function GET(request) {
     });
   }
 
-  // Decode and preserve all query parameters
-  const queryString = decodeURIComponent(searchParams.toString());
-
-  // Redirect to the page with all parameters
-  const redirectUrl = slug === 'home' ? '/' : `/${slug}`;
-  const finalUrl = queryString ? `${redirectUrl}?${queryString}` : redirectUrl;
+  // Redirect to the page
+  const redirectUrl = slug === 'home' ? '/' : `/${slug || ''}`;
   
-  console.log('Draft mode enabled, redirecting to:', finalUrl);
-  redirect(finalUrl);
+  console.log('Draft mode enabled, redirecting to:', redirectUrl);
+  
+  return new Response(null, {
+    status: 307,
+    headers: {
+      Location: redirectUrl,
+    },
+  });
 }
