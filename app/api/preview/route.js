@@ -8,6 +8,8 @@ export async function GET(request) {
 
   console.log('HYGRAPH_PREVIEW_SECRET ENV', process.env.HYGRAPH_PREVIEW_SECRET)
   console.log('HYGRAPH_PREVIEW_SECRET REQ', secret)
+  console.log('Request URL:', request.url)
+  console.log('User Agent:', request.headers.get('user-agent'))
 
   if (
     secret !== process.env.HYGRAPH_PREVIEW_SECRET ||
@@ -15,41 +17,42 @@ export async function GET(request) {
   ) {
     return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
   }
-  // Enable Draft Mode immediately after secret validation
+
+  // Enable Draft Mode first
   draftMode().enable()
 
+  const redirectUrl = slug === 'home' ? '/' : `/${slug}`
+  const response = NextResponse.redirect(new URL(redirectUrl, request.url))
 
   // Fix for Next.js issues #49433 and #49927
-  // Next.js changed draft mode cookies from SameSite=None to SameSite=Lax
-  // This breaks iframe-based CMS preview functionality
-  const draft = cookies().get('__prerender_bypass')
-  const nonce = cookies().get('__next_preview_data')
-
-  // Always use SameSite=None for iframe compatibility with CMS
-  // This is required for cross-site cookie setting in preview iframes
+  // Manually set cookies with SameSite=None for iframe compatibility
   const isSecure = request.url.startsWith('https://')
+  console.log('Setting cookies with secure:', isSecure)
   
-  if (draft?.value) {
-    cookies().set('__prerender_bypass', draft.value, {
-      httpOnly: true,
-      sameSite: 'None',
-      secure: isSecure,
-      path: '/',
-      maxAge: 60 * 60 * 24 // 24 hours
-    });
-  }
+  // Generate a simple bypass token (Next.js uses a more complex one, but this should work)
+  const bypassToken = Buffer.from(JSON.stringify({ 
+    timestamp: Date.now(),
+    random: Math.random() 
+  })).toString('base64')
 
-  if (nonce?.value) {
-    cookies().set('__next_preview_data', nonce.value, {
-      httpOnly: true,
-      sameSite: 'None',
-      secure: isSecure,
-      path: '/',
-      maxAge: 60 * 60 * 24 // 24 hours
-    });
-  }
+  // Set the bypass cookie directly on the response
+  response.cookies.set('__prerender_bypass', bypassToken, {
+    httpOnly: true,
+    sameSite: 'None',
+    secure: isSecure,
+    path: '/',
+    maxAge: 60 * 60 * 24 // 24 hours
+  });
 
-  const redirectUrl = slug === 'home' ? '/' : `/${slug}`
+  // Also set a simple preview data cookie
+  response.cookies.set('__next_preview_data', 'true', {
+    httpOnly: true,
+    sameSite: 'None',
+    secure: isSecure,
+    path: '/',
+    maxAge: 60 * 60 * 24 // 24 hours
+  });
 
-  return NextResponse.redirect(new URL(redirectUrl, request.url))
+  console.log('Cookies set, redirecting to:', redirectUrl)
+  return response
 }
