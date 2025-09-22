@@ -15,7 +15,7 @@ function PreviewBanner({ enabled = false }) {
 
   return (
     <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
-      Preview Mode Enabled (Content served from CMS DRAFT) &mdash;&nbsp;
+      Preview Mode Enabled  (Content served from DRAFT)&mdash;&nbsp;
       <a href="/api/exit-preview" style={{ color: 'inherit', textDecoration: 'underline' }}>
         Exit Preview Mode
       </a>
