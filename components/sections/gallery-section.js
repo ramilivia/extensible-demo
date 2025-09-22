@@ -28,13 +28,11 @@ export default function GallerySection({ id, images, galleryTitle, description, 
 
   return (
     <Box as="section" bg={siteConfig?.backgroundColor?.hex || 'white'} py={[12, 12]}>
-      <Container maxW="7.5xl" mx="auto">
+      <Container maxW="7.5xl" mx="auto" px={{ base: 4, md: 6, lg: 0 }}>
         {galleryTitle && (
           <Heading 
             as="h2" 
             fontSize={FONT_SIZES.TITLE_MEDIUM}
-            px={{ base: 4, md: 8, lg: 0 }}
-            marginLeft={{ base: 4, md: 0 }}
             marginBottom={1}
             fontWeight="bold"
             lineHeight="1.05"

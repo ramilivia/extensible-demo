@@ -94,7 +94,7 @@ export default function FullBleedVideo({ id, buttons, asset, title, description,
               alignItems={contentPosition === 'bottom_left' ? 'flex-end' : 'center'}
               justifyContent={contentPosition === 'bottom_left' ? 'flex-start' : { base: 'center', lg: 'flex-start', '2xl': 'center' }}
               py={{ base: contentPosition === 'bottom_left' ? 8 : 16, md: contentPosition === 'bottom_left' ? 16 : 32 }}
-              px={{ base: contentPosition === 'bottom_left' ? 4 : 4, md: contentPosition === 'bottom_left' ? 8 : 12 }}
+              px={{ base: contentPosition === 'bottom_left' ? 4 : 4, md: contentPosition === 'bottom_left' ? 0 : 12 }}
               ml={contentPosition === 'bottom_left' ? { base: 0, md: '-4' } : { base: 0, lg: '8', '2xl': 0 }}
             >
               <Stack 
