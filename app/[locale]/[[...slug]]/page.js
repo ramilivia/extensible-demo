@@ -111,7 +111,6 @@ export default async function SlugPage({ params, searchParams }) {
               currentPathname={currentPathname}
               currentLocale={locale}
             />
-            {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
             <div>
               <SectionMapper {...page} siteConfiguration={siteConfiguration} />
             </div>

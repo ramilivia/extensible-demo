@@ -9,7 +9,7 @@ export default function SectionMapper({ id, banner, blocks, hero, navigation, si
           {(() => {
             const Component = Blocks[hero.component] || Blocks[hero.__typename] || Blocks.Hero
             if (!Component) return null
-            return <Component key={hero.id} page={page} siteConfig={siteConfiguration} {...hero} />
+            return <Component key={hero.id} page={page} siteConfiguration={siteConfiguration} {...hero} />
           })()}
         </div>
       )}
