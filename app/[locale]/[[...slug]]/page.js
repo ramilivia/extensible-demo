@@ -100,22 +100,21 @@ export default async function SlugPage({ params, searchParams }) {
   return (
     <ChakraThemeProvider siteConfiguration={siteConfiguration}>
       <InspectorProvider>
-        <Flex flexDir="column" minH="100vh">
-          <PreviewBanner enabled={preview} />
-          <SegmentBanner segment={currentSegment} personalizationEnabled={personalizationEnabled} />
-          <Box flexGrow="1">
-            <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
-              {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
-              <Navigation
-                pages={page?.navigation?.[0]?.pages}
-                siteConfiguration={siteConfiguration}
-                currentPathname={currentPathname}
-                currentLocale={locale}
-              />
-              {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
-              <div>
-                <SectionMapper {...page} siteConfiguration={siteConfiguration} />
-              </div>
+      <Flex flexDir="column" minH="100vh">
+        <PreviewBanner enabled={preview} />
+        <Box flexGrow="1">
+          <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
+            {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
+            <Navigation 
+              pages={page?.navigation?.[0]?.pages} 
+              siteConfiguration={siteConfiguration} 
+              currentPathname={currentPathname}
+              currentLocale={locale}
+            />
+            {HeroComponent && <HeroComponent {...page.hero} siteConfiguration={siteConfiguration} />}
+            <div>
+              <SectionMapper {...page} siteConfiguration={siteConfiguration} />
+            </div>
             </div>
           </Box>
           {page?.footer && <Footer {...page.footer} siteConfiguration={siteConfiguration} currentSegment={currentSegment} currentLocale={locale} />}

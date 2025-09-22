@@ -14,7 +14,7 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
         {gridTitle && (
           <Heading 
             as="h2" 
-            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem', '2xl': '4.8rem' }}
+            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
             px={{ base: 4, md: 8, lg: 0 }}
             marginLeft={{ base: 4, md: 0 }}
             fontWeight="bold"
