@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Button from '@/components/blocks/button'
 import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
-export default function FullBleedVideo({ buttons, asset, title, description, opaque, textColor, contentPosition, siteConfiguration }) {
+export default function FullBleedVideo({ id, buttons, asset, title, description, opaque, textColor, contentPosition, siteConfiguration }) {
   
   const siteConfig = siteConfiguration;
   const isVideo = asset?.mimeType?.includes('video/');
@@ -119,6 +119,8 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                   fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                   mb={{ base: contentPosition === 'bottom_left' ? 2 : 4, md: contentPosition === 'bottom_left' ? 1 : 2 }}
                   color={textColor?.hex || siteConfig?.titlesFontColor?.hex}
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="title"
                 >
                   {title}
                 </Heading>
@@ -132,6 +134,8 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                   letterSpacing="0.02em"
                   opacity={0.95}
                   mb={{ base: contentPosition === 'bottom_left' ? 4 : 6, md: 0 }}
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="description"
                 >
                   {description}
                 </Text>
@@ -140,9 +144,11 @@ export default function FullBleedVideo({ buttons, asset, title, description, opa
                   <Stack
                     direction={{ base: 'column', lg: contentPosition === 'bottom_left' ? 'row' : 'row' }}
                     spacing={contentPosition === 'bottom_left' ? 4 : 8}
-                    pt={contentPosition === 'bottom_left' ? 2 : 4}
+                    mt={contentPosition === 'bottom_left' ? 2 : 4}
                     w="100%"
                     maxW="100%"
+                    data-hygraph-entry-id={id}
+                    data-hygraph-field-api-id="buttons"
                   >
                     {buttons.map((button, index) => (
                       <Button 
