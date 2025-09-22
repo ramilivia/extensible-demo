@@ -1,3 +1,5 @@
+'use client'
+
 import { Box, Container, Flex, Stack, Heading, Text, Avatar, useBreakpointValue } from '@chakra-ui/react'
 import Image from 'next/image'
 
