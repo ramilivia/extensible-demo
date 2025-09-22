@@ -13,10 +13,6 @@ export async function GET(request) {
   const referer = request.headers.get('referer');
   let redirectUrl = referer || '/';
   
-  // Add cache-busting parameter to force a hard reload
-  const separator = redirectUrl.includes('?') ? '&' : '?';
-  redirectUrl = `${redirectUrl}${separator}_exit_preview=${Date.now()}`;
-  
   return new Response(null, {
     status: 307,
     headers: {
