@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import Button from '@/components/blocks/button'
 
-export default function AlternatingPanelsSection({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
+export default function AlternatingPanelsSection({ id, buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
 
   const siteConfig = siteConfiguration
 
@@ -35,6 +35,8 @@ export default function AlternatingPanelsSection({ buttons, image, alternatingPa
               letterSpacing="-0.04em"
               fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
               color={variants.length > 0 ? variants[0].textColor?.hex : textColor?.hex || siteConfig?.textColor?.hex}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="title"
             >
               {variants.length > 0 ? variants[0].alternatingPanelsTitle : alternatingPanelsTitle}
             </Heading>
@@ -44,6 +46,9 @@ export default function AlternatingPanelsSection({ buttons, image, alternatingPa
               color={variants.length > 0 ? variants[0].textColor?.hex : textColor?.hex || siteConfig?.textColor?.hex}
               maxW="2xl"
               whiteSpace="pre-wrap"
+              py={2}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="description"
             >
               {variants.length > 0 ? variants[0].description : description}
             </Text>
@@ -53,7 +58,9 @@ export default function AlternatingPanelsSection({ buttons, image, alternatingPa
                 direction={{ base: 'column', sm: 'row' }}
                 spacing={4}
                 justify={{ base: 'center', md: 'flex-start' }}
-                pt={4}
+                mt={4}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="buttons"
               >
                 
                 {buttons.map((button, index) => (
@@ -74,6 +81,8 @@ export default function AlternatingPanelsSection({ buttons, image, alternatingPa
             alignItems="center"
           >
             <Image
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="image"
               src={variants.length > 0 ? variants[0].image?.url : image?.url}
               alt={image?.alt}
               width={image?.width}
