@@ -28,7 +28,7 @@ export default function FeaturedCarouselSection({ id, featuredCarouselTitle: tit
   const cardHeight = useBreakpointValue({ base: '220px', md: '340px', lg: '400px' });
 
   return (
-    <Box bg={backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } py={{ base: 8, md: 20 }} px={{ base: 0, md: 0, lg: 2 }} minH={{ base: 'auto', md: '600px' }}>
+    <Box bg={backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } py={{ base: 8, md: 20 }} px={{ base: 0, md: 0, lg: 6 }} minH={{ base: 'auto', md: '600px' }}>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
         align={{ base: 'flex-start', lg: 'center' }}
