@@ -1,7 +1,7 @@
 import { Box, SimpleGrid, Heading, Image, Link, Text, Stack } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
 
-export default function GridCardSection({ gridCards: cards, sectionTitle: gridTitle, description, columnsNumber, cardTextAlignment, areImagesSameHeight, middleCrop, siteConfiguration }) {
+export default function GridCardSection({ id, gridCards: cards, sectionTitle: gridTitle, description, columnsNumber, cardTextAlignment, areImagesSameHeight, middleCrop, siteConfiguration }) {
   const siteConfig = siteConfiguration
 
   if (!cards || !cards.length) return null
@@ -23,6 +23,8 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
             fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
             color={siteConfig?.textColor?.hex} 
             mb={10}
+            data-hygraph-entry-id={id}
+            data-hygraph-field-api-id="title"
           >
             {gridTitle}
           </Heading>
@@ -34,6 +36,8 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
             maxW="2xl"
             whiteSpace="pre-wrap"
             mb={10}
+            data-hygraph-entry-id={id}
+            data-hygraph-field-api-id="description"
           >
             {description}
           </Text>
@@ -60,7 +64,8 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                 <Image
                   src={card?.image?.url}
                   alt={card.cardTitle}
-                  
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="image"
                   h={areImagesSameHeight ? 'auto' : 56 }
                   objectFit={middleCrop ? 'cover' : 'contain'}
                 />
@@ -73,10 +78,17 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                   fontSize="2xl"
                   mb={2}
                   display="inline-block"
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="title"
                 >
                   {card.cardTitle}
                 </Link>
-                <Text color={siteConfig?.textColor?.hex} fontSize="md" mt={4}>
+                <Text 
+                  color={siteConfig?.textColor?.hex} 
+                  fontSize="md" mt={4}
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="description"
+                >
                   {card.description}
                 </Text>
                 {card.button && (
@@ -84,7 +96,9 @@ export default function GridCardSection({ gridCards: cards, sectionTitle: gridTi
                     direction={{ base: 'column', sm: 'row' }}
                     spacing={4}
                     justify={{ base: 'center', md: 'flex-start' }}
-                    pt={4}
+                    mt={4}
+                    data-hygraph-entry-id={id}
+                    data-hygraph-field-api-id="buttons"
                   >
                     <Button {...card.button} siteConfiguration={siteConfiguration} />
                   </Stack>
