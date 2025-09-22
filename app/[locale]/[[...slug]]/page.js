@@ -100,7 +100,6 @@ export default async function SlugPage({ params, searchParams }) {
     <ChakraThemeProvider siteConfiguration={siteConfiguration}>
       <Flex flexDir="column" minH="100vh">
         <PreviewBanner enabled={preview} />
-        <SegmentBanner segment={currentSegment} personalizationEnabled={personalizationEnabled} />
         <Box flexGrow="1">
           <div style={{ minHeight: '100vh', backgroundColor: siteConfiguration?.backgroundColor?.hex || 'white' }}>
             {pageBanner && <Banner {...pageBanner} siteConfiguration={siteConfiguration} />}
