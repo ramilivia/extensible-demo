@@ -1,4 +1,4 @@
-import { draftMode, cookies } from "next/headers";
+import { cookies } from "next/headers";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
@@ -13,32 +13,38 @@ export async function GET(request) {
     return new Response('Invalid token', { status: 401 });
   }
 
-  // Enable draft mode which sets the initial cookie
-  const draft = draftMode();
-  draft.enable();
-
   // Get the cookie store
   const cookieStore = cookies();
 
-  // Get the draft mode cookie that was just set
-  const draftCookie = cookieStore.get("__prerender_bypass");
+  // Set custom preview cookie with cross-origin iframe support
+  cookieStore.set({
+    name: "hygraph_preview_enabled",
+    value: "true",
+    httpOnly: true,
+    path: "/",
+    secure: true,
+    sameSite: "none", // Allow cookie in cross-origin iframes
+    maxAge: 60 * 60 * 24, // 24 hours
+  });
 
-  // If we have the cookie, update it with cross-origin iframe support
-  if (draftCookie?.value) {
-    cookieStore.set({
-      name: "__prerender_bypass",
-      value: draftCookie.value,
-      httpOnly: true,
-      path: "/",
-      secure: true,
-      sameSite: "none", // Allow cookie in cross-origin iframes
-    });
-  }
+  // Also set a preview data cookie for additional context if needed
+  cookieStore.set({
+    name: "hygraph_preview_data",
+    value: JSON.stringify({ 
+      enabledAt: new Date().toISOString(),
+      secret: secret.substring(0, 8) + '...' // Store partial secret for verification
+    }),
+    httpOnly: true,
+    path: "/",
+    secure: true,
+    sameSite: "none",
+    maxAge: 60 * 60 * 24, // 24 hours
+  });
 
   // Redirect to the page
   const redirectUrl = slug === 'home' ? '/' : `/${slug || ''}`;
   
-  console.log('Draft mode enabled, redirecting to:', redirectUrl);
+  console.log('Custom preview mode enabled, redirecting to:', redirectUrl);
   
   return new Response(null, {
     status: 307,

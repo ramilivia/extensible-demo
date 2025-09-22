@@ -16,7 +16,7 @@ function PreviewBanner({ enabled = false }) {
 
   return (
     <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
-      Preview Mode Enabled (Content served from DRAFT) &mdash;&nbsp;
+      Preview Mode Enabled (Content served from CMS DRAFT) &mdash;&nbsp;
       <Link href="/api/exit-preview">
         Exit Preview Mode
       </Link>

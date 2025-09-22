@@ -1,10 +1,14 @@
-import { draftMode } from 'next/headers'
+import { cookies } from 'next/headers'
 
 export async function GET(request) {
-  // Disable Draft Mode
-  draftMode().disable()
+  // Get the cookie store
+  const cookieStore = cookies();
   
-  console.log('Draft mode disabled')
+  // Remove custom preview cookies
+  cookieStore.delete('hygraph_preview_enabled');
+  cookieStore.delete('hygraph_preview_data');
+  
+  console.log('Custom preview mode disabled')
   
   return new Response(null, {
     status: 307,
