@@ -2,7 +2,7 @@
 
 import { Box } from '@chakra-ui/react'
 import ChakraThemeProvider from '@/components/layout/chakra-provider'
-import AlternatingPanels from '@/components/sections/alternating-panels-section'
+import { AlternatingPanelsSection } from '@/components/sections'
 
 // Mock site configuration
 const mockSiteConfiguration = {
@@ -58,13 +58,13 @@ const mockAlternatingPanelsLeft = {
       id: "btn-1",
       href: "#",
       label: "Get Started",
-      theme: "primary"
+      theme: "PRIMARY"
     },
     {
       id: "btn-2", 
       href: "#",
       label: "Learn More",
-      theme: "secondary"
+      theme: "SECONDARY"
     }
   ],
   image: {
@@ -93,7 +93,7 @@ const mockAlternatingPanelsRight = {
       id: "btn-3",
       href: "#",
       label: "View Integrations",
-      theme: "primary"
+      theme: "PRIMARY"
     }
   ],
   image: {
@@ -122,7 +122,7 @@ const mockAlternatingPanelsWithVariants = {
       id: "btn-4",
       href: "#",
       label: "Default Button",
-      theme: "primary"
+      theme: "PRIMARY"
     }
   ],
   image: {
@@ -194,7 +194,7 @@ export default function AlternatingPanelsPreview() {
                 Image positioned on the left, content on the right
               </p>
             </Box>
-            <AlternatingPanels 
+            <AlternatingPanelsSection 
               {...mockAlternatingPanelsLeft} 
               siteConfiguration={mockSiteConfiguration} 
             />
@@ -215,7 +215,7 @@ export default function AlternatingPanelsPreview() {
                 Image positioned on the right, content on the left
               </p>
             </Box>
-            <AlternatingPanels 
+            <AlternatingPanelsSection 
               {...mockAlternatingPanelsRight} 
               siteConfiguration={mockSiteConfiguration} 
             />
@@ -236,7 +236,7 @@ export default function AlternatingPanelsPreview() {
                 Shows variant content when variants array is provided
               </p>
             </Box>
-            <AlternatingPanels 
+            <AlternatingPanelsSection 
               {...mockAlternatingPanelsWithVariants} 
               siteConfiguration={mockSiteConfiguration} 
             />

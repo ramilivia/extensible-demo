@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import Button from '@/components/blocks/button'
 
-export default function AlternatingPanels({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
+export default function AlternatingPanelsSection({ buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
 
   const siteConfig = siteConfiguration
 
