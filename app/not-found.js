@@ -2,6 +2,7 @@
 
 import { ChakraProvider, Box, Heading, Text, Button, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
+import { FONT_SIZES } from '@/lib/constants'
 
 export default function NotFound() {
   return (
@@ -14,7 +15,7 @@ export default function NotFound() {
         bg="gray.50"
       >
         <VStack spacing={6} textAlign="center" p={8}>
-          <Heading as="h1" size="2xl" color="gray.700">
+          <Heading as="h1" fontSize={FONT_SIZES.H1} color="gray.700">
             404
           </Heading>
           <Heading as="h2" size="lg" color="gray.600">

@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
 import Button from '@/components/blocks/button'
+import { FONT_SIZES } from '@/lib/constants'
 export default function FeaturedCarouselSection({ id, featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor, siteConfiguration }) {
   const sliderRef = useRef(null);
   const siteConfig = siteConfiguration;
@@ -83,7 +84,7 @@ export default function FeaturedCarouselSection({ id, featuredCarouselTitle: tit
           </Flex>
           <Heading
               as="h1"
-              fontSize={{ base: '2.25rem', md: '2.75rem', lg: '4.8rem' }}
+              fontSize={FONT_SIZES.TITLE_LARGE}
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"

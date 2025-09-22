@@ -1,6 +1,6 @@
 import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
-import { LAYOUT_CONSTANTS } from '@/lib/constants'
+import { LAYOUT_CONSTANTS, FONT_SIZES } from '@/lib/constants'
 
 import Button from '@/components/blocks/button'
 
@@ -110,7 +110,7 @@ export default function Hero({ id, buttons, asset, title, description, siteConfi
             >
               <Heading
                 as="h1"
-                fontSize={{ base: 'var(--heading-size, clamp(2.5rem, 8vh, 5.5rem))', lg: '5rem' }}
+                fontSize={FONT_SIZES.TITLE_LARGE}
                 fontWeight="bold"
                 lineHeight={{ base: '1.2', md: '1.05' }}
                 letterSpacing="-0.04em"

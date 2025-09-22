@@ -1,5 +1,6 @@
 import { Box, SimpleGrid, Heading, Image, Link, Text, Stack } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
+import { FONT_SIZES } from '@/lib/constants'
 
 export default function GridCardSection({ id, gridCards: cards, sectionTitle: gridTitle, description, columnsNumber, cardTextAlignment, areImagesSameHeight, middleCrop, siteConfiguration }) {
   const siteConfig = siteConfiguration
@@ -14,7 +15,7 @@ export default function GridCardSection({ id, gridCards: cards, sectionTitle: gr
         {gridTitle && (
           <Heading 
             as="h2" 
-            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+            fontSize={FONT_SIZES.TITLE_MEDIUM}
             px={{ base: 4, md: 8, lg: 0 }}
             marginLeft={{ base: 4, md: 0 }}
             fontWeight="bold"

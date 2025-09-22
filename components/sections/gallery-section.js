@@ -12,6 +12,7 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
+import { FONT_SIZES } from '@/lib/constants'
 export default function GallerySection({ id, images, galleryTitle, description, siteConfiguration }) {
     const siteConfig = siteConfiguration
   const [index, setIndex] = useState(-1);
@@ -31,7 +32,7 @@ export default function GallerySection({ id, images, galleryTitle, description, 
         {galleryTitle && (
           <Heading 
             as="h2" 
-            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+            fontSize={FONT_SIZES.TITLE_MEDIUM}
             px={{ base: 4, md: 8, lg: 0 }}
             marginLeft={{ base: 4, md: 0 }}
             marginBottom={1}

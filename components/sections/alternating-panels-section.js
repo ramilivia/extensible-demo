@@ -2,6 +2,7 @@ import { Box, Container, Heading, Stack, Text, Flex, useBreakpointValue } from '
 import Image from 'next/image'
 
 import Button from '@/components/blocks/button'
+import { FONT_SIZES } from '@/lib/constants'
 
 export default function AlternatingPanelsSection({ id, buttons, image, alternatingPanelsTitle, description, assetPosition = 'right', backgroundColor, textColor, variants = [], siteConfiguration }) {
 
@@ -29,7 +30,7 @@ export default function AlternatingPanelsSection({ id, buttons, image, alternati
           >
             <Heading
               as="h1"
-              fontSize={{ base: '2.25rem', md: '3.75rem', lg: '4.8rem', '2xl': '4.8rem' }}
+              fontSize={FONT_SIZES.TITLE_LARGE}
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"

@@ -1,7 +1,7 @@
 import { Box, Container, Heading, Stack, Text, Grid, GridItem } from '@chakra-ui/react'
 import Image from 'next/image'
 import Button from '@/components/blocks/button'
-import { LAYOUT_CONSTANTS } from '@/lib/constants'
+import { LAYOUT_CONSTANTS, FONT_SIZES } from '@/lib/constants'
 
 export default function FullBleedVideo({ id, buttons, asset, title, description, opaque, textColor, contentPosition, siteConfiguration }) {
   
@@ -107,12 +107,7 @@ export default function FullBleedVideo({ id, buttons, asset, title, description,
               >
                 <Heading
                   as="h1"
-                  fontSize={{ 
-                    base: contentPosition === 'bottom_left' 
-                      ? 'var(--heading-size, clamp(2rem, 6vh, 4rem))' 
-                      : 'var(--heading-size, clamp(2.5rem, 8vh, 4.5rem))', 
-                    lg: contentPosition === 'bottom_left' ? '4rem' : '5rem' 
-                  }}
+                  fontSize={FONT_SIZES.TITLE_LARGE}
                   fontWeight="bold"
                   lineHeight={{ base: '1.2', md: '1.05' }}
                   letterSpacing="-0.04em"
