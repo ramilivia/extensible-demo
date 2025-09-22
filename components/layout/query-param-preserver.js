@@ -11,19 +11,46 @@ function preserveInspectorParam() {
   // If inspector is in the current URL, remember it
   if (searchParams.has('inspector')) {
     sessionStorage.setItem('preserveInspector', 'true')
+    // Store the current URL to detect manual changes
+    sessionStorage.setItem('lastInspectorUrl', window.location.href)
   }
   
   // Clean up if inspector is explicitly disabled
   if (searchParams.get('inspector') === 'false') {
     sessionStorage.removeItem('preserveInspector')
+    sessionStorage.removeItem('lastInspectorUrl')
+    return
   }
 
   const shouldPreserve = sessionStorage.getItem('preserveInspector') === 'true'
   const hasInspector = searchParams.has('inspector')
+  const lastInspectorUrl = sessionStorage.getItem('lastInspectorUrl')
 
   // Only add inspector if it should be preserved and is missing
   if (shouldPreserve && !hasInspector) {
+    // Check if the URL was manually edited by comparing with the last known URL
+    // If the current URL (without inspector) plus inspector param equals the last URL,
+    // then inspector was likely removed programmatically during navigation
+    const urlWithInspector = new URL(window.location)
+    urlWithInspector.searchParams.set('inspector', 'true')
+    
+    // If this is a completely different page/path, preserve inspector
+    // If this is the same page but inspector was manually removed, don't preserve
+    if (lastInspectorUrl) {
+      const lastUrl = new URL(lastInspectorUrl)
+      const currentPath = url.pathname + url.search.replace(/[?&]inspector=[^&]*/g, '').replace(/^&/, '?').replace(/^\?$/, '')
+      const lastPath = lastUrl.pathname + lastUrl.search.replace(/[?&]inspector=[^&]*/g, '').replace(/^&/, '?').replace(/^\?$/, '')
+      
+      // If we're on the same page and inspector was removed, user likely removed it manually
+      if (currentPath === lastPath) {
+        sessionStorage.removeItem('preserveInspector')
+        sessionStorage.removeItem('lastInspectorUrl')
+        return
+      }
+    }
+    
     url.searchParams.set('inspector', 'true')
+    sessionStorage.setItem('lastInspectorUrl', url.toString())
     
     // Use history.replaceState to avoid flickering
     window.history.replaceState(null, '', url.toString())
