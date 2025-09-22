@@ -4,7 +4,7 @@ import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
 import Button from '@/components/blocks/button'
 
-export default function HeroRemoteSource({ buttons, image, title, description, siteConfiguration }) {
+export default function HeroRemoteSource({ id, buttons, image, title, description, siteConfiguration }) {
   const siteConfig = siteConfiguration
 
   return (
@@ -49,6 +49,8 @@ export default function HeroRemoteSource({ buttons, image, title, description, s
           display="block"
           order={{ base: 2, lg: 1 }}
           mb={0}
+          data-hygraph-entry-id={id}
+          data-hygraph-field-api-id="image"
         >
           <Box
             position="absolute"
@@ -127,6 +129,8 @@ export default function HeroRemoteSource({ buttons, image, title, description, s
                 fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
                 color={siteConfig?.titlesFontColor?.hex || 'gray.800'}
                 mb={{ base: 4, md: 2 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="title"
               >
                 {title}
               </Heading>
@@ -140,6 +144,8 @@ export default function HeroRemoteSource({ buttons, image, title, description, s
                 letterSpacing="0.02em"
                 opacity={0.95}
                 mb={{ base: 6, md: 0 }}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="description"
               >
                 {description}
               </Text>
@@ -151,6 +157,8 @@ export default function HeroRemoteSource({ buttons, image, title, description, s
                   pt={4}
                   w="100%"
                   maxW="100%"
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="buttons"
                 >
                   {buttons.map((button, index) => (
                     <Button 
