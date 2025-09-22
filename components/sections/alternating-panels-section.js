@@ -29,7 +29,7 @@ export default function AlternatingPanelsSection({ id, buttons, image, alternati
           >
             <Heading
               as="h1"
-              fontSize={{ base: '2.25rem', md: '2.75rem', lg: '4.8rem', '2xl': '4.8rem' }}
+              fontSize={{ base: '2.25rem', md: '3.75rem', lg: '4.8rem', '2xl': '4.8rem' }}
               fontWeight="bold"
               lineHeight="1.05"
               letterSpacing="-0.04em"
