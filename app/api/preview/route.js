@@ -27,20 +27,6 @@ export async function GET(request) {
     maxAge: 60 * 60 * 24, // 24 hours
   });
 
-  // Also set a preview data cookie for additional context if needed
-  cookieStore.set({
-    name: "hygraph_preview_data",
-    value: JSON.stringify({ 
-      enabledAt: new Date().toISOString(),
-      secret: secret.substring(0, 8) + '...' // Store partial secret for verification
-    }),
-    httpOnly: true,
-    path: "/",
-    secure: true,
-    sameSite: "none",
-    maxAge: 60 * 60 * 24, // 24 hours
-  });
-
   // Redirect to the page
   const redirectUrl = slug === 'home' ? '/' : `/${slug || ''}`;
   
