@@ -12,7 +12,7 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-export default function GallerySection({ images, galleryTitle, description, siteConfiguration }) {
+export default function GallerySection({ id, images, galleryTitle, description, siteConfiguration }) {
     const siteConfig = siteConfiguration
   const [index, setIndex] = useState(-1);
 
@@ -30,28 +30,33 @@ export default function GallerySection({ images, galleryTitle, description, site
       <Container maxW="7.5xl" mx="auto">
         {galleryTitle && (
           <Heading 
-          as="h2" 
-          fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
-          px={{ base: 4, md: 8, lg: 0 }}
-          marginLeft={{ base: 4, md: 0 }}
-          marginBottom={1}
-          fontWeight="bold"
-          lineHeight="1.05"
-          letterSpacing="-0.04em"
-          fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
-          color={siteConfig?.textColor?.hex} 
-          mb={5}
+            as="h2" 
+            fontSize={{ base: '2.25rem', md: '2.75rem', lg: '3.5rem' }}
+            px={{ base: 4, md: 8, lg: 0 }}
+            marginLeft={{ base: 4, md: 0 }}
+            marginBottom={1}
+            fontWeight="bold"
+            lineHeight="1.05"
+            letterSpacing="-0.04em"
+            fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
+            color={siteConfig?.textColor?.hex} 
+            mb={5}
+            data-hygraph-entry-id={id}
+            data-hygraph-field-api-id="title"
         >
           {galleryTitle}
         </Heading>
         )}
         <Box marginX={{ base: 0, md: 0, lg: 0 }}>
         <Text
-              fontSize={{ base: 'lg', md: 'xl' }}
-              color={siteConfig?.textColor?.hex}
-              maxW="2xl"
-              whiteSpace="pre-wrap"
-              marginBottom={5}
+            fontSize={{ base: 'lg', md: 'xl' }}
+            color={siteConfig?.textColor?.hex}
+            maxW="2xl"
+            whiteSpace="pre-wrap"
+            marginBottom={5}
+            data-hygraph-entry-id={id}
+            data-hygraph-field-api-id="description"
+            py={2}
             >
               {description}
             </Text>
@@ -75,6 +80,8 @@ export default function GallerySection({ images, galleryTitle, description, site
                 alt={images[0].alt || "Gallery image 1"}
                 width={images[0].width}
                 height={images[0].height}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="images"
                 objectFit="cover"
                 _hover={{ transform: "scale(1.05)" }}
                 transition="transform 0.4s ease-in-out"
@@ -114,6 +121,8 @@ export default function GallerySection({ images, galleryTitle, description, site
                   transition="transform 0.4s ease-in-out"
                   loading="lazy"
                   decoding="async"
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="images"
                   sx={{
                     WebkitFontSmoothing: "antialiased",
                     backfaceVisibility: "hidden",
