@@ -1,4 +1,5 @@
 import '../../styles/css/global.css'
+import QueryParamPreserver from '@/components/layout/query-param-preserver'
 
 export async function generateStaticParams() {
   return [
@@ -21,6 +22,7 @@ export default async function LocaleLayout({ children, params }) {
         />
       </head>
       <body>
+        <QueryParamPreserver />
         {children}
       </body>
     </html>

@@ -2,7 +2,6 @@ import '../styles/css/global.css'
 import Link from 'next/link'
 import { Flex, Box } from '@chakra-ui/react'
 import Footer from '@/components/sections/footer'
-import QueryParamPreserver from '@/components/layout/query-param-preserver'
 
 const description = `Learn how to build modern marketing websites, with localization and SEO, using Hygraph, NextJS, Chakra UI, and Vercel.`
 const title = `Build Modern Marketing Websites with a Headless CMS`
@@ -43,7 +42,6 @@ function PreviewBanner({ enabled = false }) {
 export default function RootLayout({ children }) {
   return (
     <>
-      <QueryParamPreserver />
       {children}
     </>
   )

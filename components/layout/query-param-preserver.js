@@ -1,45 +1,69 @@
 'use client'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { useEffect } from 'react'
 
-function QueryParamPreserverClient() {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+// Simple utility to preserve inspector query parameter across navigation
+function preserveInspectorParam() {
+  if (typeof window === 'undefined') return
 
-  // Handle inspector parameter preservation logic directly
-  if (typeof window !== 'undefined') {
-    // If inspector is in the current URL, remember it
-    if (searchParams.has('inspector')) {
-      sessionStorage.setItem('preserveInspector', 'true')
-    }
-    
-    // Clean up if inspector is explicitly disabled
-    if (searchParams.get('inspector') === 'false') {
-      sessionStorage.removeItem('preserveInspector')
-    }
+  const url = new URL(window.location)
+  const searchParams = url.searchParams
 
-    const shouldPreserve = sessionStorage.getItem('preserveInspector') === 'true'
-    const hasInspector = searchParams.has('inspector')
-
-    // Only add inspector if it should be preserved and is missing
-    if (shouldPreserve && !hasInspector) {
-      const url = new URL(window.location)
-      url.searchParams.set('inspector', 'true')
-      
-      // Use history.replaceState to avoid flickering
-      window.history.replaceState(null, '', url.toString())
-    }
+  // If inspector is in the current URL, remember it
+  if (searchParams.has('inspector')) {
+    sessionStorage.setItem('preserveInspector', 'true')
+  }
+  
+  // Clean up if inspector is explicitly disabled
+  if (searchParams.get('inspector') === 'false') {
+    sessionStorage.removeItem('preserveInspector')
   }
 
-  return null
+  const shouldPreserve = sessionStorage.getItem('preserveInspector') === 'true'
+  const hasInspector = searchParams.has('inspector')
+
+  // Only add inspector if it should be preserved and is missing
+  if (shouldPreserve && !hasInspector) {
+    url.searchParams.set('inspector', 'true')
+    
+    // Use history.replaceState to avoid flickering
+    window.history.replaceState(null, '', url.toString())
+  }
+}
+
+// Initialize the inspector parameter preservation
+function initializeInspectorPreservation() {
+  if (typeof window === 'undefined') return
+  
+  // Don't initialize multiple times
+  if (window.__inspectorPreservationInitialized) return
+  window.__inspectorPreservationInitialized = true
+
+  // Run immediately
+  preserveInspectorParam()
+  
+  // Also run on navigation changes
+  const originalPushState = history.pushState
+  const originalReplaceState = history.replaceState
+  
+  history.pushState = function(...args) {
+    originalPushState.apply(history, args)
+    setTimeout(preserveInspectorParam, 0)
+  }
+  
+  history.replaceState = function(...args) {
+    originalReplaceState.apply(history, args)
+    setTimeout(preserveInspectorParam, 0)
+  }
+  
+  // Listen for popstate (back/forward navigation)
+  window.addEventListener('popstate', preserveInspectorParam)
 }
 
 export default function QueryParamPreserver() {
-  return (
-    <Suspense fallback={null}>
-      <QueryParamPreserverClient />
-    </Suspense>
-  )
+  useEffect(() => {
+    initializeInspectorPreservation()
+  }, [])
+
+  return null
 }
 
