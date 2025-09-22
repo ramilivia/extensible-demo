@@ -28,7 +28,7 @@ export default function GallerySection({ id, images, galleryTitle, description, 
 
   return (
     <Box as="section" bg={siteConfig?.backgroundColor?.hex || 'white'} py={[12, 12]}>
-      <Container maxW="7.5xl" mx="auto" px={{ base: 4, md: 6, lg: 0 }}>
+      <Container maxW="7.5xl" mx="auto" px={{ base: 4, md: 6, lg: 2 }}>
         {galleryTitle && (
           <Heading 
             as="h2" 

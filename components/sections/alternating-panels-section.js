@@ -10,7 +10,7 @@ export default function AlternatingPanelsSection({ id, buttons, image, alternati
 
   return (
     <Box position="relative" bg={variants.length > 0 ? variants[0].backgroundColor?.hex : backgroundColor?.hex || siteConfig?.backgroundColor?.hex || 'unset' } minH={{ base: 'auto' }} py={{ base: 8, md: 30, lg: 50 }}>
-      <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 0, lg: 0 }}>
+      <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 0, lg: 2 }}>
         <Flex
           direction={{ base: 'column', lg: assetPosition === 'right' ? 'row' : 'row-reverse' }}
           align={{ base: 'flex-start', lg: 'center' }}
