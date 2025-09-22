@@ -16,7 +16,7 @@ export default function NewsletterSignup({ id, ctaLabel, subtitle, title, button
       <Box maxW="7.5xl" mx="auto" py={{ base: 12, lg: 16 }} px={{ base: 4, md: 6, lg: 6 }}>
         <Heading
           as="h2"
-          fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+          fontSize={{ base: '2.75rem', md: '2.75rem', lg: '3.5rem' }}
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
@@ -28,7 +28,8 @@ export default function NewsletterSignup({ id, ctaLabel, subtitle, title, button
           {title}
         </Heading>
         <Text
-          fontSize={{ base: '1.75rem', md: '2.75rem', lg: '3.5rem' }}
+          mt={{ base: 6, md: 0 }}
+          fontSize={{ base: '2.75rem', md: '2.75rem', lg: '3.5rem' }}
           fontWeight="bold"
           lineHeight="1.05"
           letterSpacing="-0.04em"
