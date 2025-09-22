@@ -1,9 +1,10 @@
-import { NextResponse } from 'next/server'
+import { redirect } from 'next/navigation'
 import { draftMode } from 'next/headers'
 
 export async function GET(request) {
   // Disable Draft Mode
   draftMode().disable()
-
-  return NextResponse.redirect(new URL('/', request.url))
+  
+  console.log('Draft mode disabled')
+  redirect('/')
 }
