@@ -20,14 +20,32 @@ export async function GET(request) {
 
 
   // Known Next.js issue: https://github.com/vercel/next.js/issues/49433
+  // Force refresh the draft mode cookies to ensure they work across environments
   const draft = cookies().get('__prerender_bypass')
+  const nonce = cookies().get('__next_preview_data')
 
-  cookies().set('__prerender_bypass', draft?.value, {
-    httpOnly: true,
-    sameSite: 'None',
-    secure: true,
-    path: '/',
-  });
+  // Adapt cookie settings based on environment
+  const isProduction = process.env.NODE_ENV === 'production'
+  
+  if (draft?.value) {
+    cookies().set('__prerender_bypass', draft.value, {
+      httpOnly: true,
+      sameSite: isProduction ? 'None' : 'Lax',
+      secure: isProduction,
+      path: '/',
+      maxAge: 60 * 60 * 24 // 24 hours
+    });
+  }
+
+  if (nonce?.value) {
+    cookies().set('__next_preview_data', nonce.value, {
+      httpOnly: true,
+      sameSite: isProduction ? 'None' : 'Lax', 
+      secure: isProduction,
+      path: '/',
+      maxAge: 60 * 60 * 24 // 24 hours
+    });
+  }
 
   const redirectUrl = slug === 'home' ? '/' : `/${slug}`
 
