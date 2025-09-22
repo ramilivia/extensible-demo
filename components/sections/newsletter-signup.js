@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import Button from '@/components/blocks/button'
 
-export default function NewsletterSignup({ ctaLabel, subtitle, title, button, siteConfiguration }) {
+export default function NewsletterSignup({ id, ctaLabel, subtitle, title, button, siteConfiguration }) {
   const siteConfig = siteConfiguration
   
   return (
@@ -22,6 +22,8 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button, si
           letterSpacing="-0.04em"
           fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.textColor?.hex || 'gray.900'}
+          data-hygraph-entry-id={id}
+          data-hygraph-field-api-id="title"
         >
           {title}
         </Heading>
@@ -32,6 +34,8 @@ export default function NewsletterSignup({ ctaLabel, subtitle, title, button, si
           letterSpacing="-0.04em"
           fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
           color={siteConfig?.titlesFontColor?.hex}
+          data-hygraph-entry-id={id}
+          data-hygraph-field-api-id="subtitle"
         >
           {subtitle}
         </Text>
