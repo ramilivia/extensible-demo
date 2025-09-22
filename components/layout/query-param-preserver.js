@@ -1,7 +1,8 @@
 'use client'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
-export default function QueryParamPreserver() {
+function QueryParamPreserverClient() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -32,5 +33,13 @@ export default function QueryParamPreserver() {
   }
 
   return null
+}
+
+export default function QueryParamPreserver() {
+  return (
+    <Suspense fallback={null}>
+      <QueryParamPreserverClient />
+    </Suspense>
+  )
 }
 
