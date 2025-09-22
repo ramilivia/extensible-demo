@@ -13,7 +13,7 @@ export default function FullBleedVideo({ id, buttons, asset, title, description,
       position="relative" 
       w="100%"
       bg={siteConfig?.backgroundColor?.hex || 'white'}
-      mb={{ base: 8, md: 0 }}
+      mb={{ base: 0, md: 0 }}
       sx={{
         '--container-height': '100%',
         '@container (min-height: 400px)': {
