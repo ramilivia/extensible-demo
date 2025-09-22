@@ -9,10 +9,14 @@ export async function GET(request) {
   
   console.log('Custom preview mode disabled')
   
+  // Get the referrer to redirect back to the current page
+  const referer = request.headers.get('referer');
+  const redirectUrl = referer || '/';
+  
   return new Response(null, {
     status: 307,
     headers: {
-      Location: '/',
+      Location: redirectUrl,
     },
   });
 }
