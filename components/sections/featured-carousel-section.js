@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Box, Text, Flex, Stack, Heading, useBreakpointValue, IconButton } from '@chakra-ui/react';
 import Button from '@/components/blocks/button'
-export default function FeaturedCarouselSection({ featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor, siteConfiguration }) {
+export default function FeaturedCarouselSection({ id, featuredCarouselTitle: title, description, cards, buttons, backgroundColor, textColor, siteConfiguration }) {
   const sliderRef = useRef(null);
   const siteConfig = siteConfiguration;
 
@@ -89,10 +89,19 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
               letterSpacing="-0.04em"
               fontFamily={siteConfig?.typography === 'serif' ? 'serif' : 'sans-serif'}
               color={textColor?.hex || siteConfig?.textColor?.hex || 'white'}
+              data-hygraph-entry-id={id}
+              data-hygraph-field-api-id="title"
             >
             {title}
           </Heading>
-          <Text fontSize={{ base: 'lg', md: 'xl' }} color={textColor?.hex || siteConfig?.textColor?.hex || 'white'} maxW="2xl" whiteSpace="pre-wrap">
+          <Text 
+            fontSize={{ base: 'lg', md: 'xl' }} 
+            color={textColor?.hex || siteConfig?.textColor?.hex || 'white'} 
+            maxW="2xl" 
+            whiteSpace="pre-wrap"
+            data-hygraph-entry-id={id}
+            data-hygraph-field-api-id="description"
+            >
             {description}
           </Text>
           {buttons && buttons.length > 0 && (
@@ -100,7 +109,9 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
                 direction={{ base: 'column', sm: 'row' }}
                 spacing={4}
                 justify={{ base: 'center', md: 'flex-start' }}
-                pt={4}
+                mt={4}
+                data-hygraph-entry-id={id}
+                data-hygraph-field-api-id="buttons"
               >
                 
                 {buttons.map((button, index) => (
@@ -111,7 +122,9 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
         </Stack>
 
         {/* Right Panel: Carousel */}
-        <Box w={{ base: '100%', lg: '55%' }} sx={{
+        <Box
+
+          w={{ base: '100%', lg: '55%' }} sx={{
           '.slick-slide': {
             padding: '0 8px',
           },
@@ -132,7 +145,7 @@ export default function FeaturedCarouselSection({ featuredCarouselTitle: title, 
                 boxShadow="md"
                 display="flex"
                 alignItems="flex-end"
-                justifyContent="center"
+                justifyContent="center"                
               >
                 <Box
                   as="img"
