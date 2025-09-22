@@ -129,7 +129,7 @@ export default function FeaturedCarouselSection({ id, featuredCarouselTitle: tit
             padding: '0 8px',
           },
           '.slick-list': {
-            margin: '0 -8px',
+            margin: '0 -8px', 
           }
         }}>
           <Slider ref={sliderRef} {...settings}>
