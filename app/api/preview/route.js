@@ -28,6 +28,7 @@ export async function GET(request) {
   
   let pageResult = null;
   if (slug.includes('alternating-panels')) {
+    console.log('ENTRA EN ALTERNATING PANELS')
     // Extract ID from slug like: components/alternating-panels/cmbteehk5ikfn07usus2l206g?inspector
     const idMatch = slug.match(/alternating-panels\/([^?]+)/)
     const panelId = idMatch ? idMatch[1] : slug
@@ -40,6 +41,7 @@ export async function GET(request) {
 
     pageResult = alternatingPanelsSection;
   } else {  
+    console.log('ENTRA EN HOME')
    // Get page data using either version-specific or default query
     const { page } = await client.request(queryFile, {
       slug: rootSlug,
