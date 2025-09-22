@@ -54,7 +54,7 @@ export async function GET(request) {
       { status: 401 }
     )
   }
-
+ 
   // Enable Draft Mode
   draftMode().enable()
 
