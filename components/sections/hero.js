@@ -4,7 +4,7 @@ import { LAYOUT_CONSTANTS } from '@/lib/constants'
 
 import Button from '@/components/blocks/button'
 
-export default function Hero({ buttons, asset, title, description, siteConfiguration }) {
+export default function Hero({ id, buttons, asset, title, description, siteConfiguration }) {
   const siteConfig = siteConfiguration
 
   return (
