@@ -142,9 +142,11 @@ export default function Hero({ id, buttons, asset, title, description, siteConfi
                 <Stack
                   direction={{ base: 'column', lg: 'row' }}
                   spacing={8}
-                  pt={4}
+                  mt={4}
                   w="100%"
                   maxW="100%"
+                  data-hygraph-entry-id={id}
+                  data-hygraph-field-api-id="buttons"
                 >
                   {buttons.map((button, index) => (
                     <Button 
