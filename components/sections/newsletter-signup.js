@@ -40,7 +40,7 @@ export default function NewsletterSignup({ id, ctaLabel, subtitle, title, button
         >
           {subtitle}
         </Text>
-        <Box as="form" mt={8} display={{ sm: 'flex' }}>
+        <Box as="form" mt={8} display={{ sm: 'flex' }} alignItems={{ sm: 'stretch' }}>
           <VisuallyHidden as={FormLabel} htmlFor="emailAddress">
             Email address
           </VisuallyHidden>
@@ -66,6 +66,9 @@ export default function NewsletterSignup({ id, ctaLabel, subtitle, title, button
             ml={{ sm: 3 }}
             flexShrink={{ sm: 0 }}
             width={{ base: 'full', sm: 'auto' }}
+            height={{ base: 'auto', sm: '50px' }}
+            display="flex"
+            alignItems="stretch"
           >
             <Button
               type="submit"
