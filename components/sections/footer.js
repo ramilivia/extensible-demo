@@ -13,7 +13,7 @@ import {
   InstagramIcon, 
   PinterestIcon, 
   FacebookIcon, 
-  TwitterIcon,
+  XIcon,
   LinkedInIcon,
   SlackIcon,
   GithubIcon 
@@ -169,11 +169,11 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
               <SlackIcon width={20} height={20} style={{ opacity: 0.8 }} />
             </SocialMediaLink>
             <SocialMediaLink
-              title="Twitter"
-              href="https://twitter.com/Hygraphcom"
+              title="X"
+              href="https://x.com/Hygraph"
               siteConfiguration={siteConfiguration}
             >
-              <TwitterIcon width={20} height={20} style={{ opacity: 0.8 }} />
+              <XIcon width={20} height={20} style={{ opacity: 0.8 }} />
             </SocialMediaLink>
             <SocialMediaLink
               title="GitHub"
@@ -191,7 +191,7 @@ export default function Footer({ primaryLinks, secondaryLinks, siteConfiguration
             order={{ md: 1 }}
             letterSpacing="0.02em"
           >
-            © {new Date().getFullYear()} All rights reserved.
+            © {new Date().getFullYear()} Hygraph. All rights reserved.
           </Text>
         </Box>
       </Container>
