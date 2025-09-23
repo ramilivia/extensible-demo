@@ -78,6 +78,13 @@ export default function SegmentSelector({ siteConfiguration, currentSegment }) {
               defaultValue={currentSegment || 'no-segment'}
               onChange={handleSelectChange}
               _hover={{ borderColor: "gray.300" }}
+              sx={{
+                '&:focus': {
+                  boxShadow: 'none !important',
+                  outline: 'none !important',
+                  borderColor: 'gray.300 !important'
+                }
+              }}
               borderRadius="md"
             >
               <Box

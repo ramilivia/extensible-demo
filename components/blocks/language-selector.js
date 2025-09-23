@@ -63,6 +63,13 @@ export default function LanguageSelector({ siteConfiguration, currentLocale }) {
             value={activeLocale.value}
             onChange={setLocale}
             _hover={{ borderColor: "gray.300" }}
+            sx={{
+              '&:focus': {
+                boxShadow: 'none !important',
+                outline: 'none !important',
+                borderColor: 'gray.300 !important'
+              }
+            }}
             borderRadius="md"
           >
             {LOCALES.map((locale) => (
